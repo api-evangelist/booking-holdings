@@ -1,7 +1,11 @@
 aid: booking-holdings
-url: https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/apis.yml
 modified: '2026-03-23'
 apis: []
 common:
   - type: Website
     url: https://www.booking-holdings.com
+description: >-
+  Booking Holdings is the world's leading provider of online travel and related services,
+  operating Booking.com, Priceline, Agoda, KAYAK, Rentalcars.com, and OpenTable.
