@@ -22,6 +22,8 @@ tags:
   - Travel
 apis: []
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/bookingholdings
   - type: Website
     url: https://www.bookingholdings.com
   - type: About
