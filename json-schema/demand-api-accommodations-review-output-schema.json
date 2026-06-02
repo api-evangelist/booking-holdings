@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-schema/demand-api-accommodations-review-output-schema.json",
+  "title": "AccommodationsReviewOutput",
+  "description": "AccommodationsReviewOutput schema from Booking.com Demand API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Unique identifier of the review.",
+      "type": "integer"
+    },
+    "date": {
+      "description": "The date when the review was last modified. Format: YYYY-MM-DD.",
+      "type": "string",
+      "format": "date"
+    },
+    "language": {
+      "description": "An IETF language tag code that uniquely identifies a supported human language or dialect as described here: https://en.wikipedia.org/wiki/IETF_language_tag. Note that in v3 the whole tag is always lowercase. Examples: \"nl\" for Dutch/Nederlands or \"en-us\" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.",
+      "type": "string",
+      "pattern": "^[a-z]{2}(-[a-z]{2})?$"
+    },
+    "negative": {
+      "description": "Negative comments from this review.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "positive": {
+      "description": "Positive comments from this review.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reviewer": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "description": "A two-letter code that uniquely identifies a country. This code is defined by the ISO 3166-1 alpha-2 standard (ISO2) as described here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/countries\" target=\"_blank\">common/locations/countries</a>.",
+          "type": "string",
+          "pattern": "^[a-z]{2}$"
+        },
+        "name": {
+          "description": "Name of the reviewer. If the value is null then the reviewer is anonymous.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "travel_purpose": {
+          "description": "Defines if this was a leisure or business trip.",
+          "type": "string",
+          "enum": [
+            "business",
+            "leisure"
+          ]
+        },
+        "type": {
+          "description": "The reviewer type.",
+          "type": "string",
+          "enum": [
+            "couple",
+            "extended_group",
+            "family_with_children",
+            "solo_traveller"
+          ]
+        }
+      }
+    },
+    "score": {
+      "description": "The aggregated score of the review.",
+      "type": "number",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "summary": {
+      "description": "The summary of the review.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "text_meets_guidelines": {
+      "description": "Set to true when review meets the guidelines. The review text will be removed if it doesn't meet guidelines.",
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Booking.com Demand API — Common Languages
+  description: 'Common Languages surface of the Booking.com Demand API. 1 operations. Lead operation: Retrieve Language Codes. Self-contained Naftiko capability covering one Booking.com business surface.'
+  tags:
+  - Booking.com
+  - Demand API
+  - Common Languages
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    BOOKING_DEMAND_API_TOKEN: BOOKING_DEMAND_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: demand-api-common-languages
+    baseUri: https://demandapi.booking.com/3.1
+    description: Booking.com Demand API — Common Languages business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.BOOKING_DEMAND_API_TOKEN}}'
+    resources:
+    - name: common-languages
+      path: /common/languages
+      operations:
+      - name: commonLanguages
+        method: POST
+        description: Booking.com Retrieve Language Codes
+        inputParameters:
+        - name: null
+          in: null
+          type: string
+          required: false
+          description: Booking.com Retrieve Language Codes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: demand-api-common-languages-rest
+    port: 8080
+    description: REST adapter for Booking.com Demand API — Common Languages. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/common/languages
+      name: common-languages
+      description: REST surface for Booking.com Retrieve Language Codes.
+      operations:
+      - method: POST
+        name: commonLanguages
+        description: Booking.com Retrieve Language Codes
+        call: demand-api-common-languages.commonLanguages
+        with:
+          null: rest.None
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: demand-api-common-languages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Booking.com Demand API — Common Languages. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: retrieve-language-codes
+      description: Booking.com Retrieve Language Codes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: demand-api-common-languages.commonLanguages
+      with:
+        null: tools.None
+      outputParameters:
+      - type: object
+        mapping: $.

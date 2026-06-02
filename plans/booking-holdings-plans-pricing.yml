@@ -1,0 +1,89 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Booking Holdings
+providerId: booking-holdings
+created: '2026-06-02'
+modified: '2026-06-02'
+reconciled: true
+tags:
+  - Travel
+  - Accommodations
+  - Affiliate
+  - Commission
+  - Demand API
+description: >-
+  Booking Holdings does not sell API access directly. The Booking.com Demand API
+  (the holding company's primary publicly documented developer API) is offered free
+  of charge to approved Affiliate Partners; there is no per-call fee and no
+  subscription. Partners monetize through Booking.com's affiliate commission model —
+  the partner earns a share of Booking.com's commission on completed, non-cancelled
+  bookings rather than a fee on the full booking value. Access is gated behind
+  application and approval; commercial terms (commission share, payout schedule) are
+  set per partner agreement. Connectivity (supply-side) APIs follow a separate
+  property/provider commercial relationship and are not priced as developer plans.
+sources:
+  - https://developers.booking.com/demand/docs/getting-started/overview
+  - https://affiliates.support.booking.com/kb/s/article/Commission-and-Payments
+  - https://partner.booking.com/en-us/help/commission-invoices-tax
+  - https://mize.tech/blog/all-about-the-booking-com-affiliate-partner-program-for-travel-agents/
+plans:
+  - id: booking-holdings-demand-api-affiliate
+    name: Demand API Affiliate Partner
+    type: usage-based
+    description: >-
+      Free API access for approved affiliate partners; revenue is a commission share
+      on completed bookings, not a charge for API usage.
+    entries:
+      - label: Demand API access
+        name: demand_api_access
+        type: flat
+        metric: request
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: '1'
+        price: '$0.00'
+        userMultiplied: false
+      - label: Affiliate commission share on completed bookings
+        name: affiliate_commission_share
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: '1'
+        price: 'share of Booking.com commission (per partner agreement)'
+        userMultiplied: false
+    elements:
+      - name: Accommodation search, availability, and details
+      - name: Car rental search and details
+      - name: Order preview, create, modify, and cancel
+      - name: Reviews and review scores
+      - name: Partner-guest messaging and attachments
+      - name: Reference data (locations, payments, languages, constants)
+      - name: Sandbox environment for development and testing
+  - id: booking-holdings-connectivity-partner
+    name: Connectivity Partner (Supply Side)
+    type: enterprise
+    description: >-
+      Supply-side integration for property managers and channel managers to load
+      content, rates, availability, and retrieve reservations. Commercial terms are
+      governed by the property/provider relationship, not a developer pricing tier.
+    entries:
+      - label: Connectivity API access
+        name: connectivity_api_access
+        type: flat
+        metric: request
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: '1'
+        price: 'contact sales'
+        userMultiplied: false
+    elements:
+      - name: Content API
+      - name: Rates & Availability API
+      - name: Reservations API
+      - name: Promotions API
+      - name: Reporting API

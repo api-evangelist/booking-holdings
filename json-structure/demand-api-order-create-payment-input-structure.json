@@ -1,0 +1,265 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-structure/demand-api-order-create-payment-input-structure.json",
+  "name": "OrderCreatePaymentInput",
+  "description": "Payment related information for the order.",
+  "type": "object",
+  "properties": {
+    "airplus": {
+      "description": "All information related to airplus payment. `This is required if airplus is selected as payment method.`",
+      "type": "object",
+      "properties": {
+        "dbi": {
+          "description": "Descriptive billing information(dbi) details to pass to AirPlus.",
+          "type": "object",
+          "properties": {
+            "accounting_code": {
+              "description": "Accounting code to pass in descriptive billing information.",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 17
+            },
+            "accounting_unit": {
+              "description": "Accounting unit to pass in descriptive billing information.",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 17
+            },
+            "cost_centre": {
+              "description": "Cost centre to pass in descriptive billing information.",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 17
+            },
+            "department_code": {
+              "description": "Department code to pass in descriptive billing information.",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 17
+            },
+            "employee_number": {
+              "description": "Employee number to pass in descriptive billing information.",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 17
+            },
+            "internal_account": {
+              "description": "Internal account to pass in descriptive billing information.",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 17
+            },
+            "order_number": {
+              "description": "Order number to pass in descriptive billing information.",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 17
+            },
+            "project_number": {
+              "description": "Project number to pass in descriptive billing information.",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 17
+            }
+          }
+        },
+        "number": {
+          "description": "12 digit Airplus Number.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "number"
+      ]
+    },
+    "business_information": {
+      "description": "All business related information for billing and authorisation form. This must be included for the payments that require authorisation form.",
+      "type": "object",
+      "properties": {
+        "authorisation_form": {
+          "description": "Information that is relevant for generating an authorisation form.",
+          "type": "object",
+          "properties": {
+            "chargeable_items": {
+              "description": "Items which can be charged using a provided virtual credit card.",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "alcohol",
+                  "breakfast",
+                  "food_beverage",
+                  "internet",
+                  "parking",
+                  "phone",
+                  "taxes"
+                ]
+              }
+            }
+          }
+        },
+        "billing": {
+          "description": "All information to be used in the invoice.",
+          "type": "object",
+          "properties": {
+            "address": {
+              "description": "The address to bill this reservation",
+              "type": "object",
+              "properties": {
+                "address_line": {
+                  "description": "The details of this address.",
+                  "type": "string"
+                },
+                "city": {
+                  "description": "The city for this address.",
+                  "type": "string"
+                },
+                "country": {
+                  "description": "The country for this address.",
+                  "type": "string",
+                  "pattern": "^[a-z]{2}$"
+                },
+                "post_code": {
+                  "description": "Post code for this address.",
+                  "type": "string"
+                }
+              }
+            },
+            "email": {
+              "description": "Email to send the invoice to.",
+              "type": "string"
+            },
+            "vat": {
+              "description": "VAT number to be used in the invoice.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "email",
+            "vat"
+          ]
+        },
+        "company": {
+          "description": "Company that will issue an authorisation form for the virtual credit card and used in the invoice.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "company"
+      ]
+    },
+    "card": {
+      "description": "Card information for executing the payment.",
+      "type": "object",
+      "properties": {
+        "authentication": {
+          "description": "Card authentication information for executing the payment.",
+          "type": "object",
+          "properties": {
+            "riskified": {
+              "description": "Riskified information for external fraud verification.",
+              "type": "object",
+              "properties": {
+                "ip_address": {
+                  "description": "The booker's IP address.",
+                  "type": "string"
+                },
+                "session_id": {
+                  "description": "Riskified provided session_id for external fraud verification.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "ip_address",
+                "session_id"
+              ]
+            },
+            "sca_exemption": {
+              "description": "The type of SCA exemption to be applied to the payment.",
+              "type": "string",
+              "enum": [
+                "moto",
+                "virtual"
+              ]
+            },
+            "3d_secure": {
+              "description": "3-factor authentication information for the card.",
+              "type": "object",
+              "properties": {
+                "authentication_value": {
+                  "description": "Cardholder Authentication Verification Value.",
+                  "type": "string"
+                },
+                "cavv": {
+                  "deprecated": true,
+                  "description": "Deprecated. Do not use",
+                  "type": "string"
+                },
+                "eci": {
+                  "description": "The electronic commerce indicator.",
+                  "type": "string"
+                },
+                "transaction": {
+                  "description": "The unique ID assigned by the DS to identify a single transaction.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "authentication_value",
+                "eci",
+                "transaction"
+              ]
+            }
+          }
+        },
+        "cardholder": {
+          "description": "Name of the cardholder.",
+          "type": "string"
+        },
+        "cvc": {
+          "description": "3 or 4 digits card validation code (CVC) of this card.",
+          "type": "string"
+        },
+        "expiry_date": {
+          "description": "Expiry date of the card. Format: YYYY-MM",
+          "type": "string"
+        },
+        "number": {
+          "description": "Number of the card.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "cardholder",
+        "cvc",
+        "expiry_date",
+        "number"
+      ]
+    },
+    "include_receipt": {
+      "description": "This is used to determine whether to include payment `receipt_url` in the response or not.",
+      "type": "boolean"
+    },
+    "method": {
+      "description": "The payment method to be used for this order.",
+      "type": "string",
+      "enum": [
+        "airplus",
+        "card",
+        "wallet"
+      ]
+    },
+    "timing": {
+      "description": "Information about when to execute the payment.",
+      "type": "string",
+      "enum": [
+        "pay_at_the_property",
+        "pay_online_later",
+        "pay_online_now"
+      ]
+    }
+  },
+  "required": [
+    "timing"
+  ]
+}

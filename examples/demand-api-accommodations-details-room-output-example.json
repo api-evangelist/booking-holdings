@@ -1,0 +1,26 @@
+{
+  "id": 81,
+  "attributes": [
+    "work_friendly"
+  ],
+  "bed_options": [
+    {
+      "bed_configurations": [
+        {}
+      ],
+      "has_bathroom": false,
+      "is_bedroom": true
+    }
+  ],
+  "cots_and_extra_beds": {
+    "are_allowed_together": false,
+    "maximum_number_of_cots": 603,
+    "maximum_number_of_extra_beds": 712
+  },
+  "cribs_and_extra_beds": {
+    "are_allowed": false,
+    "maximum_number_of_cribs": 306,
+    "maximum_number_of_extra_beds": 216
+  },
+  "description": {}
+}

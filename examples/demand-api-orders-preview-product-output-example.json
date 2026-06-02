@@ -1,0 +1,50 @@
+{
+  "id": "10781902",
+  "bundle": 217,
+  "deal": {
+    "discount_percentage": 649,
+    "public_price": 44.97,
+    "tags": [
+      "black_friday"
+    ]
+  },
+  "inventory": {
+    "third_party": false,
+    "type": "net"
+  },
+  "policies": {
+    "cancellation": [
+      {
+        "price": {}
+      }
+    ],
+    "meal_plan": {
+      "meals": [
+        "breakfast"
+      ],
+      "plan": "half_board"
+    }
+  },
+  "price": {
+    "base": {
+      "accommodation_currency": 18.65,
+      "booker_currency": 96.0
+    },
+    "chargeable_online": {
+      "accommodation_currency": 61.04,
+      "booker_currency": 10.66
+    },
+    "extra_charges": {
+      "conditional": [
+        {}
+      ],
+      "non_conditional": [
+        {}
+      ]
+    },
+    "total": {
+      "accommodation_currency": 96.24,
+      "booker_currency": 25.63
+    }
+  }
+}

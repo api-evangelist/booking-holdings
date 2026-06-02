@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-structure/demand-api-constants-data-output-structure.json",
+  "name": "ConstantsDataOutput",
+  "description": "ConstantsDataOutput schema from Booking.com Demand API",
+  "type": "object",
+  "properties": {
+    "accommodation_facilities": {
+      "type": "array",
+      "items": {
+        "description": "A service, equipment or characteristic available at property level, like for example: \"Swimming pool outdoor\".",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "A signed integer number that uniquely identifies an accommodation property facility. Examples of facilities are: Parking, Restaurant, Room service etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+            "type": "int32",
+            "minimum": 1
+          },
+          "facility_type": {
+            "description": "A signed integer number that uniquely identifies the accommodation facility type. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+            "type": "int32",
+            "minimum": 1
+          },
+          "name": {
+            "description": "A string localised in multiple languages.",
+            "type": "object"
+          }
+        }
+      }
+    },
+    "accommodation_themes": {
+      "type": "array",
+      "items": {
+        "description": "Accommodations can be grouped in \"themes\" depending on their characteristics. For example: \"Beach/Seaside\".",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "A signed integer number that uniquely identifies an accommodation property theme. Examples of themes are: Beach/Seaside, Ski/Wintersports, Luxury etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+            "type": "int32",
+            "minimum": 1
+          },
+          "name": {
+            "description": "A string localised in multiple languages.",
+            "type": "object"
+          }
+        }
+      }
+    },
+    "accommodation_types": {
+      "type": "array",
+      "items": {
+        "description": "The type of an accommodation. Examples of types are \"Hotel\", \"Apartment\", etc.",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "A signed integer number that uniquely identifies an accommodation property type. Examples of accommodation types are: Apartment, Hostel, Hotel etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+            "type": "int32",
+            "minimum": 1
+          },
+          "name": {
+            "description": "A string localised in multiple languages.",
+            "type": "object"
+          }
+        }
+      }
+    },
+    "bed_types": {
+      "type": "array",
+      "items": {
+        "description": "",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "A signed integer number that uniquely identifies a bed type. Examples of bed types are: Single, Double etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+            "type": "int32",
+            "minimum": 1
+          },
+          "description": {
+            "description": "Translated description of the bed size in metric.",
+            "type": "object"
+          },
+          "description_imperial": {
+            "description": "Translated description of the bed size in imperial.",
+            "type": "object"
+          },
+          "name": {
+            "description": "Translated name of the bed type.",
+            "type": "object"
+          }
+        }
+      }
+    },
+    "charge_types": {
+      "type": "array",
+      "items": {
+        "description": "These are additional charges, which may be included or excluded from the reservation price. If excluded, the amounts may be added by the property upon checkout. The exclusions depend on several factors like local legislation, and sometimes can only be indicated but not be calculated at the time of the reservation.",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "A signed integer number that uniquely identifies an accommodation charge type. Examples of charges are: VAT, City Tax, etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+            "type": "int32",
+            "minimum": 0
+          },
+          "name": {
+            "description": "A string localised in multiple languages.",
+            "type": "object"
+          }
+        }
+      }
+    },
+    "facility_types": {
+      "type": "array",
+      "items": {
+        "description": "A more generic designation meant to group a set of facilities.",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "A signed integer number that uniquely identifies the accommodation facility type. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+            "type": "int32",
+            "minimum": 1
+          },
+          "name": {
+            "description": "A string localised in multiple languages.",
+            "type": "object"
+          }
+        }
+      }
+    },
+    "review_scores": {
+      "type": "array",
+      "items": {
+        "description": "Review score category name for each score interval.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "A string localised in multiple languages.",
+            "type": "object"
+          },
+          "minimum_score": {
+            "description": "The minimum score of this review score category.",
+            "type": "double",
+            "minimum": 1,
+            "maximum": 10
+          },
+          "maximum_score": {
+            "description": "The maximum score of this review score category",
+            "type": "double",
+            "minimum": 1,
+            "maximum": 10
+          }
+        }
+      }
+    },
+    "room_facilities": {
+      "type": "array",
+      "items": {
+        "description": "A service, equipment or characteristic available at room level, like for example: \"Coffee/Tea maker\".",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "A signed integer number that uniquely identifies an accommodation property room facility. Examples of facilities are: Coffee/Tea maker, TV, Airconditioning, etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+            "type": "int32",
+            "minimum": 1
+          },
+          "facility_type": {
+            "description": "A signed integer number that uniquely identifies the accommodation facility type. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+            "type": "int32",
+            "minimum": 1
+          },
+          "name": {
+            "description": "A string localised in multiple languages.",
+            "type": "object"
+          }
+        }
+      }
+    },
+    "room_types": {
+      "type": "array",
+      "items": {
+        "description": "Designations for different types of rooms, based on topology and/or setup. Examples: \"Twin/Double\" or \"Dormitory room\".",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "A signed integer number that uniquely identifies an accommodation property room type. Example of room types are: Suite, Apartment, Twin/Double etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+            "type": "int32",
+            "minimum": 1
+          },
+          "name": {
+            "description": "A string localised in multiple languages.",
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

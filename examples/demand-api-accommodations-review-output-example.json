@@ -1,0 +1,13 @@
+{
+  "id": 349,
+  "date": "2026-06-15",
+  "language": "en-us",
+  "negative": "string",
+  "positive": "string",
+  "reviewer": {
+    "country": "US",
+    "name": "Grand Plaza Hotel",
+    "travel_purpose": "business",
+    "type": "extended_group"
+  }
+}

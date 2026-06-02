@@ -1,0 +1,29 @@
+{
+  "id": "10781902",
+  "accommodations": {
+    "inventory": {
+      "third_party": false,
+      "type": "net"
+    },
+    "reservation": 312
+  },
+  "affiliate": 539,
+  "booker": {
+    "address": {
+      "city": "New York",
+      "country": "US"
+    },
+    "email": "traveler@example.com",
+    "language": "en-us",
+    "name": {
+      "first_name": "Grand Plaza Hotel",
+      "last_name": "Grand Plaza Hotel"
+    },
+    "platform": "unknown",
+    "telephone": "+1-212-555-0142"
+  },
+  "cars": {
+    "reservation": 335
+  },
+  "created": "2026-06-02T14:30:00Z"
+}

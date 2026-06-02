@@ -1,0 +1,13 @@
+{
+  "address": {},
+  "city": 151,
+  "coordinates": {
+    "latitude": 24.4,
+    "longitude": 55.37
+  },
+  "country": "US",
+  "districts": [
+    614
+  ],
+  "postal_code": "NYC"
+}

@@ -1,0 +1,22 @@
+{
+  "id": 338,
+  "accommodation_type": 495,
+  "booker_address_required": true,
+  "brands": [
+    978
+  ],
+  "bundles": [
+    {
+      "id": 889,
+      "value_adds": [
+        {}
+      ]
+    }
+  ],
+  "checkin_checkout_times": {
+    "checkin_from": "2026-06-15",
+    "checkin_to": "2026-06-15",
+    "checkout_from": "2026-06-18",
+    "checkout_to": "2026-06-18"
+  }
+}

@@ -1,0 +1,66 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Booking Holdings
+providerId: booking-holdings
+created: '2026-06-02'
+modified: '2026-06-02'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Travel
+  - Demand API
+  - Accommodations
+description: >-
+  Rate limits for the Booking.com Demand API v3 (Booking Holdings' primary public
+  developer API). Limits are enforced per partner account on a requests-per-minute
+  basis against any v3 endpoint. Production limits are partner-specific and must be
+  confirmed with the partner's Account Manager; the Sandbox environment enforces a
+  fixed, non-configurable 50 requests-per-minute ceiling. The high-volume
+  cars/search endpoint carries its own documented 3000 requests-per-minute limit.
+  Exceeding a limit returns HTTP 429 and temporarily restricts access (typically for
+  one minute) before the request counter resets.
+sources:
+  - https://developers.booking.com/demand/docs/development-guide/rate-limiting
+  - https://developers.booking.com/demand/docs/getting-started/overview
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+limits:
+  - name: Demand API v3 requests (production)
+    scope: account
+    metric: requests_per_minute
+    limit: 'partner-specific — contact Account Manager'
+    notes: >-
+      Applies to any v3 Demand API endpoint. The exact RPM ceiling is configured per
+      partner account and is not publicly published.
+  - name: Demand API v3 requests (sandbox)
+    scope: account
+    metric: requests_per_minute
+    limit: 50
+    timeFrame: minute
+    notes: Fixed, non-configurable limit in the sandbox environment.
+  - name: Car rentals search (cars/search)
+    scope: account
+    metric: requests_per_minute
+    limit: 3000
+    timeFrame: minute
+    notes: Endpoint-specific documented limit for the high-volume cars/search operation.
+policies:
+  - name: Exponential backoff on 429
+    description: >-
+      After a 429 response, implement an exponentially increasing delay between
+      retries (e.g. 1s, 2s, 4s, 8s). Access is temporarily restricted for roughly one
+      minute, after which the request counter resets.
+  - name: Cap retries and total delay
+    description: >-
+      Limit the maximum number of retry attempts and cap the total accumulated delay
+      to avoid unbounded backoff loops; monitor and adjust based on observed throttling.
+  - name: Per-account scoping
+    description: >-
+      Limits are bound to the partner account (Affiliate ID), not per-IP or per-key.
+      All traffic for an account counts against the same per-minute budget.
+  - name: Sandbox vs production separation
+    description: >-
+      Develop and test against the sandbox (fixed 50 RPM) before requesting or
+      relying on a production RPM allocation from the Account Manager.

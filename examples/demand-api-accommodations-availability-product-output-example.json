@@ -1,0 +1,23 @@
+{
+  "id": "10781902",
+  "bundle": 346,
+  "deal": {
+    "discount_percentage": 288,
+    "public_price": 61.26,
+    "tags": [
+      "logged_in_deal"
+    ]
+  },
+  "inventory": {
+    "third_party": true,
+    "type": "sell"
+  },
+  "maximum_occupancy": {
+    "adults": 943,
+    "children": [
+      {}
+    ],
+    "total": 960
+  },
+  "number_available_at_this_price": 825
+}

@@ -1,0 +1,13 @@
+{
+  "address": {
+    "address_line": "string",
+    "city": "New York",
+    "country": "US",
+    "post_code": "NYC"
+  },
+  "email": "traveler@example.com",
+  "name": "Grand Plaza Hotel",
+  "registration_number": "string",
+  "telephone": "+1-212-555-0142",
+  "trade_register": "string"
+}

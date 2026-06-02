@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-structure/demand-api-accommodations-details-input-structure.json",
+  "name": "AccommodationsDetailsInput",
+  "description": "AccommodationsDetailsInput schema from Booking.com Demand API",
+  "type": "object",
+  "properties": {
+    "accommodation_facilities": {
+      "type": "array",
+      "items": {
+        "description": "A signed integer number that uniquely identifies an accommodation property facility. Examples of facilities are: Parking, Restaurant, Room service etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+        "type": "int32",
+        "minimum": 1
+      }
+    },
+    "accommodation_types": {
+      "type": "array",
+      "items": {
+        "description": "A signed integer number that uniquely identifies an accommodation property type. Examples of accommodation types are: Apartment, Hostel, Hotel etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+        "type": "int32",
+        "minimum": 1
+      }
+    },
+    "accommodations": {
+      "type": "array",
+      "items": {
+        "description": "A signed integer number that uniquely identifies an accommodation property. The full list can be obtained by calling [accommodations/details](/demand/docs/open-api/demand-api/accommodations/accommodations/details).",
+        "type": "int32",
+        "minimum": 1
+      },
+      "maxItems": 100
+    },
+    "airport": {
+      "description": "A three-letter code that uniquely identifies an airport as defined by the International Air Transport Association (IATA). The full list can be obtained by calling  <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/airports\" target=\"_blank\">common/locations/airports</a>.",
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "brands": {
+      "type": "array",
+      "items": {
+        "description": "A signed integer number that uniquely identifies an accommodation brand. Examples of brands are: Radisson Blu, WestCord Hotels, Westin etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/chains\" target=\"_blank\">/accommodations/chains</a>.",
+        "type": "int32",
+        "minimum": 1
+      }
+    },
+    "city": {
+      "description": "A signed integer number that uniquely identifies a city. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/cities\" target=\"_blank\">common/locations/cities</a>.",
+      "type": "int32"
+    },
+    "country": {
+      "description": "A two-letter code that uniquely identifies a country. This code is defined by the ISO 3166-1 alpha-2 standard (ISO2) as described here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/countries\" target=\"_blank\">common/locations/countries</a>.",
+      "type": "string",
+      "pattern": "^[a-z]{2}$"
+    },
+    "extras": {
+      "description": "Input parameter to request for additional information about the accommodation property. It should be passed as a JSON array with one or more items.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "description",
+          "bundles",
+          "facilities",
+          "payment",
+          "photos",
+          "policies",
+          "rooms"
+        ]
+      }
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "description": "A [IETF language tag code](https://en.wikipedia.org/wiki/IETF_language_tag) that uniquely identifies a supported human language or dialect. **Note:** Demand API only accepts lowercase for the language codes. Examples: \"nl\" for Dutch/Nederlands or \"en-us\" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.",
+        "type": "string",
+        "pattern": "^[a-z]{2}(-[a-z]{2})?$"
+      }
+    },
+    "page": {
+      "description": "Pagination token used to retrieve the next page of results. Obtained from `next_page`.",
+      "type": "string"
+    },
+    "payment": {
+      "description": "Payment input information to filter results.",
+      "properties": {
+        "timing": {
+          "description": "This parameter specifies that the results should only return accommodation and blocks that contain the specified payment timings.",
+          "type": "string",
+          "enum": [
+            "pay_at_the_property",
+            "pay_online"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "region": {
+      "description": "A signed integer number that uniquely identifies a geographical region. Regions usually define official administrative areas within a country, but may also include multiple countries and in some cases un-official but popular designations for geographical areas. An example of a region that crosses multiple countries is the Alps in Europe. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/regions\" target=\"_blank\">common/locations/regions</a>.",
+      "type": "int32",
+      "minimum": 1
+    },
+    "rows": {
+      "maximum": 1000,
+      "description": "The maximum number of results to return.",
+      "type": "int32",
+      "minimum": 10,
+      "default": 100
+    }
+  }
+}

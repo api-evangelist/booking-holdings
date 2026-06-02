@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-structure/demand-api-order-details-booker-output-structure.json",
+  "name": "OrderDetailsBookerOutput",
+  "description": "The booker's information.",
+  "type": "object",
+  "properties": {
+    "address": {
+      "description": "The booker's address for showing the best price for that user and obeying laws regarding the display of taxes and fees.",
+      "type": "object",
+      "properties": {
+        "city": {
+          "description": "The city for this address.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "country": {
+          "description": "The country for this address.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "email": {
+      "description": "The booker's email address.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "language": {
+      "description": "A [IETF language tag code](https://en.wikipedia.org/wiki/IETF_language_tag) that uniquely identifies a supported human language or dialect. **Note:** Demand API only accepts lowercase for the language codes. Examples: \"nl\" for Dutch/Nederlands or \"en-us\" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.",
+      "type": "string",
+      "pattern": "^[a-z]{2}(-[a-z]{2})?$"
+    },
+    "name": {
+      "description": "The name of the booker.",
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "last_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "platform": {
+      "description": "The booker platform for showing the platform based deals and prices.",
+      "type": "string",
+      "enum": [
+        "app",
+        "desktop",
+        "mobile_browser",
+        "tablet",
+        "unknown"
+      ]
+    },
+    "telephone": {
+      "description": "The booker's telephone number.",
+      "type": "string",
+      "nullable": true
+    },
+    "travel_purpose": {
+      "description": "The travel purpose of the booker.",
+      "type": "string",
+      "enum": [
+        "business",
+        "leisure",
+        "unknown"
+      ]
+    }
+  }
+}

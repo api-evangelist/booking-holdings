@@ -1,0 +1,13 @@
+{
+  "accommodation": 781,
+  "booker": {
+    "country": "US",
+    "platform": "android"
+  },
+  "checkin": "2026-06-15",
+  "checkout": "2026-06-15",
+  "guests": {
+    "number_of_adults": 712,
+    "number_of_rooms": 264
+  }
+}

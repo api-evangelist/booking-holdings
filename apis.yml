@@ -10,7 +10,7 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-04-19'
+modified: '2026-06-02'
 specificationVersion: '0.19'
 tags:
   - Accommodations
@@ -20,7 +20,49 @@ tags:
   - Hotels
   - Restaurants
   - Travel
-apis: []
+apis:
+  - name: Booking.com Demand API
+    description: >-
+      The Booking.com Demand API enables approved Affiliate Partners to access
+      Booking.com's travel inventory — accommodations, car rentals, and flights.
+      A RESTful, RPC-style API (HTTPS POST, JSON) for searching inventory,
+      retrieving details, checking availability, managing orders, and exchanging
+      partner-guest messages. This is Booking Holdings' primary publicly documented
+      developer API; restaurant inventory (OpenTable) and other brand APIs are
+      partner-gated and not included here.
+    humanURL: https://developers.booking.com/demand/docs
+    baseURL: https://demandapi.booking.com/3.1
+    tags:
+      - Accommodations
+      - Car Rentals
+      - Travel
+      - Orders
+      - Affiliate
+    properties:
+      - type: OpenAPI
+        url: openapi/booking-com-demand-api.yaml
+      - type: Documentation
+        url: https://developers.booking.com/demand/docs
+      - type: Authentication
+        url: https://developers.booking.com/demand/docs/getting-started
+      - type: NaftikoCapability
+        url: capabilities/demand-api-accommodations.yaml
+      - type: NaftikoCapability
+        url: capabilities/demand-api-cars.yaml
+      - type: NaftikoCapability
+        url: capabilities/demand-api-orders.yaml
+      - type: NaftikoCapability
+        url: capabilities/demand-api-messages.yaml
+      - type: NaftikoCapability
+        url: capabilities/demand-api-conversations.yaml
+      - type: NaftikoCapability
+        url: capabilities/demand-api-attachments.yaml
+      - type: NaftikoCapability
+        url: capabilities/demand-api-common-locations.yaml
+      - type: NaftikoCapability
+        url: capabilities/demand-api-common-payments.yaml
+      - type: NaftikoCapability
+        url: capabilities/demand-api-common-languages.yaml
 common:
   - type: LinkedIn
     url: https://www.linkedin.com/company/bookingholdings
@@ -34,6 +76,27 @@ common:
     url: https://www.bookingholdings.com/careers/
   - type: Contact
     url: https://www.bookingholdings.com/contact/
+  - type: Plans
+    url: plans/booking-holdings-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/booking-holdings-rate-limits.yml
+  - type: FinOps
+    url: finops/booking-holdings-finops.yml
+  - type: Rules
+    url: rules/booking-com-demand-api-spectral-rules.yml
+  - type: Vocabulary
+    url: vocabulary/booking-holdings-vocabulary.yaml
+  - type: JSONLD
+    url: json-ld/booking-holdings-demand-api-context.jsonld
+  - type: GitHubOrganization
+    title: Booking.com
+    url: https://github.com/bookingcom
+  - type: GitHubOrganization
+    title: OpenTable
+    url: https://github.com/opentable
+  - type: GitHubOrganization
+    title: KAYAK
+    url: https://github.com/kayak
   - name: Properties
     type: Properties
     data:
@@ -115,4 +178,4 @@ common:
           - Accommodation Search
 maintainers:
   - FN: Kin Lane
-    email: kinlane@gmail.com
+    email: kin@apievangelist.com

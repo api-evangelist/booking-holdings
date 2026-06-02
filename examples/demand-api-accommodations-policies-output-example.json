@@ -1,0 +1,32 @@
+{
+  "cots_and_extra_beds": [
+    {
+      "age": {},
+      "mode": "per_stay",
+      "percentage": 33.0,
+      "price": 84.94,
+      "type": "cot"
+    }
+  ],
+  "maximum_checkin_age": 688,
+  "minimum_checkin_age": 516,
+  "minimum_guest_age": 175,
+  "pets": {
+    "allowed": "upon_request",
+    "charge_mode": "charges_may_apply"
+  },
+  "damage": {
+    "deposit": {
+      "collect": {
+        "date": {},
+        "payment_method": "paypal"
+      },
+      "refund": {
+        "date": {},
+        "payment_method": "credit_card"
+      }
+    },
+    "amount": 61.91,
+    "currency": "USD"
+  }
+}

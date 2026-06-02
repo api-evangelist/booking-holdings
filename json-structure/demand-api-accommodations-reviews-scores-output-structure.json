@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-structure/demand-api-accommodations-reviews-scores-output-structure.json",
+  "name": "AccommodationsReviewsScoresOutput",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "A signed integer number that uniquely identifies an accommodation property. The full list can be obtained by calling [accommodations/details](/demand/docs/open-api/demand-api/accommodations/accommodations/details).",
+      "type": "int32",
+      "minimum": 1
+    },
+    "breakdown": {
+      "description": "Review scores breakdown for each criteria. List of criteria includes: cleanliness, comfort, facilities, free_wifi, location, staff, value_for_money.",
+      "type": "object"
+    },
+    "distribution": {
+      "description": "Overall score distribution for each score (1-10).",
+      "type": "object"
+    },
+    "number_of_reviews": {
+      "description": "Number of validated reviews for this accommodation.",
+      "type": "int32",
+      "minimum": 0
+    },
+    "score": {
+      "description": "A decimal number indicating the current review score of this accommodation property, in the range 1..10.",
+      "type": "double",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "url": {
+      "description": "Internet address for the property page on Booking.com.",
+      "type": "string"
+    }
+  }
+}

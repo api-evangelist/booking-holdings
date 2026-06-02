@@ -1,0 +1,14 @@
+{
+  "address": {
+    "city": "New York",
+    "country": "US"
+  },
+  "email": "traveler@example.com",
+  "language": "en-us",
+  "name": {
+    "first_name": "Grand Plaza Hotel",
+    "last_name": "Grand Plaza Hotel"
+  },
+  "platform": "tablet",
+  "telephone": "+1-212-555-0142"
+}

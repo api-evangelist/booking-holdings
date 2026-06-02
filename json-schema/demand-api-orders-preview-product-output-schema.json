@@ -1,0 +1,411 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-schema/demand-api-orders-preview-product-output-schema.json",
+  "title": "OrdersPreviewProductOutput",
+  "description": "The returned information of the product selected",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Unique ID of the product.",
+      "type": "string"
+    },
+    "bundle": {
+      "description": "The bundle ID of the product comprising of value added products.",
+      "type": "integer"
+    },
+    "deal": {
+      "description": "This specifies the deal tagging for the product.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "discount_percentage": {
+          "description": "Discount percentage of the applied deal.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "public_price": {
+          "description": "Original price of this product, before applying any discounts.",
+          "type": "number",
+          "format": "double"
+        },
+        "tags": {
+          "description": "The tags of all the applied deals.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "black_friday",
+              "limited_time_deal",
+              "logged_in_deal",
+              "mobile_rate",
+              "seasonal_deal"
+            ]
+          }
+        }
+      }
+    },
+    "inventory": {
+      "type": "object",
+      "properties": {
+        "third_party": {
+          "type": "boolean",
+          "description": "Boolean value is \"true\" if the product is facilitated by a Booking.com partner company and \"false\" otherwise."
+        },
+        "type": {
+          "description": "Type of inventory - either net or sell rates.",
+          "type": "string",
+          "enum": [
+            "net",
+            "sell"
+          ]
+        }
+      }
+    },
+    "policies": {
+      "description": "The policies for this product.",
+      "type": "object",
+      "properties": {
+        "cancellation": {
+          "description": "The cancellation policy schedule for this product.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "description": "The time from which this cancellation fee applies. `now` means from booking time.",
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "now"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "price": {
+                "description": "The cancellation fee.",
+                "type": "object",
+                "properties": {
+                  "accommodation_currency": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "booker_currency": {
+                    "type": "number",
+                    "format": "double"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "meal_plan": {
+          "description": "The meal plan policy for this product.",
+          "type": "object",
+          "properties": {
+            "meals": {
+              "description": "The meals included in the meal plan.",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "breakfast",
+                  "dinner",
+                  "lunch"
+                ]
+              }
+            },
+            "plan": {
+              "description": "The meal plan included in this product.",
+              "type": "string",
+              "enum": [
+                "all_inclusive",
+                "breakfast_included",
+                "full_board",
+                "half_board",
+                "no_plan"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "price": {
+      "description": "The price components of this product. 'base' and 'extra_charges' are returned only when explicitly requested (via 'extras=extra_charges').",
+      "type": "object",
+      "properties": {
+        "base": {
+          "description": "The base price. It does not include any extra charges.",
+          "type": "object",
+          "properties": {
+            "accommodation_currency": {
+              "type": "number",
+              "format": "double"
+            },
+            "booker_currency": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        },
+        "chargeable_online": {
+          "description": "The price that will be charged by Booking.com when online payments are used. This field does not apply to the \"pay_at_the_property\" timing.",
+          "type": "object",
+          "properties": {
+            "accommodation_currency": {
+              "type": "number",
+              "format": "double"
+            },
+            "booker_currency": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        },
+        "extra_charges": {
+          "description": "The charge breakdown. Includes taxes and fees.",
+          "type": "object",
+          "properties": {
+            "conditional": {
+              "description": "Charges that might apply under a specific condition.",
+              "type": "array",
+              "items": {
+                "description": "Charges that might apply under a specific condition.",
+                "type": "object",
+                "properties": {
+                  "charge": {
+                    "description": "A signed integer number that uniquely identifies an accommodation charge type. Examples of charges are: VAT, City Tax, etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "condition": {
+                    "description": "A signed integer number that uniquely identifies the condition ID. Find the full list in the <a href=\"/demand/docs/accommodations/prices-accommodations\" target=\"_blank\">Pricing guidelines</a>.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "minimum": 0
+                  },
+                  "mode": {
+                    "description": "The mode of this charge. Determines how the price is calculated.",
+                    "type": "string",
+                    "enum": [
+                      "calculated_amount",
+                      "percentage",
+                      "per_day",
+                      "per_night",
+                      "per_person_per_day",
+                      "per_person_per_night",
+                      "per_person_per_stay",
+                      "per_stay"
+                    ]
+                  },
+                  "percentage": {
+                    "description": "The percentage of 'base' that this charge amounts to. Only applicable when 'mode' is 'percentage'.",
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "total_amount": {
+                    "description": "The total price for this charge.",
+                    "type": "object",
+                    "properties": {
+                      "accommodation_currency": {
+                        "type": "number",
+                        "format": "double"
+                      },
+                      "booker_currency": {
+                        "type": "number",
+                        "format": "double"
+                      }
+                    }
+                  },
+                  "unit_amount": {
+                    "description": "The price per unit for this charge. Only applicable when 'mode' is 'per_day', 'per_night', 'per_person_per_day', 'per_person_per_night', or 'per_person_per_stay'.",
+                    "nullable": true,
+                    "type": "object",
+                    "properties": {
+                      "accommodation_currency": {
+                        "type": "number",
+                        "format": "double"
+                      },
+                      "booker_currency": {
+                        "type": "number",
+                        "format": "double"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "non_conditional": {
+              "description": "All non-conditional charges that will necessarily be paid",
+              "type": "array",
+              "items": {
+                "description": "All non-conditional charges that will necessarily be paid",
+                "type": "object",
+                "properties": {
+                  "charge": {
+                    "description": "A signed integer number that uniquely identifies an accommodation charge type. Examples of charges are: VAT, City Tax, etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "chargeable_online": {
+                    "description": "Whether this charge is chargeable online or not. Not applicable to \"pay_at_the_property\" timing.",
+                    "type": "boolean"
+                  },
+                  "mode": {
+                    "description": "The mode of this charge. Determines how the price is calculated.",
+                    "type": "string",
+                    "enum": [
+                      "calculated_amount",
+                      "incalculable",
+                      "percentage",
+                      "per_day",
+                      "per_night",
+                      "per_person_per_day",
+                      "per_person_per_night",
+                      "per_person_per_stay",
+                      "per_stay"
+                    ]
+                  },
+                  "percentage": {
+                    "description": "The percentage of 'base' that this charge amounts to. Only applicable when 'mode' is 'percentage'.",
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "total_amount": {
+                    "description": "The total price for this charge.",
+                    "type": "object",
+                    "properties": {
+                      "accommodation_currency": {
+                        "type": "number",
+                        "format": "double"
+                      },
+                      "booker_currency": {
+                        "type": "number",
+                        "format": "double"
+                      }
+                    }
+                  },
+                  "unit_amount": {
+                    "description": "The price per unit for this charge. Only applicable when 'mode' is 'per_day', 'per_night', 'per_person_per_day', 'per_person_per_night', or 'per_person_per_stay'.",
+                    "nullable": true,
+                    "type": "object",
+                    "properties": {
+                      "accommodation_currency": {
+                        "type": "number",
+                        "format": "double"
+                      },
+                      "booker_currency": {
+                        "type": "number",
+                        "format": "double"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "total": {
+          "description": "The total price. Includes all extra charges.",
+          "type": "object",
+          "properties": {
+            "accommodation_currency": {
+              "type": "number",
+              "format": "double"
+            },
+            "booker_currency": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        }
+      }
+    },
+    "room": {
+      "description": "A signed long number that uniquely identifies an accommodation property room. The full list can be obtained by calling [accommodations/details](#/accommodations/details).",
+      "type": "number",
+      "minimum": 1,
+      "nullable": true
+    },
+    "third_party_inventory": {
+      "description": "Boolean value is \"true\" if the product is facilitated by a Booking.com partner company and \"false\" otherwise.",
+      "type": "boolean"
+    },
+    "occupancy_mismatch": {
+      "description": "Details any mismatch between the requested occupancy and the product's capacity. \n-When one or more guests cannot be accommodated, the object contains those that can be accommodated (allocated) and those that cannot (unallocated). \n-If all requested guests fit, the object is null.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "allocated": {
+          "description": "The guests from the original request that the product can accommodate.",
+          "type": "object",
+          "properties": {
+            "number_of_adults": {
+              "description": "The number of adults.",
+              "type": "integer",
+              "minimum": 0
+            },
+            "children": {
+              "description": "The ages of the children. Null or absent if no children fit.",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 17
+              }
+            }
+          },
+          "required": [
+            "number_of_adults",
+            "children"
+          ]
+        },
+        "unallocated": {
+          "description": "The guests from the original request that could not be accommodated by this product.",
+          "type": "object",
+          "properties": {
+            "number_of_adults": {
+              "description": "The number of adults.",
+              "type": "integer",
+              "minimum": 0
+            },
+            "children": {
+              "description": "The ages of the children. Null or absent if no children fit.",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 17
+              }
+            }
+          },
+          "required": [
+            "number_of_adults",
+            "children"
+          ]
+        }
+      },
+      "required": [
+        "allocated",
+        "unallocated"
+      ]
+    }
+  }
+}

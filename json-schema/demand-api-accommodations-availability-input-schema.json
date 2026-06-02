@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-schema/demand-api-accommodations-availability-input-schema.json",
+  "title": "AccommodationsAvailabilityInput",
+  "description": "AccommodationsAvailabilityInput schema from Booking.com Demand API",
+  "type": "object",
+  "properties": {
+    "accommodation": {
+      "description": "A signed integer number that uniquely identifies an accommodation property. The full list can be obtained by calling [accommodations/details](/demand/docs/open-api/demand-api/accommodations/accommodations/details).",
+      "type": "integer",
+      "minimum": 1
+    },
+    "booker": {
+      "description": "The booker's information.",
+      "type": "object",
+      "properties": {
+        "country": {
+          "description": "The booker country for showing the best price for that user and obeying laws regarding the display of taxes and fees.",
+          "type": "string",
+          "pattern": "^[a-z]{2}$"
+        },
+        "platform": {
+          "description": "The booker platform for showing the platform based deals and prices.",
+          "type": "string",
+          "enum": [
+            "android",
+            "desktop",
+            "ios",
+            "mobile",
+            "tablet"
+          ]
+        },
+        "state": {
+          "description": "The booker state for showing the best price for that user and obeying laws regarding the display of taxes and fees. Currently applicable only for country US.",
+          "type": "string",
+          "pattern": "^[a-z]{2}$"
+        },
+        "travel_purpose": {
+          "description": "The travel purpose of the booker.",
+          "type": "string",
+          "enum": [
+            "business",
+            "leisure"
+          ]
+        },
+        "user_groups": {
+          "description": "The user groups that the booker is a member of.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "authenticated"
+            ]
+          }
+        }
+      },
+      "required": [
+        "country",
+        "platform"
+      ]
+    },
+    "checkin": {
+      "description": "The checkin date. Must be within 500 days in the future and in the format yyyy-mm-dd.",
+      "type": "string",
+      "format": "date"
+    },
+    "checkout": {
+      "description": "The checkout date. Must be later than {checkin}. Must be between 1 and 90 days after {checkin}. Must be within 500 days in the future and in the format yyyy-mm-dd.",
+      "type": "string",
+      "format": "date"
+    },
+    "currency": {
+      "description": "A three-letter code that uniquely identifies a monetary currency as defined by the ISO 4217 standard. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonpayments/common/payments/currencies\" target=\"_blank\">common/payments/currencies</a>.",
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "extras": {
+      "description": "Input parameter to request for additional information about this product.include_bundle_variants must be passed in order to retrieve all value added products.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "extra_charges",
+          "include_bundle_variants"
+        ]
+      }
+    },
+    "guests": {
+      "description": "The guest details for the request.",
+      "type": "object",
+      "properties": {
+        "allocation": {
+          "description": "The exact allocation of guests to rooms.",
+          "type": "array",
+          "items": {
+            "properties": {
+              "children": {
+                "description": "The children ages for this room.",
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 17
+                }
+              },
+              "number_of_adults": {
+                "description": "The number of adults for this room.",
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "number_of_adults"
+            ],
+            "type": "object"
+          }
+        },
+        "children": {
+          "description": "Array with the children ages.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 17
+          }
+        },
+        "number_of_adults": {
+          "description": "The number of adults for the search.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "number_of_rooms": {
+          "description": "The number of rooms needed.",
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "number_of_adults",
+        "number_of_rooms"
+      ]
+    },
+    "payment": {
+      "description": "Payment input information to filter results.",
+      "properties": {
+        "timing": {
+          "description": "This parameter specifies that the results should only return accommodation and blocks that contain the specified payment timings.",
+          "type": "string",
+          "enum": [
+            "pay_at_the_property",
+            "pay_online"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "description": "Unique ID of the product.",
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "accommodation",
+    "booker",
+    "checkin",
+    "checkout",
+    "guests"
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-schema/demand-api-accommodations-details-room-output-schema.json",
+  "title": "AccommodationsDetailsRoomOutput",
+  "description": "AccommodationsDetailsRoomOutput schema from Booking.com Demand API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "A signed integer number that uniquely identifies an accommodation property room. The full list can be obtained by calling [accommodations/details](/demand/docs/open-api/demand-api/accommodations/accommodations/details).",
+      "type": "integer",
+      "minimum": 1
+    },
+    "attributes": {
+      "description": "Lists a set of attribute qualifiers for this room. Will not be returned if no relevant attributes are applicable.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "non_smoking",
+          "smoking",
+          "work_friendly"
+        ]
+      }
+    },
+    "bed_options": {
+      "description": "Lists all possible bedding options for this room or apartment.",
+      "type": "array",
+      "items": {
+        "description": "List of all possible bed arrangements. For apartments and other types of hotel accommodations, beds and bathrooms may be available as separate rooms.",
+        "type": "object",
+        "properties": {
+          "bed_configurations": {
+            "description": "Lists all alternative bed configurations that are supported.",
+            "type": "array",
+            "items": {
+              "description": "List of all beds available for this configuration.",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "description": "Uniquely identifies this bed configuration.",
+                  "type": "string"
+                },
+                "configuration": {
+                  "description": "Detail list of all different types and number of beds included in this configuration.",
+                  "type": "array",
+                  "items": {
+                    "description": "Detail information about a type of bed and number of beds included in this configuration.",
+                    "type": "object",
+                    "properties": {
+                      "bed_type": {
+                        "description": "A signed integer number that uniquely identifies a bed type. Examples of bed types are: Single, Double etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "number_of_beds": {
+                        "description": "Number of similar beds included in this configuration.",
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "has_bathroom": {
+            "description": "Flags if this area includes its own bathroom.",
+            "type": "boolean"
+          },
+          "is_bedroom": {
+            "description": "Flags if this area is marked as a bedroom, otherwise, it should be considered a living room.",
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "cots_and_extra_beds": {
+      "description": "Lists room options regarding adding cots and/or extra beds.",
+      "type": "object",
+      "properties": {
+        "are_allowed_together": {
+          "description": "Flags if cots and extra beds can be placed together in the room. `true` allows both up to their maximum limits. `false` requires exclusive choice of either cots or extra beds.",
+          "type": "boolean"
+        },
+        "maximum_number_of_cots": {
+          "description": "Maximum number of cots that can be added.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "maximum_number_of_extra_beds": {
+          "description": "Maximum number of extra beds that can be added.",
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "cribs_and_extra_beds": {
+      "description": "**DEPRECATED**, please use 'cots_and_extra_beds'.",
+      "type": "object",
+      "properties": {
+        "are_allowed": {
+          "description": "Flags if it's possible to add cribs and/or extra beds.",
+          "type": "boolean"
+        },
+        "maximum_number_of_cribs": {
+          "description": "Maximum number of cribs that can be added.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "maximum_number_of_extra_beds": {
+          "description": "Maximum number of extra beds that can be added.",
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "deprecated": true
+    },
+    "description": {
+      "description": "Translated description of this room. The maximum number of characters returned may be limited by contract.",
+      "type": "object"
+    },
+    "facilities": {
+      "type": "array",
+      "items": {
+        "description": "A signed integer number that uniquely identifies an accommodation property room facility. Examples of facilities are: Coffee/Tea maker, TV, Airconditioning, etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "maximum_occupancy": {
+      "description": "Occupancy limits and options.",
+      "type": "object",
+      "properties": {
+        "adults": {
+          "description": "Maximum number of adults allowed.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "children": {
+          "description": "Maximum number of children allowed (children will be typically defined by being under 18 years of age).",
+          "type": "integer",
+          "minimum": 0
+        },
+        "total_guests": {
+          "description": "**DEPRECATED** Total capacity of adults + children allowed.",
+          "type": "integer",
+          "minimum": 0,
+          "deprecated": true
+        }
+      }
+    },
+    "name": {
+      "description": "Translated name of this room.",
+      "type": "object"
+    },
+    "number_of_rooms": {
+      "description": "Total rooms available.",
+      "type": "object",
+      "properties": {
+        "bathrooms": {
+          "description": "Total number of bathrooms.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "bedrooms": {
+          "description": "Total number of rooms equipped or that can be fitted with a bed.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "living_rooms": {
+          "description": "Total number of rooms without a bed.",
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "photos": {
+      "description": "List of photos for this accommodation room. The maximum number of photos returned may be limited by contract. Requires `{\"extras\":[\"rooms\",\"photos\"]}`. The photos are returned in no particular order.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "main_photo": {
+            "description": "Flags this as the main photo. Not returned otherwise.",
+            "type": "boolean"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "description": "A list of tags associated with the photo. Manually generated.",
+              "type": "string"
+            }
+          },
+          "url": {
+            "type": "object",
+            "properties": {
+              "large": {
+                "description": "URL of the photo image with a maximum width of 1280 pixels.",
+                "type": "string",
+                "format": "url"
+              },
+              "standard": {
+                "description": "URL of the photo image with a maximum width of 500 pixels.",
+                "type": "string",
+                "format": "url"
+              },
+              "thumbnail": {
+                "description": "URL of the photo thumbnail image with dimensions 100x100 pixels.",
+                "type": "string",
+                "format": "url"
+              },
+              "thumbnail_large": {
+                "description": "URL of the photo thumbnail image with dimensions 300x300 pixels.",
+                "type": "string",
+                "format": "url"
+              }
+            }
+          }
+        }
+      }
+    },
+    "room_type": {
+      "description": "A signed integer number that uniquely identifies an accommodation property room type. Example of room types are: Suite, Apartment, Twin/Double etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "size": {
+      "description": "The room area in square meters.",
+      "type": "number",
+      "minimum": 0
+    }
+  }
+}

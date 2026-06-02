@@ -1,0 +1,96 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Booking Holdings
+providerId: booking-holdings
+created: '2026-06-02'
+modified: '2026-06-02'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Travel
+  - Affiliate
+  - Commission
+description: >-
+  FOCUS-aligned FinOps for Booking Holdings: the Booking.com Demand API carries no
+  per-call charge, so cost management is inverted — partners track affiliate
+  commission earned (a share of Booking.com's commission on completed bookings)
+  rather than spend on API consumption. The billable surface is the commission
+  reconciliation on confirmed, non-cancelled orders.
+sources:
+  - https://affiliates.support.booking.com/kb/s/article/Commission-and-Payments
+  - https://developers.booking.com/demand/docs/getting-started/overview
+  - https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Booking.com B.V.
+serviceCategory: Travel + Accommodations
+billingModel:
+  pricingCategory: Affiliate Commission Share
+  billingFrequency: Monthly
+  billingCurrency: USD/EUR (settlement varies by partner)
+  chargeCategories:
+    - Credit
+    - Adjustment
+    - Refund
+focusColumns:
+  ServiceName: Booking.com Demand API
+  ServiceCategory: Travel + Accommodations
+  ProviderName: Booking Holdings
+  PublisherName: Booking.com B.V.
+  InvoiceIssuerName: Booking.com B.V.
+  BillingCurrency: USD
+  ChargeCategory: Credit
+meters:
+  - name: completed_bookings
+    unit: transaction
+    aggregation: count
+    dimensions:
+      - product_type
+      - country
+      - currency
+  - name: commission_earned
+    unit: transaction
+    aggregation: sum
+    dimensions:
+      - product_type
+      - country
+      - currency
+  - name: cancelled_bookings
+    unit: transaction
+    aggregation: count
+    dimensions:
+      - product_type
+      - country
+  - name: api_requests
+    unit: request
+    aggregation: sum
+    dimensions:
+      - endpoint
+      - environment
+principles:
+  - name: Visibility
+    description: >-
+      Reconcile earnings through the Orders endpoints (orders/details and the
+      product-specific detail variants) and the affiliate Commission and Payments
+      reporting; track api_requests via 429 throttling signals to confirm headroom.
+  - name: Allocation
+    description: >-
+      Attribute commission_earned by product_type (accommodation, car, flight),
+      country, and currency dimensions so revenue can be allocated to the campaigns,
+      sites, or sub-affiliates that drove each booking.
+  - name: Optimization
+    description: >-
+      Optimize toward conversion and reduced cancellations rather than reducing API
+      spend (which is zero); cache reference data (constants, locations, languages)
+      and respect cars/search limits to stay within per-account RPM budgets.
+  - name: Accountability
+    description: >-
+      The affiliate account owner reconciles the monthly commission statement against
+      completed_bookings and cancelled_bookings, and owns disputes through the
+      Account Manager and affiliate support.

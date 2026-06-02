@@ -1,0 +1,11 @@
+{
+  "address": {
+    "country": "US"
+  },
+  "email": "traveler@example.com",
+  "name": {
+    "first_name": "Grand Plaza Hotel",
+    "last_name": "Grand Plaza Hotel"
+  },
+  "telephone": "+1-212-555-0142"
+}

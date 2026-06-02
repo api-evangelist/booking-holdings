@@ -1,0 +1,355 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-structure/demand-api-accommodations-search-input-structure.json",
+  "name": "AccommodationsSearchInput",
+  "description": "AccommodationsSearchInput schema from Booking.com Demand API",
+  "type": "object",
+  "properties": {
+    "24_hour_reception": {
+      "description": "Filter the result based if the front desk reception is available 24/7. When specified true, the result will filter the products where front desk is available 24/7.",
+      "type": "boolean"
+    },
+    "accommodation_facilities": {
+      "type": "array",
+      "items": {
+        "description": "A signed integer number that uniquely identifies an accommodation property facility. Examples of facilities are: Parking, Restaurant, Room service etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+        "type": "int32",
+        "minimum": 1
+      }
+    },
+    "accommodation_types": {
+      "type": "array",
+      "items": {
+        "description": "A signed integer number that uniquely identifies an accommodation property type. Examples of accommodation types are: Apartment, Hostel, Hotel etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+        "type": "int32",
+        "minimum": 1
+      }
+    },
+    "accommodations": {
+      "type": "array",
+      "items": {
+        "description": "A signed integer number that uniquely identifies an accommodation property. The full list can be obtained by calling [accommodations/details](/demand/docs/open-api/demand-api/accommodations/accommodations/details).",
+        "type": "int32",
+        "minimum": 1
+      },
+      "maxItems": 100
+    },
+    "airport": {
+      "description": "A three-letter code that uniquely identifies an airport as defined by the International Air Transport Association (IATA). The full list can be obtained by calling  <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/airports\" target=\"_blank\">common/locations/airports</a>.",
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "booker": {
+      "description": "The booker's information.",
+      "type": "object",
+      "properties": {
+        "country": {
+          "description": "The booker country for showing the best price for that user and obeying laws regarding the display of taxes and fees.",
+          "type": "string",
+          "pattern": "^[a-z]{2}$"
+        },
+        "platform": {
+          "description": "The booker platform for showing the platform based deals and prices.",
+          "type": "string",
+          "enum": [
+            "android",
+            "desktop",
+            "ios",
+            "mobile",
+            "tablet"
+          ]
+        },
+        "state": {
+          "description": "The booker state for showing the best price for that user and obeying laws regarding the display of taxes and fees. Currently applicable only for country US.",
+          "type": "string",
+          "pattern": "^[a-z]{2}$"
+        },
+        "travel_purpose": {
+          "description": "The travel purpose of the booker.",
+          "type": "string",
+          "enum": [
+            "business",
+            "leisure"
+          ]
+        },
+        "user_groups": {
+          "description": "The user groups that the booker is a member of.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "authenticated"
+            ]
+          }
+        }
+      },
+      "required": [
+        "country",
+        "platform"
+      ]
+    },
+    "brands": {
+      "type": "array",
+      "items": {
+        "description": "A signed integer number that uniquely identifies an accommodation brand. Examples of brands are: Radisson Blu, WestCord Hotels, Westin etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/chains\" target=\"_blank\">/accommodations/chains</a>.",
+        "type": "int32",
+        "minimum": 1
+      }
+    },
+    "cancellation_type": {
+      "description": "Filters the result for the cancellation type specified. Possible values are free_cancellation & non_refundable. If cancellation_type is free_cancellation, the result will contain all the products with free_cancellation.",
+      "type": "string",
+      "enum": [
+        "free_cancellation",
+        "non_refundable"
+      ]
+    },
+    "checkin": {
+      "description": "The checkin date. Must be within 500 days in the future and in the format yyyy-mm-dd.",
+      "type": "date"
+    },
+    "checkout": {
+      "description": "The checkout date. Must be later than {checkin}. Must be between 1 and 90 days after {checkin}. Must be within 500 days in the future and in the format yyyy-mm-dd.",
+      "type": "date"
+    },
+    "city": {
+      "description": "A signed integer number that uniquely identifies a city. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/cities\" target=\"_blank\">common/locations/cities</a>.",
+      "type": "int32"
+    },
+    "coordinates": {
+      "description": "Limit the result list to the specified coordinates.",
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "description": "Specify a latitude (as well as a longitude and radius) to do searches around a specific location.",
+          "type": "double"
+        },
+        "longitude": {
+          "description": "Specify a longitude (as well as a latitude and radius) to do searches around a specific location.",
+          "type": "double"
+        },
+        "radius": {
+          "description": "The radius is km to search around the specified latitude and longitude.",
+          "type": "double"
+        }
+      }
+    },
+    "country": {
+      "description": "A two-letter code that uniquely identifies a country. This code is defined by the ISO 3166-1 alpha-2 standard (ISO2) as described here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/countries\" target=\"_blank\">common/locations/countries</a>.",
+      "type": "string",
+      "pattern": "^[a-z]{2}$"
+    },
+    "currency": {
+      "description": "A three-letter code that uniquely identifies a monetary currency as defined by the ISO 4217 standard. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonpayments/common/payments/currencies\" target=\"_blank\">common/payments/currencies</a>.",
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "district": {
+      "description": "A signed integer number that uniquely identifies a district. Typically, districts define known areas within a city. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/districts\" target=\"_blank\">common/locations/districts</a>.",
+      "type": "int32",
+      "minimum": 1
+    },
+    "dormitories": {
+      "description": "This parameter specifies if the results should include dormitory beds or rooms. The default behaviour will include the dormitory beds or rooms with other results. When this flag is set to 'only', the response will only include dormitory beds or rooms. When this flag is set to 'exclude', the response will exclude dormitory beds or rooms. When this flag is set to 'include', the response will include dormitory beds or rooms with other results.",
+      "type": "string",
+      "default": "include",
+      "enum": [
+        "include",
+        "exclude",
+        "only"
+      ]
+    },
+    "extras": {
+      "description": "Input parameter to request for additional information about the products.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "extra_charges",
+          "products"
+        ]
+      }
+    },
+    "guests": {
+      "description": "The guest details for the request.",
+      "type": "object",
+      "properties": {
+        "allocation": {
+          "description": "The exact allocation of guests to rooms.",
+          "type": "array",
+          "items": {
+            "properties": {
+              "children": {
+                "description": "The children ages for this room.",
+                "type": "array",
+                "items": {
+                  "type": "int32",
+                  "minimum": 0,
+                  "maximum": 17
+                }
+              },
+              "number_of_adults": {
+                "description": "The number of adults for this room.",
+                "type": "int32",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "number_of_adults"
+            ],
+            "type": "object"
+          }
+        },
+        "children": {
+          "description": "Array with the children ages.",
+          "type": "array",
+          "items": {
+            "type": "int32",
+            "minimum": 0,
+            "maximum": 17
+          }
+        },
+        "number_of_adults": {
+          "description": "The number of adults for the search.",
+          "type": "int32",
+          "minimum": 1
+        },
+        "number_of_rooms": {
+          "description": "The number of rooms needed.",
+          "type": "int32",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "number_of_adults",
+        "number_of_rooms"
+      ]
+    },
+    "landmark": {
+      "description": "A signed integer number that uniquely identifies a relevant geographical landmark, like a monument or a natural attraction. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/landmarks\" target=\"_blank\">common/locations/landmarks</a>.",
+      "type": "int32",
+      "minimum": 1
+    },
+    "meal_plan": {
+      "description": "Filter the result based on the selected meal plan. Example: When specified breakfast_included, it will show the product with free breakfast.",
+      "type": "string",
+      "enum": [
+        "all_inclusive",
+        "breakfast_included",
+        "full_board",
+        "half_board"
+      ]
+    },
+    "page": {
+      "description": "Pagination token used to retrieve the next page of results. Obtained from `next_page`.",
+      "type": "string"
+    },
+    "payment": {
+      "description": "The payment filter for the request",
+      "type": "object",
+      "properties": {
+        "credit_card_required": {
+          "description": "Filter to show accommodations which require credit card",
+          "type": "boolean"
+        },
+        "timing": {
+          "description": "This parameter specifies that the results should only return accommodation and blocks that contain the specified payment timings.",
+          "type": "string",
+          "enum": [
+            "pay_at_the_property",
+            "pay_online"
+          ]
+        }
+      }
+    },
+    "price": {
+      "description": "If specified, will return only results where the price *per night* falls in the specified range (inclusive). This filter requires that a currency is passed",
+      "type": "object",
+      "properties": {
+        "maximum": {
+          "description": "Set the maximum price per night, in the specified currency, or omit to indicate no upper limit.",
+          "type": "int32"
+        },
+        "minimum": {
+          "description": "Set the minimum price per night, in the specified currency, or omit to indicate no lower limit.",
+          "type": "int32"
+        }
+      }
+    },
+    "rating": {
+      "description": "The rating filter for the request",
+      "type": "object",
+      "properties": {
+        "minimum_review_score": {
+          "description": "Show only hotels with review_score >= that. Review score should be in the range 1 to 10.",
+          "type": "int32",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "stars": {
+          "description": "Limit to accommodations with the given number(s) of stars. Stars should be in the range of 1 to 5.",
+          "type": "array",
+          "items": {
+            "type": "double",
+            "minimum": 1,
+            "maximum": 5
+          }
+        }
+      }
+    },
+    "region": {
+      "description": "A signed integer number that uniquely identifies a geographical region. Regions usually define official administrative areas within a country, but may also include multiple countries and in some cases un-official but popular designations for geographical areas. An example of a region that crosses multiple countries is the Alps in Europe. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/regions\" target=\"_blank\">common/locations/regions</a>.",
+      "type": "int32",
+      "minimum": 1
+    },
+    "room_facilities": {
+      "type": "array",
+      "items": {
+        "description": "A signed integer number that uniquely identifies an accommodation property room facility. Examples of facilities are: Coffee/Tea maker, TV, Airconditioning, etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+        "type": "int32",
+        "minimum": 1
+      }
+    },
+    "rows": {
+      "description": "The maximum number of results to return.",
+      "type": "int32",
+      "minimum": 10,
+      "maximum": 100,
+      "default": 100
+    },
+    "sort": {
+      "description": "The sorting parameters for the response",
+      "type": "object",
+      "properties": {
+        "by": {
+          "description": "The way to sort your results. NOTE: When ordering by distance please make sure to specify the latitude and longitude!",
+          "type": "string",
+          "enum": [
+            "distance",
+            "price",
+            "review_score",
+            "stars"
+          ]
+        },
+        "direction": {
+          "description": "The direction you wish for your sort.by parameter to be sorted in",
+          "type": "string",
+          "enum": [
+            "ascending",
+            "descending"
+          ]
+        }
+      }
+    },
+    "travel_proud": {
+      "description": "Filter the result based on if the property is LGBTQ+ friendly. When specified true, the result will filter and return only the accommodations that are Proud Certified.",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "booker",
+    "checkin",
+    "checkout",
+    "guests"
+  ]
+}

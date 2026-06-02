@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-structure/demand-api-flights-output-structure.json",
+  "name": "FlightsOutput",
+  "description": "FlightsOutput schema from Booking.com Demand API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Order id",
+      "type": "string"
+    },
+    "reservation": {
+      "description": "This is the reservation id for the travel service in this order.",
+      "type": "string"
+    },
+    "currency": {
+      "type": "object",
+      "properties": {
+        "booker_currency": {
+          "description": "The currency of the booker.",
+          "type": "string"
+        },
+        "order_currency": {
+          "description": "The currency in which the order was created.",
+          "type": "string"
+        }
+      }
+    },
+    "itineraries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "arrival": {
+            "description": "Arrival itinerary.",
+            "type": "object",
+            "properties": {
+              "airport": {
+                "description": "A three-letter code that uniquely identifies an airport as defined by the International Air Transport Association (IATA). The full list can be obtained by calling  [common/locations/airports](#/common/locations/airports).",
+                "pattern": "^[A-Z]{3}$",
+                "type": "string"
+              },
+              "date_time": {
+                "description": "Date time of the itinerary.",
+                "type": "datetime"
+              }
+            }
+          },
+          "departure": {
+            "description": "Departure itinerary.",
+            "type": "object",
+            "properties": {
+              "airport": {
+                "description": "A three-letter code that uniquely identifies an airport as defined by the International Air Transport Association (IATA). The full list can be obtained by calling  [common/locations/airports](#/common/locations/airports).",
+                "pattern": "^[A-Z]{3}$",
+                "type": "string"
+              },
+              "date_time": {
+                "description": "Date time of the itinerary.",
+                "type": "datetime"
+              }
+            }
+          }
+        }
+      }
+    },
+    "label": {
+      "description": "Identifier associated with the order.",
+      "type": "string"
+    },
+    "price": {
+      "type": "object",
+      "properties": {
+        "booker_currency": {
+          "description": "The price in the currency of the booker",
+          "type": "double"
+        },
+        "order_currency": {
+          "description": "The price in the currency in which order was created",
+          "type": "double"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "booked",
+        "cancelled",
+        "unknown"
+      ]
+    }
+  }
+}

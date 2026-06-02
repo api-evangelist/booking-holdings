@@ -1,0 +1,446 @@
+vocabulary: 1.0.0
+info:
+  provider: Booking Holdings
+  description: Unified taxonomy for the Booking.com Demand API, mapping operational (OpenAPI) operations to Naftiko capability workflows and affiliate-partner personas across Booking Holdings travel inventory.
+  created: '2026-06-02'
+  modified: '2026-06-02'
+operational:
+  apis:
+  - name: Booking.com Demand API
+    namespace: demand-api
+    version: '3.1'
+    baseUrl: https://demandapi.booking.com/3.1
+    status: active
+  resources:
+  - name: accommodations
+    label: Accommodations
+    api: demand-api
+    operations: &id001
+    - accommodationsSearch
+    - accommodationsAvailability
+    - accommodationsBulkAvailability
+    - accommodationsChains
+    - accommodationsConstants
+    - accommodationsDetails
+    - accommodationsDetailsChanges
+    - accommodationsReviews
+    - accommodationsReviewsScores
+  - name: common-languages
+    label: Common Languages
+    api: demand-api
+    operations: &id002
+    - commonLanguages
+  - name: common-locations
+    label: Common Locations
+    api: demand-api
+    operations: &id003
+    - commonLocationsAirports
+    - commonLocationsCities
+    - commonLocationsCountries
+    - commonLocationsDistricts
+    - commonLocationsLandmarks
+    - commonLocationsRegions
+  - name: common-payments
+    label: Common Payments
+    api: demand-api
+    operations: &id004
+    - commonPaymentsCards
+    - commonPaymentsCurrencies
+  - name: orders
+    label: Orders
+    api: demand-api
+    operations: &id005
+    - ordersPreview
+    - ordersCreate
+    - ordersDetails
+    - ordersDetailsAccommodations
+    - ordersDetailsCars
+    - ordersDetailsFlights
+    - ordersModify
+    - ordersCancel
+  - name: cars
+    label: Cars
+    api: demand-api
+    operations: &id006
+    - carsSearch
+    - carsDepots
+    - carsDepotsReviewsScores
+    - carsDetails
+    - carsSuppliers
+    - carsConstants
+  - name: messages
+    label: Messages
+    api: demand-api
+    operations: &id007
+    - messagesSend
+    - messagesLatest
+    - messagesLatestConfirm
+  - name: conversations
+    label: Conversations
+    api: demand-api
+    operations: &id008
+    - messagesConversations
+  - name: attachments
+    label: Attachments
+    api: demand-api
+    operations: &id009
+    - messagesAttachmentsUpload
+    - messagesAttachmentsDownload
+    - messagesAttachmentsMetadata
+  actions:
+  - verb: accommodation
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: airports
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: cancel
+    httpMethods:
+    - POST
+    pattern: destructive
+  - verb: car
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: chains
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: check
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: cities
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: confirm
+    httpMethods:
+    - POST
+    pattern: write
+  - verb: constants
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: countries
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: create
+    httpMethods:
+    - POST
+    pattern: write
+  - verb: currencies
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: depot
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: depots
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: details
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: districts
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: download
+    httpMethods:
+    - POST
+    pattern: write
+  - verb: fetch
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: landmarks
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: modify
+    httpMethods:
+    - POST
+    pattern: write
+  - verb: orders
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: payment
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: preview
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: regions
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: retrieve
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: search
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: send
+    httpMethods:
+    - POST
+    pattern: write
+  - verb: suppliers
+    httpMethods:
+    - POST
+    pattern: query
+  - verb: updated
+    httpMethods:
+    - POST
+    pattern: write
+  - verb: upload
+    httpMethods:
+    - POST
+    pattern: write
+  schemas:
+    accommodations:
+    - AccommodationsAvailabilityInput
+    - AccommodationsAvailabilityProductOutput
+    - AccommodationsDetailsDataOutput
+    - AccommodationsDetailsInput
+    - AccommodationsDetailsRoomOutput
+    - AccommodationsLocationOutput
+    - AccommodationsPoliciesOutput
+    - AccommodationsReviewOutput
+    - AccommodationsReviewsScoresOutput
+    - AccommodationsSearchInput
+    - AccommodationsSearchProductOutput
+    common:
+    - ConstantsDataOutput
+    - TraderOutput
+    flights:
+    - FlightsOutput
+    locations:
+    - AirportsInput
+    - CitiesInput
+    - CountriesInput
+    - DistrictsInput
+    - LandmarksInput
+    - RegionsInput
+    orders:
+    - OrderCreateBookerInput
+    - OrderCreatePaymentInput
+    - OrderDetailsBookerOutput
+    - OrderDetailsDataOutput
+    - OrdersPreviewProductOutput
+  parameters:
+    pagination:
+    - rows
+    - page
+    - offset
+    identifiers:
+    - id
+    - accommodation
+    - airport
+    - city
+    - country
+    - region
+    filters:
+    - checkin
+    - checkout
+    - guests
+    - currency
+    - language
+    - brands
+    - accommodation_types
+  enums:
+    orderStatus:
+    - confirmed
+    - cancelled
+    - modified
+    productType:
+    - accommodation
+    - car
+    - flight
+    extranetTrader:
+    - booking
+    - partner
+  authentication:
+    scheme: bearer
+    type: http
+    description: Affiliate ID and token credentials passed as an HTTP Bearer token.
+    apis:
+    - Booking.com Demand API
+capability:
+  workflows:
+  - name: Booking.com Demand API — Accommodations
+    file: capabilities/demand-api-accommodations.yaml
+    description: 'Accommodations surface of the Booking.com Demand API. 9 operations. Lead operation: Search Accommodation'
+    apis:
+    - Demand API
+    tools: 9
+    personas:
+    - Affiliate Partner
+  - name: Booking.com Demand API — Attachments
+    file: capabilities/demand-api-attachments.yaml
+    description: 'Attachments surface of the Booking.com Demand API. 3 operations. Lead operation: Upload an Attachment'
+    apis:
+    - Demand API
+    tools: 3
+    personas:
+    - Affiliate Partner
+  - name: Booking.com Demand API — Cars
+    file: capabilities/demand-api-cars.yaml
+    description: 'Cars surface of the Booking.com Demand API. 6 operations. Lead operation: Search Car Rentals'
+    apis:
+    - Demand API
+    tools: 6
+    personas:
+    - Affiliate Partner
+  - name: Booking.com Demand API — Common Languages
+    file: capabilities/demand-api-common-languages.yaml
+    description: 'Common Languages surface of the Booking.com Demand API. 1 operations. Lead operation: Retrieve Language Codes'
+    apis:
+    - Demand API
+    tools: 1
+    personas:
+    - Affiliate Partner
+  - name: Booking.com Demand API — Common Locations
+    file: capabilities/demand-api-common-locations.yaml
+    description: 'Common Locations surface of the Booking.com Demand API. 6 operations. Lead operation: Airports'
+    apis:
+    - Demand API
+    tools: 6
+    personas:
+    - Affiliate Partner
+  - name: Booking.com Demand API — Common Payments
+    file: capabilities/demand-api-common-payments.yaml
+    description: 'Common Payments surface of the Booking.com Demand API. 2 operations. Lead operation: Payment Cards'
+    apis:
+    - Demand API
+    tools: 2
+    personas:
+    - Affiliate Partner
+  - name: Booking.com Demand API — Conversations
+    file: capabilities/demand-api-conversations.yaml
+    description: 'Conversations surface of the Booking.com Demand API. 1 operations. Lead operation: Retrieve a Conversation'
+    apis:
+    - Demand API
+    tools: 1
+    personas:
+    - Affiliate Partner
+  - name: Booking.com Demand API — Messages
+    file: capabilities/demand-api-messages.yaml
+    description: 'Messages surface of the Booking.com Demand API. 3 operations. Lead operation: Send a Message'
+    apis:
+    - Demand API
+    tools: 3
+    personas:
+    - Affiliate Partner
+  - name: Booking.com Demand API — Orders
+    file: capabilities/demand-api-orders.yaml
+    description: 'Orders surface of the Booking.com Demand API. 8 operations. Lead operation: Preview an Order'
+    apis:
+    - Demand API
+    tools: 8
+    personas:
+    - Affiliate Partner
+  personas:
+  - id: affiliate-partner
+    name: Affiliate Partner
+    description: Travel resellers and metasearch partners integrating Booking.com inventory to search, book, and manage orders.
+    workflows:
+    - Booking.com Demand API — Accommodations
+    - Booking.com Demand API — Attachments
+    - Booking.com Demand API — Cars
+    - Booking.com Demand API — Common Languages
+    - Booking.com Demand API — Common Locations
+    - Booking.com Demand API — Common Payments
+    - Booking.com Demand API — Conversations
+    - Booking.com Demand API — Messages
+    - Booking.com Demand API — Orders
+  domains:
+  - name: Accommodations
+    description: Hotel and property search, availability, details, and reviews.
+  - name: Cars
+    description: Car rental search, depots, suppliers, and details.
+  - name: Orders
+    description: 'Booking lifecycle: preview, create, modify, cancel, and detail retrieval.'
+  - name: Messaging
+    description: Partner-guest messaging, conversations, and attachments.
+  - name: Reference Data
+    description: Locations, payments, languages, and constants.
+  namespaces:
+  - consumed: demand-api-accommodations
+    rest: demand-api-accommodations-rest
+    mcp: demand-api-accommodations-mcp
+  - consumed: demand-api-common-languages
+    rest: demand-api-common-languages-rest
+    mcp: demand-api-common-languages-mcp
+  - consumed: demand-api-common-locations
+    rest: demand-api-common-locations-rest
+    mcp: demand-api-common-locations-mcp
+  - consumed: demand-api-common-payments
+    rest: demand-api-common-payments-rest
+    mcp: demand-api-common-payments-mcp
+  - consumed: demand-api-orders
+    rest: demand-api-orders-rest
+    mcp: demand-api-orders-mcp
+  - consumed: demand-api-cars
+    rest: demand-api-cars-rest
+    mcp: demand-api-cars-mcp
+  - consumed: demand-api-messages
+    rest: demand-api-messages-rest
+    mcp: demand-api-messages-mcp
+  - consumed: demand-api-conversations
+    rest: demand-api-conversations-rest
+    mcp: demand-api-conversations-mcp
+  - consumed: demand-api-attachments
+    rest: demand-api-attachments-rest
+    mcp: demand-api-attachments-mcp
+  binds:
+  - name: BOOKING_DEMAND_API_TOKEN
+    description: Bearer token (Affiliate ID + token) for the Booking.com Demand API.
+crossReference:
+- resource: accommodations
+  operations: *id001
+  workflow: Booking.com Demand API — Accommodations
+  persona: Affiliate Partner
+- resource: common-languages
+  operations: *id002
+  workflow: Booking.com Demand API — Common Languages
+  persona: Affiliate Partner
+- resource: common-locations
+  operations: *id003
+  workflow: Booking.com Demand API — Common Locations
+  persona: Affiliate Partner
+- resource: common-payments
+  operations: *id004
+  workflow: Booking.com Demand API — Common Payments
+  persona: Affiliate Partner
+- resource: orders
+  operations: *id005
+  workflow: Booking.com Demand API — Orders
+  persona: Affiliate Partner
+- resource: cars
+  operations: *id006
+  workflow: Booking.com Demand API — Cars
+  persona: Affiliate Partner
+- resource: messages
+  operations: *id007
+  workflow: Booking.com Demand API — Messages
+  persona: Affiliate Partner
+- resource: conversations
+  operations: *id008
+  workflow: Booking.com Demand API — Conversations
+  persona: Affiliate Partner
+- resource: attachments
+  operations: *id009
+  workflow: Booking.com Demand API — Attachments
+  persona: Affiliate Partner

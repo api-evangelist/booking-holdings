@@ -1,0 +1,355 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-structure/demand-api-order-details-data-output-structure.json",
+  "name": "OrderDetailsDataOutput",
+  "description": "All details for this order.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The id for this order.",
+      "type": "string"
+    },
+    "accommodations": {
+      "type": "object",
+      "properties": {
+        "inventory": {
+          "type": "object",
+          "properties": {
+            "third_party": {
+              "type": "boolean",
+              "description": "Boolean value is \"true\" if the product is facilitated by a Booking.com partner company and \"false\" otherwise."
+            },
+            "type": {
+              "description": "Type of inventory - either net or sell rates.",
+              "type": "string",
+              "enum": [
+                "net",
+                "sell"
+              ]
+            }
+          }
+        },
+        "reservation": {
+          "description": "This is the reservation id for the accommodation in this order.",
+          "type": "int64"
+        }
+      }
+    },
+    "affiliate": {
+      "description": "The affiliate id used for this order.",
+      "type": "int32"
+    },
+    "booker": {
+      "description": "The booker's information.",
+      "type": "object",
+      "properties": {
+        "address": {
+          "description": "The booker's address for showing the best price for that user and obeying laws regarding the display of taxes and fees.",
+          "type": "object",
+          "properties": {
+            "city": {
+              "description": "The city for this address.",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "country": {
+              "description": "The country for this address.",
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "email": {
+          "description": "The booker's email address.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "language": {
+          "description": "A [IETF language tag code](https://en.wikipedia.org/wiki/IETF_language_tag) that uniquely identifies a supported human language or dialect. **Note:** Demand API only accepts lowercase for the language codes. Examples: \"nl\" for Dutch/Nederlands or \"en-us\" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.",
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[a-z]{2})?$"
+        },
+        "name": {
+          "description": "The name of the booker.",
+          "type": "object",
+          "properties": {
+            "first_name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "last_name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "platform": {
+          "description": "The booker platform for showing the platform based deals and prices.",
+          "type": "string",
+          "enum": [
+            "app",
+            "desktop",
+            "mobile_browser",
+            "tablet",
+            "unknown"
+          ]
+        },
+        "telephone": {
+          "description": "The booker's telephone number.",
+          "type": "string",
+          "nullable": true
+        },
+        "travel_purpose": {
+          "description": "The travel purpose of the booker.",
+          "type": "string",
+          "enum": [
+            "business",
+            "leisure",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "cars": {
+      "type": "object",
+      "properties": {
+        "reservation": {
+          "description": "This is the reservation id for the car in this order.",
+          "type": "int64"
+        }
+      }
+    },
+    "created": {
+      "description": "Order creation time.",
+      "type": "datetime"
+    },
+    "commission": {
+      "description": "Commission details for the partner for a given order.",
+      "type": "object",
+      "properties": {
+        "actual_amount": {
+          "description": "For accommodation: This is the final commission for this order (`null` if value is not yet available). For other travel services: It represents the estimated commission before billing and the final commission after billing.",
+          "nullable": true,
+          "type": "double"
+        },
+        "estimated_amount": {
+          "description": "Estimated commission amount for this order. For accommodations, it will be `null` if the final commission amount is available.",
+          "nullable": true,
+          "type": "double"
+        }
+      }
+    },
+    "currency": {
+      "description": "Input currency used in \"commission\" and \"price\" output fields.",
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "flights": {
+      "type": "object",
+      "properties": {
+        "reservation": {
+          "description": "This is the reservation id for flight in this order.",
+          "type": "int64"
+        }
+      }
+    },
+    "loyalty_reward": {
+      "nullable": true,
+      "description": "Details of the loyalty rewards associated with this order.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "description": "Reward amount, in the units of the specified reward type (such as cash, mile, point, etc.).",
+            "type": "double"
+          },
+          "currency": {
+            "description": "Currency used for reward calculation.",
+            "nullable": true,
+            "type": "string",
+            "pattern": "^[A-Z]{3}$"
+          },
+          "eligible": {
+            "description": "Whether the order is eligible for the reward.",
+            "type": "boolean"
+          },
+          "fulfillment_at": {
+            "description": "Date and time at which the reward should be fulfilled.",
+            "type": "date"
+          },
+          "fulfillment_by": {
+            "description": "Mode of fulfillment of the reward.",
+            "type": "string",
+            "enum": [
+              "partner",
+              "booking.com"
+            ]
+          },
+          "loyalty_data": {
+            "description": "Loyalty data associated with this loyalty reward used to fulfill reward.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "description": "Name of the loyalty data.",
+                  "type": "string"
+                },
+                "value": {
+                  "description": "Value of the loyalty data.",
+                  "type": "string"
+                }
+              }
+            },
+            "nullable": true
+          },
+          "type": {
+            "description": "Type of reward.",
+            "type": "string",
+            "enum": [
+              "cash",
+              "mile",
+              "point",
+              "voucher",
+              "voucher_money",
+              "voucher_subscription",
+              "voucher_percentage"
+            ]
+          }
+        }
+      }
+    },
+    "payment": {
+      "description": "The payment details of this order.",
+      "type": "object",
+      "properties": {
+        "accommodations": {
+          "description": "The accommodation specific payment details of this order.",
+          "type": "object",
+          "properties": {
+            "authorisation_form": {
+              "description": "Link to the authorisation form of the order.",
+              "type": "uri",
+              "nullable": true
+            },
+            "receipt_url": {
+              "description": "Link to the payment receipt of the order. `This will only be added if the payment is already charged.`",
+              "type": "uri",
+              "nullable": true
+            },
+            "reservation": {
+              "description": "Reservation ID for this accommodation order.",
+              "type": "int64"
+            }
+          },
+          "nullable": true
+        },
+        "method": {
+          "description": "The payment method of this order.",
+          "type": "string",
+          "enum": [
+            "airplus",
+            "card",
+            "wallet"
+          ]
+        },
+        "paid": {
+          "description": "The paid transactions for this order.",
+          "nullable": true,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "description": "Amount of the transaction.",
+                "type": "double"
+              },
+              "at": {
+                "description": "Time of the transaction.",
+                "type": "datetime"
+              },
+              "transaction_currency": {
+                "description": "Currency in which the transaction took place.",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "pending": {
+          "description": "The pending transactions for this order.",
+          "nullable": true,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "description": "Amount of the transaction.",
+                "type": "double"
+              },
+              "at": {
+                "description": "Time of the transaction.",
+                "type": "datetime"
+              },
+              "transaction_currency": {
+                "description": "Currency in which the transaction took place.",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "timing": {
+          "description": "The payment timing of this order.",
+          "type": "string",
+          "enum": [
+            "pay_at_the_property",
+            "pay_online_later",
+            "pay_online_now"
+          ]
+        }
+      }
+    },
+    "price": {
+      "description": "The price components of this order.",
+      "type": "object",
+      "properties": {
+        "commissionable": {
+          "description": "The commissionable price. Order price on which commission amount is calculated.",
+          "nullable": true,
+          "type": "double"
+        },
+        "total": {
+          "description": "The total price. Includes all extra charges.",
+          "type": "double"
+        }
+      },
+      "nullable": true
+    },
+    "status": {
+      "description": "Status of this order.",
+      "type": "string",
+      "enum": [
+        "booked",
+        "cancelled",
+        "cancelled_by_accommodation",
+        "cancelled_by_guest",
+        "no_show",
+        "stayed"
+      ]
+    },
+    "updated": {
+      "description": "Time the order was last updated.",
+      "type": "datetime"
+    }
+  }
+}

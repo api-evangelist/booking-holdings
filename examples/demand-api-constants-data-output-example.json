@@ -1,0 +1,41 @@
+{
+  "accommodation_facilities": [
+    {
+      "id": 741,
+      "facility_type": 739,
+      "name": {}
+    }
+  ],
+  "accommodation_themes": [
+    {
+      "id": 805,
+      "name": {}
+    }
+  ],
+  "accommodation_types": [
+    {
+      "id": 284,
+      "name": {}
+    }
+  ],
+  "bed_types": [
+    {
+      "id": 81,
+      "description": {},
+      "description_imperial": {},
+      "name": {}
+    }
+  ],
+  "charge_types": [
+    {
+      "id": 225,
+      "name": {}
+    }
+  ],
+  "facility_types": [
+    {
+      "id": 337,
+      "name": {}
+    }
+  ]
+}

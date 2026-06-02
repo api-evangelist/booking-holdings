@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-structure/demand-api-order-create-booker-input-structure.json",
+  "name": "OrderCreateBookerInput",
+  "description": "The booker's information.",
+  "type": "object",
+  "properties": {
+    "address": {
+      "description": "The booker's address to be used for creating this order. All fields of this object are required if the /accommodations/details endpoint indicates that the booker's address is necessary by returning booker_address_required=true.",
+      "type": "object",
+      "properties": {
+        "address_line": {
+          "description": "The details of this address.",
+          "type": "string"
+        },
+        "city": {
+          "description": "The city for this address.",
+          "type": "string"
+        },
+        "country": {
+          "description": "The country for this address.",
+          "type": "string",
+          "pattern": "^[a-z]{2}$"
+        },
+        "post_code": {
+          "description": "Post code for this address.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "country"
+      ]
+    },
+    "company": {
+      "description": "The booker's company name.",
+      "type": "string"
+    },
+    "email": {
+      "description": "The booker's email address.",
+      "type": "string"
+    },
+    "language": {
+      "description": "A [IETF language tag code](https://en.wikipedia.org/wiki/IETF_language_tag) that uniquely identifies a supported human language or dialect. **Note:** Demand API only accepts lowercase for the language codes. Examples: \"nl\" for Dutch/Nederlands or \"en-us\" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.",
+      "type": "string",
+      "pattern": "^[a-z]{2}(-[a-z]{2})?$"
+    },
+    "name": {
+      "description": "The name of the booker.",
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "first_name",
+        "last_name"
+      ]
+    },
+    "telephone": {
+      "description": "The booker's telephone number.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "address",
+    "email",
+    "name",
+    "telephone"
+  ]
+}

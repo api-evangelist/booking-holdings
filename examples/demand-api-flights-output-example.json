@@ -1,0 +1,19 @@
+{
+  "id": "10781902",
+  "reservation": "string",
+  "currency": {
+    "booker_currency": "USD",
+    "order_currency": "USD"
+  },
+  "itineraries": [
+    {
+      "arrival": {},
+      "departure": {}
+    }
+  ],
+  "label": "Grand Plaza Hotel",
+  "price": {
+    "booker_currency": 0.39,
+    "order_currency": 12.96
+  }
+}

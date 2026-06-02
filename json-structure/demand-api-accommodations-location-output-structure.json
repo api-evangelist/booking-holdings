@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-structure/demand-api-accommodations-location-output-structure.json",
+  "name": "AccommodationsLocationOutput",
+  "description": "All location related information of this accommodation property.",
+  "type": "object",
+  "properties": {
+    "address": {
+      "description": "Translated accommodation address.",
+      "type": "object"
+    },
+    "city": {
+      "description": "A signed integer number that uniquely identifies a city. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/cities\" target=\"_blank\">common/locations/cities</a>.",
+      "type": "int32"
+    },
+    "coordinates": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "double"
+        },
+        "longitude": {
+          "type": "double"
+        }
+      }
+    },
+    "country": {
+      "description": "A two-letter code that uniquely identifies a country. This code is defined by the ISO 3166-1 alpha-2 standard (ISO2) as described here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/countries\" target=\"_blank\">common/locations/countries</a>.",
+      "type": "string",
+      "pattern": "^[a-z]{2}$"
+    },
+    "districts": {
+      "type": "array",
+      "items": {
+        "description": "A signed integer number that uniquely identifies a district. Typically, districts define known areas within a city. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/districts\" target=\"_blank\">common/locations/districts</a>.",
+        "type": "int32",
+        "minimum": 1
+      }
+    },
+    "postal_code": {
+      "type": "string"
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "description": "A signed integer number that uniquely identifies a geographical region. Regions usually define official administrative areas within a country, but may also include multiple countries and in some cases un-official but popular designations for geographical areas. An example of a region that crosses multiple countries is the Alps in Europe. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/regions\" target=\"_blank\">common/locations/regions</a>.",
+        "type": "int32",
+        "minimum": 1
+      }
+    }
+  }
+}

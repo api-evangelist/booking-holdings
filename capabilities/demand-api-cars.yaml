@@ -1,0 +1,330 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Booking.com Demand API — Cars
+  description: 'Cars surface of the Booking.com Demand API. 6 operations. Lead operation: Search Car Rentals. Self-contained Naftiko capability covering one Booking.com business surface.'
+  tags:
+  - Booking.com
+  - Demand API
+  - Cars
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    BOOKING_DEMAND_API_TOKEN: BOOKING_DEMAND_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: demand-api-cars
+    baseUri: https://demandapi.booking.com/3.1
+    description: Booking.com Demand API — Cars business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.BOOKING_DEMAND_API_TOKEN}}'
+    resources:
+    - name: cars-search
+      path: /cars/search
+      operations:
+      - name: carsSearch
+        method: POST
+        description: Booking.com Search Car Rentals
+        inputParameters:
+        - name: null
+          in: null
+          type: string
+          required: false
+          description: Booking.com Search Car Rentals
+        - name: body
+          in: body
+          type: object
+          required: false
+          description: Request payload for Booking.com Search Car Rentals.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cars-depots
+      path: /cars/depots
+      operations:
+      - name: carsDepots
+        method: POST
+        description: Booking.com Depots
+        inputParameters:
+        - name: null
+          in: null
+          type: string
+          required: false
+          description: Booking.com Depots
+        - name: body
+          in: body
+          type: object
+          required: false
+          description: Request payload for Booking.com Depots.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cars-depots-reviews-scores
+      path: /cars/depots/reviews/scores
+      operations:
+      - name: carsDepotsReviewsScores
+        method: POST
+        description: Booking.com Depot Scores
+        inputParameters:
+        - name: null
+          in: null
+          type: string
+          required: false
+          description: Booking.com Depot Scores
+        - name: body
+          in: body
+          type: object
+          required: false
+          description: Request payload for Booking.com Depot Scores.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cars-details
+      path: /cars/details
+      operations:
+      - name: carsDetails
+        method: POST
+        description: Booking.com Car Details
+        inputParameters:
+        - name: null
+          in: null
+          type: string
+          required: false
+          description: Booking.com Car Details
+        - name: body
+          in: body
+          type: object
+          required: false
+          description: Request payload for Booking.com Car Details.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cars-suppliers
+      path: /cars/suppliers
+      operations:
+      - name: carsSuppliers
+        method: POST
+        description: Booking.com Suppliers
+        inputParameters:
+        - name: null
+          in: null
+          type: string
+          required: false
+          description: Booking.com Suppliers
+        - name: body
+          in: body
+          type: object
+          required: false
+          description: Request payload for Booking.com Suppliers.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cars-constants
+      path: /cars/constants
+      operations:
+      - name: carsConstants
+        method: POST
+        description: Booking.com Car Constants
+        inputParameters:
+        - name: null
+          in: null
+          type: string
+          required: false
+          description: Booking.com Car Constants
+        - name: body
+          in: body
+          type: object
+          required: false
+          description: Request payload for Booking.com Car Constants.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: demand-api-cars-rest
+    port: 8080
+    description: REST adapter for Booking.com Demand API — Cars. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/cars/search
+      name: cars-search
+      description: REST surface for Booking.com Search Car Rentals.
+      operations:
+      - method: POST
+        name: carsSearch
+        description: Booking.com Search Car Rentals
+        call: demand-api-cars.carsSearch
+        with:
+          null: rest.None
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cars/depots
+      name: cars-depots
+      description: REST surface for Booking.com Depots.
+      operations:
+      - method: POST
+        name: carsDepots
+        description: Booking.com Depots
+        call: demand-api-cars.carsDepots
+        with:
+          null: rest.None
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cars/depots/reviews/scores
+      name: cars-depots-reviews-scores
+      description: REST surface for Booking.com Depot Scores.
+      operations:
+      - method: POST
+        name: carsDepotsReviewsScores
+        description: Booking.com Depot Scores
+        call: demand-api-cars.carsDepotsReviewsScores
+        with:
+          null: rest.None
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cars/details
+      name: cars-details
+      description: REST surface for Booking.com Car Details.
+      operations:
+      - method: POST
+        name: carsDetails
+        description: Booking.com Car Details
+        call: demand-api-cars.carsDetails
+        with:
+          null: rest.None
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cars/suppliers
+      name: cars-suppliers
+      description: REST surface for Booking.com Suppliers.
+      operations:
+      - method: POST
+        name: carsSuppliers
+        description: Booking.com Suppliers
+        call: demand-api-cars.carsSuppliers
+        with:
+          null: rest.None
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cars/constants
+      name: cars-constants
+      description: REST surface for Booking.com Car Constants.
+      operations:
+      - method: POST
+        name: carsConstants
+        description: Booking.com Car Constants
+        call: demand-api-cars.carsConstants
+        with:
+          null: rest.None
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: demand-api-cars-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Booking.com Demand API — Cars. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: search-car-rentals
+      description: Booking.com Search Car Rentals
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: demand-api-cars.carsSearch
+      with:
+        null: tools.None
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: depots
+      description: Booking.com Depots
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: demand-api-cars.carsDepots
+      with:
+        null: tools.None
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: depot-scores
+      description: Booking.com Depot Scores
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: demand-api-cars.carsDepotsReviewsScores
+      with:
+        null: tools.None
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: car-details
+      description: Booking.com Car Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: demand-api-cars.carsDetails
+      with:
+        null: tools.None
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suppliers
+      description: Booking.com Suppliers
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: demand-api-cars.carsSuppliers
+      with:
+        null: tools.None
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: car-constants
+      description: Booking.com Car Constants
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: demand-api-cars.carsConstants
+      with:
+        null: tools.None
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

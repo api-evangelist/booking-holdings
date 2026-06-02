@@ -1,0 +1,183 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Booking.com Demand API — Attachments
+  description: 'Attachments surface of the Booking.com Demand API. 3 operations. Lead operation: Upload an Attachment. Self-contained Naftiko capability covering one Booking.com business surface.'
+  tags:
+  - Booking.com
+  - Demand API
+  - Attachments
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    BOOKING_DEMAND_API_TOKEN: BOOKING_DEMAND_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: demand-api-attachments
+    baseUri: https://demandapi.booking.com/3.1
+    description: Booking.com Demand API — Attachments business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.BOOKING_DEMAND_API_TOKEN}}'
+    resources:
+    - name: messages-attachments-upload
+      path: /messages/attachments/upload
+      operations:
+      - name: messagesAttachmentsUpload
+        method: POST
+        description: Booking.com Upload an Attachment
+        inputParameters:
+        - name: null
+          in: null
+          type: string
+          required: false
+          description: Booking.com Upload an Attachment
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request payload for Booking.com Upload an Attachment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: messages-attachments-download
+      path: /messages/attachments/download
+      operations:
+      - name: messagesAttachmentsDownload
+        method: POST
+        description: Booking.com Download a Message Attachment
+        inputParameters:
+        - name: null
+          in: null
+          type: string
+          required: false
+          description: Booking.com Download a Message Attachment
+        - name: body
+          in: body
+          type: object
+          required: false
+          description: Request payload for Booking.com Download a Message Attachment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: messages-attachments-metadata
+      path: /messages/attachments/metadata
+      operations:
+      - name: messagesAttachmentsMetadata
+        method: POST
+        description: Booking.com Retrieve Attachment Metadata
+        inputParameters:
+        - name: null
+          in: null
+          type: string
+          required: false
+          description: Booking.com Retrieve Attachment Metadata
+        - name: body
+          in: body
+          type: object
+          required: false
+          description: Request payload for Booking.com Retrieve Attachment Metadata.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: demand-api-attachments-rest
+    port: 8080
+    description: REST adapter for Booking.com Demand API — Attachments. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/messages/attachments/upload
+      name: messages-attachments-upload
+      description: REST surface for Booking.com Upload an Attachment.
+      operations:
+      - method: POST
+        name: messagesAttachmentsUpload
+        description: Booking.com Upload an Attachment
+        call: demand-api-attachments.messagesAttachmentsUpload
+        with:
+          null: rest.None
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/messages/attachments/download
+      name: messages-attachments-download
+      description: REST surface for Booking.com Download a Message Attachment.
+      operations:
+      - method: POST
+        name: messagesAttachmentsDownload
+        description: Booking.com Download a Message Attachment
+        call: demand-api-attachments.messagesAttachmentsDownload
+        with:
+          null: rest.None
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/messages/attachments/metadata
+      name: messages-attachments-metadata
+      description: REST surface for Booking.com Retrieve Attachment Metadata.
+      operations:
+      - method: POST
+        name: messagesAttachmentsMetadata
+        description: Booking.com Retrieve Attachment Metadata
+        call: demand-api-attachments.messagesAttachmentsMetadata
+        with:
+          null: rest.None
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: demand-api-attachments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Booking.com Demand API — Attachments. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: upload-attachment
+      description: Booking.com Upload an Attachment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: demand-api-attachments.messagesAttachmentsUpload
+      with:
+        null: tools.None
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-message-attachment
+      description: Booking.com Download a Message Attachment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: demand-api-attachments.messagesAttachmentsDownload
+      with:
+        null: tools.None
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-attachment-metadata
+      description: Booking.com Retrieve Attachment Metadata
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: demand-api-attachments.messagesAttachmentsMetadata
+      with:
+        null: tools.None
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

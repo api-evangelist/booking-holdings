@@ -1,0 +1,127 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Booking.com Demand API — Common Payments
+  description: 'Common Payments surface of the Booking.com Demand API. 2 operations. Lead operation: Payment Cards. Self-contained Naftiko capability covering one Booking.com business surface.'
+  tags:
+  - Booking.com
+  - Demand API
+  - Common Payments
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    BOOKING_DEMAND_API_TOKEN: BOOKING_DEMAND_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: demand-api-common-payments
+    baseUri: https://demandapi.booking.com/3.1
+    description: Booking.com Demand API — Common Payments business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.BOOKING_DEMAND_API_TOKEN}}'
+    resources:
+    - name: common-payments-cards
+      path: /common/payments/cards
+      operations:
+      - name: commonPaymentsCards
+        method: POST
+        description: Booking.com Payment Cards
+        inputParameters:
+        - name: null
+          in: null
+          type: string
+          required: false
+          description: Booking.com Payment Cards
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: common-payments-currencies
+      path: /common/payments/currencies
+      operations:
+      - name: commonPaymentsCurrencies
+        method: POST
+        description: Booking.com Currencies
+        inputParameters:
+        - name: null
+          in: null
+          type: string
+          required: false
+          description: Booking.com Currencies
+        - name: body
+          in: body
+          type: object
+          required: false
+          description: Request payload for Booking.com Currencies.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: demand-api-common-payments-rest
+    port: 8080
+    description: REST adapter for Booking.com Demand API — Common Payments. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/common/payments/cards
+      name: common-payments-cards
+      description: REST surface for Booking.com Payment Cards.
+      operations:
+      - method: POST
+        name: commonPaymentsCards
+        description: Booking.com Payment Cards
+        call: demand-api-common-payments.commonPaymentsCards
+        with:
+          null: rest.None
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/common/payments/currencies
+      name: common-payments-currencies
+      description: REST surface for Booking.com Currencies.
+      operations:
+      - method: POST
+        name: commonPaymentsCurrencies
+        description: Booking.com Currencies
+        call: demand-api-common-payments.commonPaymentsCurrencies
+        with:
+          null: rest.None
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: demand-api-common-payments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Booking.com Demand API — Common Payments. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: payment-cards
+      description: Booking.com Payment Cards
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: demand-api-common-payments.commonPaymentsCards
+      with:
+        null: tools.None
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: currencies
+      description: Booking.com Currencies
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: demand-api-common-payments.commonPaymentsCurrencies
+      with:
+        null: tools.None
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

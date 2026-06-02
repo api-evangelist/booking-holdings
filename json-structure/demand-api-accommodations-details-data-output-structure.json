@@ -1,0 +1,1203 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-structure/demand-api-accommodations-details-data-output-structure.json",
+  "name": "AccommodationsDetailsDataOutput",
+  "description": "All static information related to an accommodation property (excludes information on availability).",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "A signed integer number that uniquely identifies an accommodation property. The full list can be obtained by calling [accommodations/details](/demand/docs/open-api/demand-api/accommodations/accommodations/details).",
+      "type": "int32",
+      "minimum": 1
+    },
+    "accommodation_type": {
+      "description": "A signed integer number that uniquely identifies an accommodation property type. Examples of accommodation types are: Apartment, Hostel, Hotel etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+      "type": "int32",
+      "minimum": 1
+    },
+    "booker_address_required": {
+      "description": "A boolean indicating whether a booker address is required for the property. If true, a booker address must be provided in the orders/create endpoint. If false, the booker address is not required and can be omitted from the orders/create endpoint.",
+      "type": "boolean"
+    },
+    "brands": {
+      "type": "array",
+      "items": {
+        "description": "A signed integer number that uniquely identifies an accommodation brand. Examples of brands are: Radisson Blu, WestCord Hotels, Westin etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/chains\" target=\"_blank\">/accommodations/chains</a>.",
+        "type": "int32",
+        "minimum": 1
+      }
+    },
+    "bundles": {
+      "description": "List of value-added bundles offered by this accommodation. Each bundle groups one or more value-added benefits that are included with the stay, such as complimentary services, credits, or special amenities. Bundles are informational only. They cannot be selected, filtered, or booked independently and do not represent a separate rate or product. This field is returned only when `bundles` is included in the `extras` request parameter.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "A group of value-added benefits included with the accommodation.",
+        "properties": {
+          "id": {
+            "type": "int32",
+            "description": "Unique identifier of the bundle."
+          },
+          "value_adds": {
+            "type": "array",
+            "description": "List of value-added benefits included in this bundle. Each value-add represents a single benefit and includes localised descriptive text for display purposes.",
+            "items": {
+              "type": "object",
+              "description": "A single value-added benefit included in the bundle, with its type and descriptive text localised in multiple languages.",
+              "properties": {
+                "type": {
+                  "description": "Identifies the type of value-added benefit included in the bundle, such as complimentary services, monetary credits, percentage discounts, or experiential amenities. Enum values encode how the benefit is applied, including time scope (per day or per stay) and unit scope (per room or per adult).",
+                  "type": "string",
+                  "enum": [
+                    "parking",
+                    "food_drink_credit_per_day_per_room",
+                    "food_drink_credit_per_day_per_adult",
+                    "property_credit_per_day_per_room",
+                    "food_drink_credit_per_stay_per_adult",
+                    "food_drink_credit_per_stay_per_room",
+                    "property_credit_per_day_per_adult",
+                    "property_credit_per_stay_per_adult",
+                    "property_credit_per_stay_per_room",
+                    "food_drink_discount",
+                    "property_discount",
+                    "early_checkin",
+                    "late_checkout",
+                    "late_checkin",
+                    "spa_daily",
+                    "spa_hourly",
+                    "spa_massage",
+                    "high_speed_internet",
+                    "airport_transfer",
+                    "safari_game_drive",
+                    "safari_walk",
+                    "pets_stay",
+                    "bottle_of_wine",
+                    "bottle_of_champagne",
+                    "park_sleep_fly"
+                  ]
+                },
+                "description": {
+                  "description": "List of descriptive text lines for the value-added service, localised in multiple languages.",
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "checkin_checkout_times": {
+      "type": "object",
+      "properties": {
+        "checkin_from": {
+          "description": "The time from when checkin starts at this property.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:00"
+        },
+        "checkin_to": {
+          "description": "The time till when checkin can be done at this property.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:00"
+        },
+        "checkout_from": {
+          "description": "The time from when checkout starts at this property.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:00"
+        },
+        "checkout_to": {
+          "description": "The time till when checkout can be done at this property.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:00"
+        }
+      }
+    },
+    "contacts": {
+      "description": "Contact information of the accommodation.",
+      "type": "object",
+      "properties": {
+        "general": {
+          "description": "Contact information of the accommodation. It can be `null` if the data is missing.",
+          "type": "object",
+          "properties": {
+            "email": {
+              "description": "Email address of the accommodation. It can be `null` if the data is missing.",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "telephone": {
+              "description": "Telephone number of the accommodation. It can be `null` if the data is missing.",
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "nullable": true
+        },
+        "reservations": {
+          "description": "Contact information of the accommodation. It can be `null` if the data is missing.",
+          "type": "object",
+          "properties": {
+            "email": {
+              "description": "Email address of the accommodation. It can be `null` if the data is missing.",
+              "type": "string",
+              "nullable": true
+            },
+            "telephone": {
+              "description": "Telephone number of the accommodation. It can be `null` if the data is missing.",
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "nullable": true
+        }
+      }
+    },
+    "currency": {
+      "description": "A three-letter code that uniquely identifies a monetary currency as defined by the ISO 4217 standard. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonpayments/common/payments/currencies\" target=\"_blank\">common/payments/currencies</a>.",
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "deep_link_url": {
+      "description": "A mobile app URL that directs the user to a specific page or content within the Booking.com app. The link can only be used on a device with the Booking.com app installed. It typically includes an Affiliate ID (AID) to attribute bookings to the affiliate partner when users are redirected",
+      "type": "string"
+    },
+    "description": {
+      "description": "Textual information about the accommodation. Requires `{\"extras\":[\"description\"]}`.",
+      "type": "object",
+      "properties": {
+        "host_type": {
+          "description": "Type of host.",
+          "type": "string",
+          "enum": [
+            "private",
+            "professional",
+            "unknown"
+          ]
+        },
+        "important_information": {
+          "description": "Text containing important information about the property. The value is translated in the requested languages.",
+          "type": "object"
+        },
+        "license_numbers": {
+          "description": "List of all the license numbers of this accommodation property.",
+          "type": "array",
+          "nullable": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "text": {
+          "description": "The translated description text of this accommodation property in the requested languages. The maximum number of characters returned may be limited by contract.",
+          "type": "object"
+        },
+        "trader": {
+          "description": "The trader information.",
+          "type": "object",
+          "nullable": true,
+          "properties": {
+            "address": {
+              "description": "The address of the trader",
+              "type": "object",
+              "properties": {
+                "address_line": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "post_code": {
+                  "type": "string"
+                }
+              }
+            },
+            "email": {
+              "description": "The email of the trader",
+              "type": "string"
+            },
+            "name": {
+              "description": "The name of the trader",
+              "type": "string"
+            },
+            "registration_number": {
+              "description": "The registration number of the trader",
+              "type": "string"
+            },
+            "telephone": {
+              "description": "The telephone of the trader",
+              "type": "string"
+            },
+            "trade_register": {
+              "description": "The trade register name",
+              "type": "string"
+            },
+            "trader_verified": {
+              "description": "Indicates whether the trader has successfully met Booking.com's internal verification process, based on established criteria and checklists",
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "facilities": {
+      "description": "The list of facilities available in this property. Requires `{\"extras\":[\"facilities\"]}`.",
+      "type": "array",
+      "items": {
+        "description": "Facility information for the accommodation.",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "A signed integer number that uniquely identifies an accommodation property facility. Examples of facilities are: Parking, Restaurant, Room service etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+            "type": "int32",
+            "minimum": 1
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "description": "List of optional attributes for this facility.",
+              "type": "string",
+              "enum": [
+                "offsite",
+                "paid"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "facility_details": {
+      "description": "Provides detailed information about the facilities available at the accommodation. This data is accessible by including `{\"extras\":[\"facilities\"]}` in the request.",
+      "type": "object",
+      "properties": {
+        "internet_facility": {
+          "description": "Details about the internet facilities available at the accommodation, including price, charge mode and connection type.",
+          "type": "object",
+          "properties": {
+            "charge_mode": {
+              "type": "string",
+              "description": "The charging model for internet access at the accommodation.",
+              "nullable": true,
+              "enum": [
+                "charges_are_applicable",
+                "free",
+                "per_day",
+                "per_half_hour",
+                "per_hour",
+                "per_minute"
+              ]
+            },
+            "connection_type": {
+              "type": "string",
+              "description": "The type of internet connection available, whether wireless (Wi-Fi) or wired.",
+              "nullable": true,
+              "enum": [
+                "wifi",
+                "wired"
+              ]
+            },
+            "coverage": {
+              "type": "string",
+              "description": "The extent of the internet coverage within the accommodation, indicating the areas where internet access is available.",
+              "nullable": true,
+              "enum": [
+                "all_rooms",
+                "business_center",
+                "entire_property",
+                "public_areas",
+                "some_rooms"
+              ]
+            },
+            "price": {
+              "description": "The price for using the internet facility, if applicable.",
+              "minimum": 0,
+              "nullable": true,
+              "type": "double"
+            }
+          }
+        },
+        "parking_facilities": {
+          "type": "array",
+          "description": "A list of parking facilities available at the accommodation.",
+          "items": {
+            "description": "Information about the parking facilities available at the accommodation, including pricing, type, location, and reservation requirements.",
+            "type": "object",
+            "properties": {
+              "charge_mode": {
+                "type": "string",
+                "description": "The charging model for parking, such as per hour, per day, or free.",
+                "nullable": true,
+                "enum": [
+                  "free",
+                  "charges_are_applicable",
+                  "charges_may_apply",
+                  "per_hour",
+                  "per_day",
+                  "per_week",
+                  "per_stay"
+                ]
+              },
+              "location": {
+                "type": "string",
+                "description": "The location of the parking facility relative to the accommodation (on-site or nearby).",
+                "nullable": true,
+                "enum": [
+                  "on_site",
+                  "nearby"
+                ]
+              },
+              "price": {
+                "description": "The price for using the parking facility, if applicable.",
+                "minimum": 0,
+                "nullable": true,
+                "type": "double"
+              },
+              "reservation": {
+                "type": "string",
+                "description": "Indicates whether a reservation is required for parking at the accommodation.",
+                "nullable": true,
+                "enum": [
+                  "needed",
+                  "not_needed",
+                  "not_possible"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "description": "The type of parking available, either public or private.",
+                "nullable": true,
+                "enum": [
+                  "private",
+                  "public"
+                ]
+              }
+            }
+          }
+        },
+        "restaurant_facilities": {
+          "type": "array",
+          "description": "A list of restaurant facilities available at the accommodation.",
+          "items": {
+            "description": "Information about the restaurant facilities available at the accommodation.",
+            "type": "object",
+            "properties": {
+              "accept_reservations": {
+                "description": "Indicates whether the restaurant accepts reservations.",
+                "type": "boolean"
+              },
+              "guests_only": {
+                "description": "Indicates whether the restaurant is exclusive to guests or open to the public.",
+                "type": "boolean"
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the restaurant."
+              },
+              "status": {
+                "type": "string",
+                "description": "The operational status of the restaurant (e.g., open or closed).",
+                "nullable": true,
+                "enum": [
+                  "closed",
+                  "open"
+                ]
+              }
+            }
+          }
+        },
+        "swimming_pool_facilities": {
+          "type": "array",
+          "description": "A list of swimming pool facilities available at the accommodation.",
+          "items": {
+            "description": "Details about the swimming pool occupancy limits and options.",
+            "type": "object",
+            "properties": {
+              "allowed_age_type": {
+                "type": "string",
+                "description": "The age group allowed to use the swimming pool (e.g., adults only, all ages, or kids only).",
+                "nullable": true,
+                "enum": [
+                  "adults_only",
+                  "all_ages",
+                  "kids_only"
+                ]
+              },
+              "payment_type": {
+                "type": "string",
+                "description": "The payment model for pool access, either free or paid.",
+                "nullable": true,
+                "enum": [
+                  "free",
+                  "paid"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "description": "The type of swimming pool (indoor, outdoor, or a combination).",
+                "nullable": true,
+                "enum": [
+                  "indoor",
+                  "indoor_and_outdoor",
+                  "outdoor"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "fiscal_information": {
+      "description": "All fiscal related information of this accommodation property.",
+      "type": "object",
+      "properties": {
+        "legal_name": {
+          "type": "string"
+        },
+        "vat_number": {
+          "type": "string"
+        }
+      }
+    },
+    "is_genius": {
+      "description": "Whether the accommodation is genius.",
+      "type": "boolean"
+    },
+    "is_work_friendly": {
+      "description": "**DEPRECATED**, Flags if this accommodation is work friendly.",
+      "type": "boolean",
+      "deprecated": true
+    },
+    "key_collection_information": {
+      "type": "object",
+      "properties": {
+        "alternate_location": {
+          "description": "Alternate location to collect the key of this accommodation property. This is returned if the key to access the property is in another location.",
+          "type": "object",
+          "properties": {
+            "address": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "postal_code": {
+              "type": "string"
+            }
+          }
+        },
+        "checkin_method": {
+          "description": "An enumeration that describes the conditions for the checkin process and for collecting the key to access the property. This is typically relevant for non-hotel accommodations (like houses or apartments) without a 24 hours front-desk.",
+          "type": "string",
+          "enum": [
+            "door_code",
+            "lock_box",
+            "reception",
+            "secret_spot",
+            "someone_will_meet",
+            "unknown"
+          ]
+        },
+        "key_location": {
+          "description": "Location of the key to access this accommodation property.",
+          "type": "string",
+          "enum": [
+            "at_the_property",
+            "different_place",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "location": {
+      "description": "All location related information of this accommodation property.",
+      "type": "object",
+      "properties": {
+        "address": {
+          "description": "Translated accommodation address.",
+          "type": "object"
+        },
+        "city": {
+          "description": "A signed integer number that uniquely identifies a city. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/cities\" target=\"_blank\">common/locations/cities</a>.",
+          "type": "int32"
+        },
+        "coordinates": {
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "type": "double"
+            },
+            "longitude": {
+              "type": "double"
+            }
+          }
+        },
+        "country": {
+          "description": "A two-letter code that uniquely identifies a country. This code is defined by the ISO 3166-1 alpha-2 standard (ISO2) as described here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/countries\" target=\"_blank\">common/locations/countries</a>.",
+          "type": "string",
+          "pattern": "^[a-z]{2}$"
+        },
+        "districts": {
+          "type": "array",
+          "items": {
+            "description": "A signed integer number that uniquely identifies a district. Typically, districts define known areas within a city. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/districts\" target=\"_blank\">common/locations/districts</a>.",
+            "type": "int32",
+            "minimum": 1
+          }
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "description": "A signed integer number that uniquely identifies a geographical region. Regions usually define official administrative areas within a country, but may also include multiple countries and in some cases un-official but popular designations for geographical areas. An example of a region that crosses multiple countries is the Alps in Europe. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonlocations/common/locations/regions\" target=\"_blank\">common/locations/regions</a>.",
+            "type": "int32",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "long_stay_friendly_home": {
+      "description": "Whether the accommodation is long stay friendly. Applicable only for homes.",
+      "type": "boolean"
+    },
+    "meal_prices": {
+      "description": "Details regarding the meal pricing options offered at this accommodation.",
+      "type": "object",
+      "properties": {
+        "breakfast": {
+          "description": "The price of breakfast per person, expressed in the accommodation's local currency. If the value is null, it indicates that breakfast pricing is not available.",
+          "type": "double",
+          "minimum": 0,
+          "nullable": true
+        },
+        "dinner": {
+          "description": "The price of dinner per person, expressed in the accommodation's local currency. If the value is null, it indicates that dinner pricing is not available.",
+          "type": "double",
+          "minimum": 0,
+          "nullable": true
+        },
+        "lunch": {
+          "description": "The price of lunch per person, expressed in the accommodation's local currency. If the value is null, it indicates that lunch pricing is not available.",
+          "type": "double",
+          "minimum": 0,
+          "nullable": true
+        }
+      }
+    },
+    "name": {
+      "description": "Translated name of the accommodation property.",
+      "type": "object"
+    },
+    "number_of_rooms": {
+      "description": "Total number of rooms in the property. Please note that this is not an availability call and that this number is mostly used to determine the size and type of a property.",
+      "type": "int32",
+      "minimum": 0
+    },
+    "payment": {
+      "description": "Payment information related to this property. Requires `{\"extras\":[\"payment\"]}`.",
+      "type": "object",
+      "properties": {
+        "methods": {
+          "description": "Payment methods accepted by this property.",
+          "type": "object",
+          "properties": {
+            "cards": {
+              "description": "Credit cards accepted when paying at the property",
+              "type": "array",
+              "items": {
+                "description": "A signed integer number that uniquely identifies a payment type. Examples of payment types are the different credit and debit cards. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonpayments/common/payments/cards\" target=\"_blank\">common/payments/cards</a>.",
+                "type": "int32",
+                "minimum": 1
+              }
+            },
+            "cash": {
+              "description": "Whether this property accepts cash",
+              "type": "boolean"
+            },
+            "virtual_cards": {
+              "description": "Virtual credit cards accepted when paying at the property",
+              "type": "array",
+              "items": {
+                "description": "A signed integer number that uniquely identifies a payment type. Examples of payment types are the different credit and debit cards. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/commonpayments/common/payments/cards\" target=\"_blank\">common/payments/cards</a>.",
+                "type": "int32",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        "timings": {
+          "description": "The payment timings supported by this product.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "pay_at_the_property",
+              "pay_online_later",
+              "pay_online_now"
+            ]
+          }
+        },
+        "cvc_required": {
+          "description": "Whether cvc is mandatory for creating order for this accommodation.",
+          "type": "boolean"
+        },
+        "domestic_no_cc": {
+          "description": "Whether domestic bookers can book without credit card for products with free cancellation policies.",
+          "type": "boolean"
+        },
+        "amex_cvc_required": {
+          "description": "If amex card is used as payment method to create order for this accommodation, whether cvc is mandatory for that.",
+          "type": "boolean"
+        }
+      }
+    },
+    "photos": {
+      "description": "List of photos for this accommodation property. The maximum number of photos returned may be limited by contract. Requires `{\"extras\":[\"photos\"]}`. The photos are returned in no particular order.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "main_photo": {
+            "description": "Flags this as the main photo. Not returned otherwise.",
+            "type": "boolean"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "description": "A list of tags associated with the photo. Manually generated.",
+              "type": "string"
+            }
+          },
+          "url": {
+            "type": "object",
+            "properties": {
+              "large": {
+                "description": "URL of the photo image with a maximum width of 1280 pixels.",
+                "type": "string"
+              },
+              "standard": {
+                "description": "URL of the photo image with a maximum width of 500 pixels.",
+                "type": "string"
+              },
+              "thumbnail": {
+                "description": "URL of the photo thumbnail image with dimensions 100x100 pixels.",
+                "type": "string"
+              },
+              "thumbnail_large": {
+                "description": "URL of the photo thumbnail image with dimensions 300x300 pixels.",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "policies": {
+      "description": "Set of price relevant rules, options and constraints defined by the accommodation for this product. Requires `{\"extras\":[\"policies\"]}`.",
+      "type": "object",
+      "properties": {
+        "cots_and_extra_beds": {
+          "description": "Prices for cots and extra beds.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "age": {
+                "description": "Ages to which this entry is applicable. Children are aged 0-17. 18/null means adult. The interval is inclusive.",
+                "type": "object",
+                "properties": {
+                  "from": {
+                    "type": "int32",
+                    "minimum": 0,
+                    "maximum": 18
+                  },
+                  "to": {
+                    "type": "int32",
+                    "minimum": 0,
+                    "maximum": 18,
+                    "nullable": true
+                  }
+                }
+              },
+              "mode": {
+                "description": "How the price is applied per cot/extra bed.",
+                "type": "string",
+                "enum": [
+                  "per_night",
+                  "per_stay"
+                ]
+              },
+              "percentage": {
+                "description": "Non-null when the price is a percentage.",
+                "type": "double",
+                "nullable": true
+              },
+              "price": {
+                "description": "Non-null when the price is fixed or free.",
+                "minimum": 0,
+                "nullable": true,
+                "type": "double"
+              },
+              "type": {
+                "description": "Whether this entry relates to a cot or an extra bed.",
+                "type": "string",
+                "enum": [
+                  "cot",
+                  "extra_bed"
+                ]
+              }
+            }
+          }
+        },
+        "maximum_checkin_age": {
+          "description": "Defines the maximum (inclusive) check-in age for this property. If null, then there is no maximum age for checking in",
+          "type": "int32",
+          "minimum": 18
+        },
+        "minimum_checkin_age": {
+          "description": "Defines the minimum (inclusive) check-in age for this property.",
+          "type": "int32",
+          "minimum": 18
+        },
+        "minimum_guest_age": {
+          "description": "Defines the minimum age (inclusive) for staying in this property. If \"0\", then a guest of any age is allowed.",
+          "type": "int32",
+          "minimum": 0
+        },
+        "pets": {
+          "type": "object",
+          "properties": {
+            "allowed": {
+              "description": "An enumerated value describing if pets are allowed",
+              "type": "string",
+              "enum": [
+                "yes",
+                "no",
+                "upon_request"
+              ]
+            },
+            "charge_mode": {
+              "description": "An enumerated value describing the charge mode for pets",
+              "type": "string",
+              "enum": [
+                "free",
+                "charges_may_apply"
+              ]
+            }
+          }
+        },
+        "damage": {
+          "type": "object",
+          "description": "DamagePolicy of the property",
+          "properties": {
+            "deposit": {
+              "description": "If a deposit needs to be paid upfront",
+              "type": "object",
+              "properties": {
+                "collect": {
+                  "properties": {
+                    "date": {
+                      "type": "object",
+                      "properties": {
+                        "reference_date": {
+                          "type": "string",
+                          "enum": [
+                            "checkin",
+                            "checkout"
+                          ]
+                        },
+                        "days_offset": {
+                          "description": "The number of days on or before reference date.",
+                          "type": "int32"
+                        }
+                      }
+                    },
+                    "payment_method": {
+                      "type": "string",
+                      "enum": [
+                        "bank_transfer",
+                        "cash",
+                        "credit_card",
+                        "paypal",
+                        "other"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "refund": {
+                  "properties": {
+                    "date": {
+                      "type": "object",
+                      "properties": {
+                        "reference_date": {
+                          "type": "string",
+                          "enum": [
+                            "checkin",
+                            "checkout"
+                          ]
+                        },
+                        "days_offset": {
+                          "description": "The number of days on or after reference date.",
+                          "type": "int32"
+                        }
+                      }
+                    },
+                    "payment_method": {
+                      "type": "string",
+                      "enum": [
+                        "bank_transfer",
+                        "cash",
+                        "credit_card",
+                        "paypal",
+                        "other"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "amount": {
+              "description": "The amount that can be charged",
+              "type": "double"
+            },
+            "currency": {
+              "description": "Currency in which payment needs to be made",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "price_category": {
+      "description": "Indicates the qualitative price reference (between $ and $$$$) on how expensive an accommodation is. Accommodations in the same city are sorted by ascending price (average per guest per night in the last month), the ones in the lowest 25 percentile are in category $, between 25 and 50 percentile are in category $$, between 50 and 75 percentile are in category $$$, remaining ones are in category $$$$.",
+      "type": "string",
+      "pattern": "[$]{0,4}"
+    },
+    "programmes": {
+      "description": "Details of programmes undergone by the property.",
+      "type": "object",
+      "properties": {
+        "travel_proud": {
+          "description": "Boolean value is \"true\" if property has travel proud badge and \"false\" otherwise.",
+          "type": "boolean"
+        }
+      }
+    },
+    "ranking": {
+      "description": "The public ranking of the accommodation.",
+      "type": "double",
+      "minimum": 0
+    },
+    "rating": {
+      "type": "object",
+      "properties": {
+        "number_of_reviews": {
+          "description": "Number of validated reviews for this accommodation.",
+          "type": "int32",
+          "minimum": 0
+        },
+        "preferred": {
+          "description": "Boolean value is \"true\" if this accommodation is in the Booking.com's preferred program and \"false\" otherwise.",
+          "type": "boolean"
+        },
+        "review_score": {
+          "nullable": true,
+          "description": "A decimal number indicating the current review score of this accommodation property, in the range 1..10.",
+          "type": "double",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "stars": {
+          "description": "Number of stars of this accommodation property.",
+          "type": "double",
+          "nullable": true,
+          "minimum": 1,
+          "maximum": 5
+        },
+        "stars_type": {
+          "description": "An enumerated value describing which type of stars this accommodation has.",
+          "type": "string",
+          "nullable": true,
+          "enum": [
+            "estimated_by_accommodation",
+            "estimated_by_booking",
+            "official"
+          ]
+        }
+      }
+    },
+    "rooms": {
+      "description": "The list of room types available at this property. Requires `{\"extras\":[\"rooms\"]}`.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "A signed integer number that uniquely identifies an accommodation property room. The full list can be obtained by calling [accommodations/details](/demand/docs/open-api/demand-api/accommodations/accommodations/details).",
+            "type": "int32",
+            "minimum": 1
+          },
+          "attributes": {
+            "description": "Lists a set of attribute qualifiers for this room. Will not be returned if no relevant attributes are applicable.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "non_smoking",
+                "smoking",
+                "work_friendly"
+              ]
+            }
+          },
+          "bed_options": {
+            "description": "Lists all possible bedding options for this room or apartment.",
+            "type": "array",
+            "items": {
+              "description": "List of all possible bed arrangements. For apartments and other types of hotel accommodations, beds and bathrooms may be available as separate rooms.",
+              "type": "object",
+              "properties": {
+                "bed_configurations": {
+                  "description": "Lists all alternative bed configurations that are supported.",
+                  "type": "array",
+                  "items": {
+                    "description": "List of all beds available for this configuration.",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "description": "Uniquely identifies this bed configuration.",
+                        "type": "string"
+                      },
+                      "configuration": {
+                        "description": "Detail list of all different types and number of beds included in this configuration.",
+                        "type": "array",
+                        "items": {
+                          "description": "Detail information about a type of bed and number of beds included in this configuration.",
+                          "type": "object",
+                          "properties": {
+                            "bed_type": {
+                              "description": "A signed integer number that uniquely identifies a bed type. Examples of bed types are: Single, Double etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+                              "type": "int32",
+                              "minimum": 1
+                            },
+                            "number_of_beds": {
+                              "description": "Number of similar beds included in this configuration.",
+                              "type": "int32",
+                              "minimum": 0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "has_bathroom": {
+                  "description": "Flags if this area includes its own bathroom.",
+                  "type": "boolean"
+                },
+                "is_bedroom": {
+                  "description": "Flags if this area is marked as a bedroom, otherwise, it should be considered a living room.",
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "cots_and_extra_beds": {
+            "description": "Lists room options regarding adding cots and/or extra beds.",
+            "type": "object",
+            "properties": {
+              "are_allowed_together": {
+                "description": "Flags if cots and extra beds can be placed together in the room. `true` allows both up to their maximum limits. `false` requires exclusive choice of either cots or extra beds.",
+                "type": "boolean"
+              },
+              "maximum_number_of_cots": {
+                "description": "Maximum number of cots that can be added.",
+                "type": "int32",
+                "minimum": 0
+              },
+              "maximum_number_of_extra_beds": {
+                "description": "Maximum number of extra beds that can be added.",
+                "type": "int32",
+                "minimum": 0
+              }
+            }
+          },
+          "cribs_and_extra_beds": {
+            "description": "**DEPRECATED**, please use 'cots_and_extra_beds'.",
+            "type": "object",
+            "properties": {
+              "are_allowed": {
+                "description": "Flags if it's possible to add cribs and/or extra beds.",
+                "type": "boolean"
+              },
+              "maximum_number_of_cribs": {
+                "description": "Maximum number of cribs that can be added.",
+                "type": "int32",
+                "minimum": 0
+              },
+              "maximum_number_of_extra_beds": {
+                "description": "Maximum number of extra beds that can be added.",
+                "type": "int32",
+                "minimum": 0
+              }
+            },
+            "deprecated": true
+          },
+          "description": {
+            "description": "Translated description of this room. The maximum number of characters returned may be limited by contract.",
+            "type": "object"
+          },
+          "facilities": {
+            "type": "array",
+            "items": {
+              "description": "A signed integer number that uniquely identifies an accommodation property room facility. Examples of facilities are: Coffee/Tea maker, TV, Airconditioning, etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+              "type": "int32",
+              "minimum": 1
+            }
+          },
+          "maximum_occupancy": {
+            "description": "Occupancy limits and options.",
+            "type": "object",
+            "properties": {
+              "adults": {
+                "description": "Maximum number of adults allowed.",
+                "type": "int32",
+                "minimum": 0
+              },
+              "children": {
+                "description": "Maximum number of children allowed (children will be typically defined by being under 18 years of age).",
+                "type": "int32",
+                "minimum": 0
+              },
+              "total_guests": {
+                "description": "**DEPRECATED** Total capacity of adults + children allowed.",
+                "type": "int32",
+                "minimum": 0,
+                "deprecated": true
+              }
+            }
+          },
+          "name": {
+            "description": "Translated name of this room.",
+            "type": "object"
+          },
+          "number_of_rooms": {
+            "description": "Total rooms available.",
+            "type": "object",
+            "properties": {
+              "bathrooms": {
+                "description": "Total number of bathrooms.",
+                "type": "int32",
+                "minimum": 0
+              },
+              "bedrooms": {
+                "description": "Total number of rooms equipped or that can be fitted with a bed.",
+                "type": "int32",
+                "minimum": 0
+              },
+              "living_rooms": {
+                "description": "Total number of rooms without a bed.",
+                "type": "int32",
+                "minimum": 0
+              }
+            }
+          },
+          "photos": {
+            "description": "List of photos for this accommodation room. The maximum number of photos returned may be limited by contract. Requires `{\"extras\":[\"rooms\",\"photos\"]}`. The photos are returned in no particular order.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "main_photo": {
+                  "description": "Flags this as the main photo. Not returned otherwise.",
+                  "type": "boolean"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "description": "A list of tags associated with the photo. Manually generated.",
+                    "type": "string"
+                  }
+                },
+                "url": {
+                  "type": "object",
+                  "properties": {
+                    "large": {
+                      "description": "URL of the photo image with a maximum width of 1280 pixels.",
+                      "type": "string"
+                    },
+                    "standard": {
+                      "description": "URL of the photo image with a maximum width of 500 pixels.",
+                      "type": "string"
+                    },
+                    "thumbnail": {
+                      "description": "URL of the photo thumbnail image with dimensions 100x100 pixels.",
+                      "type": "string"
+                    },
+                    "thumbnail_large": {
+                      "description": "URL of the photo thumbnail image with dimensions 300x300 pixels.",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "room_type": {
+            "description": "A signed integer number that uniquely identifies an accommodation property room type. Example of room types are: Suite, Apartment, Twin/Double etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+            "type": "int32",
+            "minimum": 1
+          },
+          "size": {
+            "description": "The room area in square meters.",
+            "type": "double",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "spoken_languages": {
+      "description": "Languages spoken by the staff of this accommodation property.",
+      "type": "array",
+      "items": {
+        "description": "A [IETF language tag code](https://en.wikipedia.org/wiki/IETF_language_tag) that uniquely identifies a supported human language or dialect. **Note:** Demand API only accepts lowercase for the language codes. Examples: \"nl\" for Dutch/Nederlands or \"en-us\" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.",
+        "type": "string",
+        "pattern": "^[a-z]{2}(-[a-z]{2})?$"
+      }
+    },
+    "themes": {
+      "type": "array",
+      "items": {
+        "description": "A signed integer number that uniquely identifies an accommodation property theme. Examples of themes are: Beach/Seaside, Ski/Wintersports, Luxury etc. The full list can be obtained by calling <a href=\"/demand/docs/open-api/demand-api/accommodations/accommodations/constants\" target=\"_blank\">accommodations/constants</a>.",
+        "type": "int32",
+        "minimum": 1
+      }
+    },
+    "url": {
+      "description": "Internet address for the property page on Booking.com.",
+      "type": "string"
+    },
+    "work_friendly_home": {
+      "description": "Whether the accommodation is work friendly. Applicable only for homes.",
+      "type": "boolean"
+    }
+  }
+}

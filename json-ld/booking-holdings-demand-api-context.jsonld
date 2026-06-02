@@ -1,0 +1,1204 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "bkng": "https://developers.booking.com/demand/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "AccommodationsAvailabilityInput": "bkng:AccommodationsAvailabilityInput",
+    "AccommodationsAvailabilityProductOutput": "bkng:AccommodationsAvailabilityProductOutput",
+    "AccommodationsDetailsDataOutput": "bkng:AccommodationsDetailsDataOutput",
+    "AccommodationsDetailsInput": "bkng:AccommodationsDetailsInput",
+    "AccommodationsDetailsRoomOutput": "bkng:AccommodationsDetailsRoomOutput",
+    "AccommodationsLocationOutput": "bkng:AccommodationsLocationOutput",
+    "AccommodationsPoliciesOutput": "bkng:AccommodationsPoliciesOutput",
+    "AccommodationsReviewOutput": "bkng:AccommodationsReviewOutput",
+    "AccommodationsReviewsScoresOutput": "bkng:AccommodationsReviewsScoresOutput",
+    "AccommodationsSearchInput": "bkng:AccommodationsSearchInput",
+    "AccommodationsSearchProductOutput": "bkng:AccommodationsSearchProductOutput",
+    "AirportsInput": "bkng:AirportsInput",
+    "CitiesInput": "bkng:CitiesInput",
+    "ConstantsDataOutput": "bkng:ConstantsDataOutput",
+    "CountriesInput": "bkng:CountriesInput",
+    "DistrictsInput": "bkng:DistrictsInput",
+    "FlightsOutput": "bkng:FlightsOutput",
+    "LandmarksInput": "bkng:LandmarksInput",
+    "OrderCreateBookerInput": "bkng:OrderCreateBookerInput",
+    "OrderCreatePaymentInput": "bkng:OrderCreatePaymentInput",
+    "OrderDetailsBookerOutput": "bkng:OrderDetailsBookerOutput",
+    "OrderDetailsDataOutput": "bkng:OrderDetailsDataOutput",
+    "OrdersPreviewProductOutput": "bkng:OrdersPreviewProductOutput",
+    "RegionsInput": "bkng:RegionsInput",
+    "TraderOutput": "bkng:TraderOutput",
+    "24HourReception": {
+      "@id": "bkng:24_hour_reception",
+      "@type": "xsd:boolean"
+    },
+    "3dSecure": {
+      "@id": "bkng:3d_secure",
+      "@type": "@id"
+    },
+    "acceptReservations": {
+      "@id": "bkng:accept_reservations",
+      "@type": "xsd:boolean"
+    },
+    "accommodation": {
+      "@id": "bkng:accommodation",
+      "@type": "xsd:integer"
+    },
+    "accommodationCurrency": {
+      "@id": "bkng:accommodation_currency",
+      "@type": "xsd:double"
+    },
+    "accommodationFacilities": {
+      "@id": "bkng:accommodation_facilities",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "accommodationThemes": {
+      "@id": "bkng:accommodation_themes",
+      "@container": "@set"
+    },
+    "accommodationType": {
+      "@id": "bkng:accommodation_type",
+      "@type": "xsd:integer"
+    },
+    "accommodationTypes": {
+      "@id": "bkng:accommodation_types",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "accommodations": {
+      "@id": "bkng:accommodations",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "accountingCode": {
+      "@id": "bkng:accounting_code",
+      "@type": "xsd:string"
+    },
+    "accountingUnit": {
+      "@id": "bkng:accounting_unit",
+      "@type": "xsd:string"
+    },
+    "actualAmount": {
+      "@id": "bkng:actual_amount",
+      "@type": "xsd:double"
+    },
+    "address": {
+      "@id": "bkng:address",
+      "@type": "@id"
+    },
+    "addressLine": {
+      "@id": "bkng:address_line",
+      "@type": "xsd:string"
+    },
+    "adults": {
+      "@id": "bkng:adults",
+      "@type": "xsd:integer"
+    },
+    "affiliate": {
+      "@id": "bkng:affiliate",
+      "@type": "xsd:integer"
+    },
+    "age": {
+      "@id": "bkng:age",
+      "@type": "@id"
+    },
+    "airplus": {
+      "@id": "bkng:airplus",
+      "@type": "@id"
+    },
+    "airport": {
+      "@id": "bkng:airport",
+      "@type": "xsd:string"
+    },
+    "allocation": {
+      "@id": "bkng:allocation",
+      "@container": "@set"
+    },
+    "allowed": {
+      "@id": "bkng:allowed",
+      "@type": "xsd:string"
+    },
+    "allowedAgeType": {
+      "@id": "bkng:allowed_age_type",
+      "@type": "xsd:string"
+    },
+    "alternateLocation": {
+      "@id": "bkng:alternate_location",
+      "@type": "@id"
+    },
+    "amexCvcRequired": {
+      "@id": "bkng:amex_cvc_required",
+      "@type": "xsd:boolean"
+    },
+    "amount": {
+      "@id": "bkng:amount",
+      "@type": "xsd:double"
+    },
+    "areAllowed": {
+      "@id": "bkng:are_allowed",
+      "@type": "xsd:boolean"
+    },
+    "areAllowedTogether": {
+      "@id": "bkng:are_allowed_together",
+      "@type": "xsd:boolean"
+    },
+    "arrival": {
+      "@id": "bkng:arrival",
+      "@type": "@id"
+    },
+    "at": {
+      "@id": "bkng:at",
+      "@type": "xsd:dateTime"
+    },
+    "attributes": {
+      "@id": "bkng:attributes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "authentication": {
+      "@id": "bkng:authentication",
+      "@type": "@id"
+    },
+    "authenticationValue": {
+      "@id": "bkng:authentication_value",
+      "@type": "xsd:string"
+    },
+    "authorisationForm": {
+      "@id": "bkng:authorisation_form",
+      "@type": "@id"
+    },
+    "base": {
+      "@id": "bkng:base",
+      "@type": "xsd:double"
+    },
+    "bathrooms": {
+      "@id": "bkng:bathrooms",
+      "@type": "xsd:integer"
+    },
+    "bedConfigurations": {
+      "@id": "bkng:bed_configurations",
+      "@container": "@set"
+    },
+    "bedOptions": {
+      "@id": "bkng:bed_options",
+      "@container": "@set"
+    },
+    "bedType": {
+      "@id": "bkng:bed_type",
+      "@type": "xsd:integer"
+    },
+    "bedTypes": {
+      "@id": "bkng:bed_types",
+      "@container": "@set"
+    },
+    "bedrooms": {
+      "@id": "bkng:bedrooms",
+      "@type": "xsd:integer"
+    },
+    "billing": {
+      "@id": "bkng:billing",
+      "@type": "@id"
+    },
+    "book": {
+      "@id": "bkng:book",
+      "@type": "xsd:double"
+    },
+    "booker": {
+      "@id": "bkng:booker",
+      "@type": "@id"
+    },
+    "bookerAddressRequired": {
+      "@id": "bkng:booker_address_required",
+      "@type": "xsd:boolean"
+    },
+    "bookerCurrency": {
+      "@id": "bkng:booker_currency",
+      "@type": "xsd:double"
+    },
+    "brands": {
+      "@id": "bkng:brands",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "breakdown": {
+      "@id": "bkng:breakdown",
+      "@type": "@id"
+    },
+    "breakfast": {
+      "@id": "bkng:breakfast",
+      "@type": "xsd:decimal"
+    },
+    "bundle": {
+      "@id": "bkng:bundle",
+      "@type": "xsd:integer"
+    },
+    "bundles": {
+      "@id": "bkng:bundles",
+      "@container": "@set"
+    },
+    "businessInformation": {
+      "@id": "bkng:business_information",
+      "@type": "@id"
+    },
+    "by": {
+      "@id": "bkng:by",
+      "@type": "xsd:string"
+    },
+    "cancellation": {
+      "@id": "bkng:cancellation",
+      "@type": "@id"
+    },
+    "cancellationType": {
+      "@id": "bkng:cancellation_type",
+      "@type": "xsd:string"
+    },
+    "card": {
+      "@id": "bkng:card",
+      "@type": "@id"
+    },
+    "cardholder": {
+      "@id": "bkng:cardholder",
+      "@type": "xsd:string"
+    },
+    "cards": {
+      "@id": "bkng:cards",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "cars": {
+      "@id": "bkng:cars",
+      "@type": "@id"
+    },
+    "cash": {
+      "@id": "bkng:cash",
+      "@type": "xsd:boolean"
+    },
+    "cavv": {
+      "@id": "bkng:cavv",
+      "@type": "xsd:string"
+    },
+    "charge": {
+      "@id": "bkng:charge",
+      "@type": "xsd:integer"
+    },
+    "chargeMode": {
+      "@id": "bkng:charge_mode",
+      "@type": "xsd:string"
+    },
+    "chargeTypes": {
+      "@id": "bkng:charge_types",
+      "@container": "@set"
+    },
+    "chargeableItems": {
+      "@id": "bkng:chargeable_items",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "chargeableOnline": {
+      "@id": "bkng:chargeable_online",
+      "@type": "@id"
+    },
+    "checkin": "schema:checkinTime",
+    "checkinCheckoutTimes": {
+      "@id": "bkng:checkin_checkout_times",
+      "@type": "@id"
+    },
+    "checkinFrom": {
+      "@id": "bkng:checkin_from",
+      "@type": "xsd:string"
+    },
+    "checkinMethod": {
+      "@id": "bkng:checkin_method",
+      "@type": "xsd:string"
+    },
+    "checkinTo": {
+      "@id": "bkng:checkin_to",
+      "@type": "xsd:string"
+    },
+    "checkout": "schema:checkoutTime",
+    "checkoutFrom": {
+      "@id": "bkng:checkout_from",
+      "@type": "xsd:string"
+    },
+    "checkoutTo": {
+      "@id": "bkng:checkout_to",
+      "@type": "xsd:string"
+    },
+    "children": {
+      "@id": "bkng:children",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "city": "schema:addressLocality",
+    "collect": {
+      "@id": "bkng:collect",
+      "@type": "@id"
+    },
+    "commission": {
+      "@id": "bkng:commission",
+      "@type": "@id"
+    },
+    "commissionable": {
+      "@id": "bkng:commissionable",
+      "@type": "xsd:double"
+    },
+    "company": {
+      "@id": "bkng:company",
+      "@type": "xsd:string"
+    },
+    "condition": {
+      "@id": "bkng:condition",
+      "@type": "xsd:integer"
+    },
+    "conditional": {
+      "@id": "bkng:conditional",
+      "@container": "@set"
+    },
+    "configuration": {
+      "@id": "bkng:configuration",
+      "@container": "@set"
+    },
+    "connectionType": {
+      "@id": "bkng:connection_type",
+      "@type": "xsd:string"
+    },
+    "contacts": {
+      "@id": "bkng:contacts",
+      "@type": "@id"
+    },
+    "coordinates": {
+      "@id": "bkng:coordinates",
+      "@type": "@id"
+    },
+    "costCentre": {
+      "@id": "bkng:cost_centre",
+      "@type": "xsd:string"
+    },
+    "cotsAndExtraBeds": {
+      "@id": "bkng:cots_and_extra_beds",
+      "@container": "@set"
+    },
+    "country": "schema:addressCountry",
+    "coverage": {
+      "@id": "bkng:coverage",
+      "@type": "xsd:string"
+    },
+    "created": {
+      "@id": "bkng:created",
+      "@type": "xsd:dateTime"
+    },
+    "creditCardRequired": {
+      "@id": "bkng:credit_card_required",
+      "@type": "xsd:boolean"
+    },
+    "cribsAndExtraBeds": {
+      "@id": "bkng:cribs_and_extra_beds",
+      "@type": "@id"
+    },
+    "currency": "schema:priceCurrency",
+    "cvc": {
+      "@id": "bkng:cvc",
+      "@type": "xsd:string"
+    },
+    "cvcRequired": {
+      "@id": "bkng:cvc_required",
+      "@type": "xsd:boolean"
+    },
+    "damage": {
+      "@id": "bkng:damage",
+      "@type": "@id"
+    },
+    "date": {
+      "@id": "bkng:date",
+      "@type": "@id"
+    },
+    "dateTime": {
+      "@id": "bkng:date_time",
+      "@type": "xsd:dateTime"
+    },
+    "daysOffset": {
+      "@id": "bkng:days_offset",
+      "@type": "xsd:integer"
+    },
+    "dbi": {
+      "@id": "bkng:dbi",
+      "@type": "@id"
+    },
+    "deal": {
+      "@id": "bkng:deal",
+      "@type": "@id"
+    },
+    "deepLinkUrl": {
+      "@id": "bkng:deep_link_url",
+      "@type": "xsd:string"
+    },
+    "departmentCode": {
+      "@id": "bkng:department_code",
+      "@type": "xsd:string"
+    },
+    "departure": {
+      "@id": "bkng:departure",
+      "@type": "@id"
+    },
+    "deposit": {
+      "@id": "bkng:deposit",
+      "@type": "@id"
+    },
+    "description": "schema:description",
+    "descriptionImperial": {
+      "@id": "bkng:description_imperial",
+      "@type": "@id"
+    },
+    "dinner": {
+      "@id": "bkng:dinner",
+      "@type": "xsd:decimal"
+    },
+    "direction": {
+      "@id": "bkng:direction",
+      "@type": "xsd:string"
+    },
+    "distribution": {
+      "@id": "bkng:distribution",
+      "@type": "@id"
+    },
+    "district": {
+      "@id": "bkng:district",
+      "@type": "xsd:integer"
+    },
+    "districts": {
+      "@id": "bkng:districts",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "domesticNoCc": {
+      "@id": "bkng:domestic_no_cc",
+      "@type": "xsd:boolean"
+    },
+    "dormitories": {
+      "@id": "bkng:dormitories",
+      "@type": "xsd:string"
+    },
+    "eci": {
+      "@id": "bkng:eci",
+      "@type": "xsd:string"
+    },
+    "eligible": {
+      "@id": "bkng:eligible",
+      "@type": "xsd:boolean"
+    },
+    "email": "schema:email",
+    "employeeNumber": {
+      "@id": "bkng:employee_number",
+      "@type": "xsd:string"
+    },
+    "estimatedAmount": {
+      "@id": "bkng:estimated_amount",
+      "@type": "xsd:double"
+    },
+    "excluded": {
+      "@id": "bkng:excluded",
+      "@container": "@set"
+    },
+    "expiryDate": {
+      "@id": "bkng:expiry_date",
+      "@type": "xsd:string"
+    },
+    "extraCharges": {
+      "@id": "bkng:extra_charges",
+      "@type": "@id"
+    },
+    "extras": {
+      "@id": "bkng:extras",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "facilities": {
+      "@id": "bkng:facilities",
+      "@container": "@set"
+    },
+    "facilityDetails": {
+      "@id": "bkng:facility_details",
+      "@type": "@id"
+    },
+    "facilityType": {
+      "@id": "bkng:facility_type",
+      "@type": "xsd:integer"
+    },
+    "facilityTypes": {
+      "@id": "bkng:facility_types",
+      "@container": "@set"
+    },
+    "firstName": {
+      "@id": "bkng:first_name",
+      "@type": "xsd:string"
+    },
+    "fiscalInformation": {
+      "@id": "bkng:fiscal_information",
+      "@type": "@id"
+    },
+    "flights": {
+      "@id": "bkng:flights",
+      "@type": "@id"
+    },
+    "freeCancellationUntil": {
+      "@id": "bkng:free_cancellation_until",
+      "@type": "xsd:dateTime"
+    },
+    "freeStay": {
+      "@id": "bkng:free_stay",
+      "@type": "xsd:boolean"
+    },
+    "from": {
+      "@id": "bkng:from"
+    },
+    "fromAge": {
+      "@id": "bkng:from_age",
+      "@type": "xsd:integer"
+    },
+    "fulfillmentAt": {
+      "@id": "bkng:fulfillment_at",
+      "@type": "xsd:date"
+    },
+    "fulfillmentBy": {
+      "@id": "bkng:fulfillment_by",
+      "@type": "xsd:string"
+    },
+    "general": {
+      "@id": "bkng:general",
+      "@type": "@id"
+    },
+    "guests": {
+      "@id": "bkng:guests",
+      "@type": "@id"
+    },
+    "guestsOnly": {
+      "@id": "bkng:guests_only",
+      "@type": "xsd:boolean"
+    },
+    "hasBathroom": {
+      "@id": "bkng:has_bathroom",
+      "@type": "xsd:boolean"
+    },
+    "hostType": {
+      "@id": "bkng:host_type",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "bkng:id",
+      "@type": "xsd:string"
+    },
+    "importantInformation": {
+      "@id": "bkng:important_information",
+      "@type": "@id"
+    },
+    "includeReceipt": {
+      "@id": "bkng:include_receipt",
+      "@type": "xsd:boolean"
+    },
+    "included": {
+      "@id": "bkng:included",
+      "@container": "@set"
+    },
+    "internalAccount": {
+      "@id": "bkng:internal_account",
+      "@type": "xsd:string"
+    },
+    "internetFacility": {
+      "@id": "bkng:internet_facility",
+      "@type": "@id"
+    },
+    "inventory": {
+      "@id": "bkng:inventory",
+      "@type": "@id"
+    },
+    "ipAddress": {
+      "@id": "bkng:ip_address",
+      "@type": "xsd:string"
+    },
+    "isBedroom": {
+      "@id": "bkng:is_bedroom",
+      "@type": "xsd:boolean"
+    },
+    "isGenius": {
+      "@id": "bkng:is_genius",
+      "@type": "xsd:boolean"
+    },
+    "isWorkFriendly": {
+      "@id": "bkng:is_work_friendly",
+      "@type": "xsd:boolean"
+    },
+    "itineraries": {
+      "@id": "bkng:itineraries",
+      "@container": "@set"
+    },
+    "keyCollectionInformation": {
+      "@id": "bkng:key_collection_information",
+      "@type": "@id"
+    },
+    "keyLocation": {
+      "@id": "bkng:key_location",
+      "@type": "xsd:string"
+    },
+    "label": {
+      "@id": "bkng:label",
+      "@type": "xsd:string"
+    },
+    "landmark": {
+      "@id": "bkng:landmark",
+      "@type": "xsd:integer"
+    },
+    "language": {
+      "@id": "bkng:language",
+      "@type": "xsd:string"
+    },
+    "languages": {
+      "@id": "bkng:languages",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "large": {
+      "@id": "bkng:large",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "bkng:last_name",
+      "@type": "xsd:string"
+    },
+    "latitude": "schema:latitude",
+    "legalName": {
+      "@id": "bkng:legal_name",
+      "@type": "xsd:string"
+    },
+    "licenseNumbers": {
+      "@id": "bkng:license_numbers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "livingRooms": {
+      "@id": "bkng:living_rooms",
+      "@type": "xsd:integer"
+    },
+    "location": {
+      "@id": "bkng:location",
+      "@type": "xsd:string"
+    },
+    "longStayFriendlyHome": {
+      "@id": "bkng:long_stay_friendly_home",
+      "@type": "xsd:boolean"
+    },
+    "longitude": "schema:longitude",
+    "loyaltyData": {
+      "@id": "bkng:loyalty_data",
+      "@container": "@set"
+    },
+    "loyaltyReward": {
+      "@id": "bkng:loyalty_reward",
+      "@container": "@set"
+    },
+    "lunch": {
+      "@id": "bkng:lunch",
+      "@type": "xsd:decimal"
+    },
+    "mainPhoto": {
+      "@id": "bkng:main_photo",
+      "@type": "xsd:boolean"
+    },
+    "maximum": {
+      "@id": "bkng:maximum",
+      "@type": "xsd:integer"
+    },
+    "maximumCheckinAge": {
+      "@id": "bkng:maximum_checkin_age",
+      "@type": "xsd:integer"
+    },
+    "maximumNumberOfCots": {
+      "@id": "bkng:maximum_number_of_cots",
+      "@type": "xsd:integer"
+    },
+    "maximumNumberOfCribs": {
+      "@id": "bkng:maximum_number_of_cribs",
+      "@type": "xsd:integer"
+    },
+    "maximumNumberOfExtraBeds": {
+      "@id": "bkng:maximum_number_of_extra_beds",
+      "@type": "xsd:integer"
+    },
+    "maximumOccupancy": {
+      "@id": "bkng:maximum_occupancy",
+      "@type": "@id"
+    },
+    "maximumScore": {
+      "@id": "bkng:maximum_score",
+      "@type": "xsd:decimal"
+    },
+    "mealPlan": {
+      "@id": "bkng:meal_plan",
+      "@type": "@id"
+    },
+    "mealPrices": {
+      "@id": "bkng:meal_prices",
+      "@type": "@id"
+    },
+    "meals": {
+      "@id": "bkng:meals",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "method": {
+      "@id": "bkng:method",
+      "@type": "xsd:string"
+    },
+    "methods": {
+      "@id": "bkng:methods",
+      "@type": "@id"
+    },
+    "minimum": {
+      "@id": "bkng:minimum",
+      "@type": "xsd:integer"
+    },
+    "minimumCheckinAge": {
+      "@id": "bkng:minimum_checkin_age",
+      "@type": "xsd:integer"
+    },
+    "minimumGuestAge": {
+      "@id": "bkng:minimum_guest_age",
+      "@type": "xsd:integer"
+    },
+    "minimumReviewScore": {
+      "@id": "bkng:minimum_review_score",
+      "@type": "xsd:integer"
+    },
+    "minimumScore": {
+      "@id": "bkng:minimum_score",
+      "@type": "xsd:decimal"
+    },
+    "mode": {
+      "@id": "bkng:mode",
+      "@type": "xsd:string"
+    },
+    "name": "schema:name",
+    "negative": {
+      "@id": "bkng:negative",
+      "@type": "xsd:string"
+    },
+    "nonConditional": {
+      "@id": "bkng:non_conditional",
+      "@container": "@set"
+    },
+    "number": {
+      "@id": "bkng:number",
+      "@type": "xsd:string"
+    },
+    "numberAvailableAtThisPrice": {
+      "@id": "bkng:number_available_at_this_price",
+      "@type": "xsd:integer"
+    },
+    "numberOfAdults": {
+      "@id": "bkng:number_of_adults",
+      "@type": "xsd:integer"
+    },
+    "numberOfBeds": {
+      "@id": "bkng:number_of_beds",
+      "@type": "xsd:integer"
+    },
+    "numberOfReviews": {
+      "@id": "bkng:number_of_reviews",
+      "@type": "xsd:integer"
+    },
+    "numberOfRooms": {
+      "@id": "bkng:number_of_rooms",
+      "@type": "xsd:integer"
+    },
+    "occupancyMismatch": {
+      "@id": "bkng:occupancy_mismatch",
+      "@type": "@id"
+    },
+    "orderCurrency": {
+      "@id": "bkng:order_currency",
+      "@type": "xsd:string"
+    },
+    "orderNumber": {
+      "@id": "bkng:order_number",
+      "@type": "xsd:string"
+    },
+    "page": {
+      "@id": "bkng:page",
+      "@type": "xsd:string"
+    },
+    "paid": {
+      "@id": "bkng:paid",
+      "@container": "@set"
+    },
+    "parkingFacilities": {
+      "@id": "bkng:parking_facilities",
+      "@container": "@set"
+    },
+    "payment": {
+      "@id": "bkng:payment",
+      "@type": "@id"
+    },
+    "paymentMethod": {
+      "@id": "bkng:payment_method",
+      "@type": "xsd:string"
+    },
+    "paymentType": {
+      "@id": "bkng:payment_type",
+      "@type": "xsd:string"
+    },
+    "pending": {
+      "@id": "bkng:pending",
+      "@container": "@set"
+    },
+    "percentage": {
+      "@id": "bkng:percentage",
+      "@type": "xsd:decimal"
+    },
+    "pets": {
+      "@id": "bkng:pets",
+      "@type": "@id"
+    },
+    "photos": {
+      "@id": "bkng:photos",
+      "@container": "@set"
+    },
+    "plan": {
+      "@id": "bkng:plan",
+      "@type": "xsd:string"
+    },
+    "platform": {
+      "@id": "bkng:platform",
+      "@type": "xsd:string"
+    },
+    "policies": {
+      "@id": "bkng:policies",
+      "@type": "@id"
+    },
+    "positive": {
+      "@id": "bkng:positive",
+      "@type": "xsd:string"
+    },
+    "postCode": {
+      "@id": "bkng:post_code",
+      "@type": "xsd:string"
+    },
+    "postalCode": {
+      "@id": "bkng:postal_code",
+      "@type": "xsd:string"
+    },
+    "preferred": {
+      "@id": "bkng:preferred",
+      "@type": "xsd:boolean"
+    },
+    "prepaymentRequired": {
+      "@id": "bkng:prepayment_required",
+      "@type": "xsd:boolean"
+    },
+    "price": {
+      "@id": "bkng:price",
+      "@type": "@id"
+    },
+    "priceCategory": {
+      "@id": "bkng:price_category",
+      "@type": "xsd:string"
+    },
+    "products": {
+      "@id": "bkng:products",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "programmes": {
+      "@id": "bkng:programmes",
+      "@type": "@id"
+    },
+    "projectNumber": {
+      "@id": "bkng:project_number",
+      "@type": "xsd:string"
+    },
+    "radius": {
+      "@id": "bkng:radius",
+      "@type": "xsd:double"
+    },
+    "ranking": {
+      "@id": "bkng:ranking",
+      "@type": "xsd:decimal"
+    },
+    "rating": {
+      "@id": "bkng:rating",
+      "@type": "@id"
+    },
+    "receiptUrl": {
+      "@id": "bkng:receipt_url",
+      "@type": "xsd:string"
+    },
+    "referenceDate": {
+      "@id": "bkng:reference_date",
+      "@type": "xsd:string"
+    },
+    "refund": {
+      "@id": "bkng:refund",
+      "@type": "@id"
+    },
+    "region": {
+      "@id": "bkng:region",
+      "@type": "xsd:integer"
+    },
+    "regions": {
+      "@id": "bkng:regions",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "registrationNumber": {
+      "@id": "bkng:registration_number",
+      "@type": "xsd:string"
+    },
+    "reservation": {
+      "@id": "bkng:reservation",
+      "@type": "xsd:string"
+    },
+    "reservations": {
+      "@id": "bkng:reservations",
+      "@type": "@id"
+    },
+    "restaurantFacilities": {
+      "@id": "bkng:restaurant_facilities",
+      "@container": "@set"
+    },
+    "reviewScore": {
+      "@id": "bkng:review_score",
+      "@type": "xsd:decimal"
+    },
+    "reviewScores": {
+      "@id": "bkng:review_scores",
+      "@container": "@set"
+    },
+    "reviewer": {
+      "@id": "bkng:reviewer",
+      "@type": "@id"
+    },
+    "riskified": {
+      "@id": "bkng:riskified",
+      "@type": "@id"
+    },
+    "room": {
+      "@id": "bkng:room",
+      "@type": "xsd:integer"
+    },
+    "roomFacilities": {
+      "@id": "bkng:room_facilities",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "roomType": {
+      "@id": "bkng:room_type",
+      "@type": "xsd:integer"
+    },
+    "roomTypes": {
+      "@id": "bkng:room_types",
+      "@container": "@set"
+    },
+    "rooms": {
+      "@id": "bkng:rooms",
+      "@container": "@set"
+    },
+    "rows": {
+      "@id": "bkng:rows",
+      "@type": "xsd:integer"
+    },
+    "scaExemption": {
+      "@id": "bkng:sca_exemption",
+      "@type": "xsd:string"
+    },
+    "schedule": {
+      "@id": "bkng:schedule",
+      "@container": "@set"
+    },
+    "score": {
+      "@id": "bkng:score",
+      "@type": "xsd:decimal"
+    },
+    "sessionId": {
+      "@id": "bkng:session_id",
+      "@type": "xsd:string"
+    },
+    "size": {
+      "@id": "bkng:size",
+      "@type": "xsd:decimal"
+    },
+    "sort": {
+      "@id": "bkng:sort",
+      "@type": "@id"
+    },
+    "spokenLanguages": {
+      "@id": "bkng:spoken_languages",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "standard": {
+      "@id": "bkng:standard",
+      "@type": "xsd:string"
+    },
+    "stars": {
+      "@id": "bkng:stars",
+      "@container": "@set",
+      "@type": "xsd:decimal"
+    },
+    "starsType": {
+      "@id": "bkng:stars_type",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "bkng:state",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "bkng:status",
+      "@type": "xsd:string"
+    },
+    "summary": {
+      "@id": "bkng:summary",
+      "@type": "xsd:string"
+    },
+    "swimmingPoolFacilities": {
+      "@id": "bkng:swimming_pool_facilities",
+      "@container": "@set"
+    },
+    "tags": {
+      "@id": "bkng:tags",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "telephone": "schema:telephone",
+    "text": {
+      "@id": "bkng:text",
+      "@type": "@id"
+    },
+    "textMeetsGuidelines": {
+      "@id": "bkng:text_meets_guidelines",
+      "@type": "xsd:boolean"
+    },
+    "themes": {
+      "@id": "bkng:themes",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "thirdParty": {
+      "@id": "bkng:third_party",
+      "@type": "xsd:boolean"
+    },
+    "thirdPartyInventory": {
+      "@id": "bkng:third_party_inventory",
+      "@type": "xsd:boolean"
+    },
+    "thumbnail": {
+      "@id": "bkng:thumbnail",
+      "@type": "xsd:string"
+    },
+    "thumbnailLarge": {
+      "@id": "bkng:thumbnail_large",
+      "@type": "xsd:string"
+    },
+    "timing": {
+      "@id": "bkng:timing",
+      "@type": "xsd:string"
+    },
+    "timings": {
+      "@id": "bkng:timings",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "to": {
+      "@id": "bkng:to",
+      "@type": "xsd:integer"
+    },
+    "toAge": {
+      "@id": "bkng:to_age",
+      "@type": "xsd:integer"
+    },
+    "total": {
+      "@id": "bkng:total",
+      "@type": "xsd:double"
+    },
+    "totalAmount": {
+      "@id": "bkng:total_amount",
+      "@type": "xsd:decimal"
+    },
+    "totalGuests": {
+      "@id": "bkng:total_guests",
+      "@type": "xsd:integer"
+    },
+    "tradeRegister": {
+      "@id": "bkng:trade_register",
+      "@type": "xsd:string"
+    },
+    "trader": {
+      "@id": "bkng:trader",
+      "@type": "@id"
+    },
+    "traderVerified": {
+      "@id": "bkng:trader_verified",
+      "@type": "xsd:boolean"
+    },
+    "transaction": {
+      "@id": "bkng:transaction",
+      "@type": "xsd:string"
+    },
+    "transactionCurrency": {
+      "@id": "bkng:transaction_currency",
+      "@type": "xsd:string"
+    },
+    "travelProud": {
+      "@id": "bkng:travel_proud",
+      "@type": "xsd:boolean"
+    },
+    "travelPurpose": {
+      "@id": "bkng:travel_purpose",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "bkng:type",
+      "@type": "xsd:string"
+    },
+    "unitAmount": {
+      "@id": "bkng:unit_amount",
+      "@type": "xsd:decimal"
+    },
+    "updated": {
+      "@id": "bkng:updated",
+      "@type": "xsd:dateTime"
+    },
+    "url": "schema:url",
+    "userGroups": {
+      "@id": "bkng:user_groups",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "bkng:value",
+      "@type": "xsd:string"
+    },
+    "valueAdds": {
+      "@id": "bkng:value_adds",
+      "@container": "@set"
+    },
+    "vat": {
+      "@id": "bkng:vat",
+      "@type": "xsd:string"
+    },
+    "vatNumber": {
+      "@id": "bkng:vat_number",
+      "@type": "xsd:string"
+    },
+    "virtualCards": {
+      "@id": "bkng:virtual_cards",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "workFriendlyHome": {
+      "@id": "bkng:work_friendly_home",
+      "@type": "xsd:boolean"
+    }
+  }
+}

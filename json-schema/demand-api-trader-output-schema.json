@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-schema/demand-api-trader-output-schema.json",
+  "title": "TraderOutput",
+  "description": "The trader information.",
+  "type": "object",
+  "nullable": true,
+  "properties": {
+    "address": {
+      "description": "The address of the trader",
+      "type": "object",
+      "properties": {
+        "address_line": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "post_code": {
+          "type": "string"
+        }
+      }
+    },
+    "email": {
+      "description": "The email of the trader",
+      "type": "string"
+    },
+    "name": {
+      "description": "The name of the trader",
+      "type": "string"
+    },
+    "registration_number": {
+      "description": "The registration number of the trader",
+      "type": "string"
+    },
+    "telephone": {
+      "description": "The telephone of the trader",
+      "type": "string"
+    },
+    "trade_register": {
+      "description": "The trade register name",
+      "type": "string"
+    },
+    "trader_verified": {
+      "description": "Indicates whether the trader has successfully met Booking.com's internal verification process, based on established criteria and checklists",
+      "type": "boolean"
+    }
+  }
+}

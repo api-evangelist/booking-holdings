@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/json-structure/demand-api-accommodations-policies-output-structure.json",
+  "name": "AccommodationsPoliciesOutput",
+  "description": "Set of price relevant rules, options and constraints defined by the accommodation for this product. Requires `{\"extras\":[\"policies\"]}`.",
+  "type": "object",
+  "properties": {
+    "cots_and_extra_beds": {
+      "description": "Prices for cots and extra beds.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "age": {
+            "description": "Ages to which this entry is applicable. Children are aged 0-17. 18/null means adult. The interval is inclusive.",
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "int32",
+                "minimum": 0,
+                "maximum": 18
+              },
+              "to": {
+                "type": "int32",
+                "minimum": 0,
+                "maximum": 18,
+                "nullable": true
+              }
+            }
+          },
+          "mode": {
+            "description": "How the price is applied per cot/extra bed.",
+            "type": "string",
+            "enum": [
+              "per_night",
+              "per_stay"
+            ]
+          },
+          "percentage": {
+            "description": "Non-null when the price is a percentage.",
+            "type": "double",
+            "nullable": true
+          },
+          "price": {
+            "description": "Non-null when the price is fixed or free.",
+            "minimum": 0,
+            "nullable": true,
+            "type": "double"
+          },
+          "type": {
+            "description": "Whether this entry relates to a cot or an extra bed.",
+            "type": "string",
+            "enum": [
+              "cot",
+              "extra_bed"
+            ]
+          }
+        }
+      }
+    },
+    "maximum_checkin_age": {
+      "description": "Defines the maximum (inclusive) check-in age for this property. If null, then there is no maximum age for checking in",
+      "type": "int32",
+      "minimum": 18
+    },
+    "minimum_checkin_age": {
+      "description": "Defines the minimum (inclusive) check-in age for this property.",
+      "type": "int32",
+      "minimum": 18
+    },
+    "minimum_guest_age": {
+      "description": "Defines the minimum age (inclusive) for staying in this property. If \"0\", then a guest of any age is allowed.",
+      "type": "int32",
+      "minimum": 0
+    },
+    "pets": {
+      "type": "object",
+      "properties": {
+        "allowed": {
+          "description": "An enumerated value describing if pets are allowed",
+          "type": "string",
+          "enum": [
+            "yes",
+            "no",
+            "upon_request"
+          ]
+        },
+        "charge_mode": {
+          "description": "An enumerated value describing the charge mode for pets",
+          "type": "string",
+          "enum": [
+            "free",
+            "charges_may_apply"
+          ]
+        }
+      }
+    },
+    "damage": {
+      "type": "object",
+      "description": "DamagePolicy of the property",
+      "properties": {
+        "deposit": {
+          "description": "If a deposit needs to be paid upfront",
+          "type": "object",
+          "properties": {
+            "collect": {
+              "properties": {
+                "date": {
+                  "type": "object",
+                  "properties": {
+                    "reference_date": {
+                      "type": "string",
+                      "enum": [
+                        "checkin",
+                        "checkout"
+                      ]
+                    },
+                    "days_offset": {
+                      "description": "The number of days on or before reference date.",
+                      "type": "int32"
+                    }
+                  }
+                },
+                "payment_method": {
+                  "type": "string",
+                  "enum": [
+                    "bank_transfer",
+                    "cash",
+                    "credit_card",
+                    "paypal",
+                    "other"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "refund": {
+              "properties": {
+                "date": {
+                  "type": "object",
+                  "properties": {
+                    "reference_date": {
+                      "type": "string",
+                      "enum": [
+                        "checkin",
+                        "checkout"
+                      ]
+                    },
+                    "days_offset": {
+                      "description": "The number of days on or after reference date.",
+                      "type": "int32"
+                    }
+                  }
+                },
+                "payment_method": {
+                  "type": "string",
+                  "enum": [
+                    "bank_transfer",
+                    "cash",
+                    "credit_card",
+                    "paypal",
+                    "other"
+                  ]
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "amount": {
+          "description": "The amount that can be charged",
+          "type": "double"
+        },
+        "currency": {
+          "description": "Currency in which payment needs to be made",
+          "type": "string"
+        }
+      }
+    }
+  }
+}
