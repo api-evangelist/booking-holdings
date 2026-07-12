@@ -43,6 +43,10 @@ apis:
       - type: Authentication
         url: https://developers.booking.com/demand/docs/getting-started
 common:
+  - type: DomainSecurity
+    url: security/booking-holdings-domain-security.yml
+  - type: Authentication
+    url: authentication/booking-holdings-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/bookingholdings
   - type: Website
@@ -155,6 +159,8 @@ common:
           - Hotel Comparison
           - Price Aggregation
           - Accommodation Search
+  - url: https://www.bookingholdings.com/feed/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
