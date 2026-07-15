@@ -43,6 +43,8 @@ apis:
       - type: Authentication
         url: https://developers.booking.com/demand/docs/getting-started
 common:
+  - type: AgenticAccess
+    url: agentic-access/booking-holdings-agentic-access.yml
   - type: DomainSecurity
     url: security/booking-holdings-domain-security.yml
   - type: Authentication
