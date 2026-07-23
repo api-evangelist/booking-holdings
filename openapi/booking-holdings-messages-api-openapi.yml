@@ -1,0 +1,258 @@
+openapi: 3.1.0
+info:
+  title: Booking.com Demand Accommodations Messages API
+  version: '3.1'
+  summary: "The Booking.com Demand API enables Affiliate Partners to access Booking.com's travel inventory, including accommodations, car rentals, and flights. \n\nUse Demand API to search, retrieve details, check availability, manage bookings and run reports using orders details.\n\n- RESTful API with JSON responses.\n- Make HTTPS POST requests to interact with endpoints.\n- Requires authentication using your Affiliate ID and token credentials.\n\n[Check the try out guide!](/demand/docs/getting-started/try-out-the-api)\n"
+  x-last-validated: '2026-06-02'
+  x-generated-from: documentation
+  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+servers:
+- url: https://demandapi.booking.com/3.1
+  description: Production environment
+- url: https://demandapi-sandbox.booking.com/3.1
+  description: Sandbox environment
+security:
+- BearerAuth: []
+tags:
+- name: Messages
+  x-displayName: Messages
+  description: Provides endpoints for two-way post-booking communication between guests and properties. </br></br>Use these endpoints to send and retrieve messages, exchange images, and check conversation details.
+paths:
+  /messages/send:
+    post:
+      summary: Booking.com Send a Message
+      description: 'Sends a message within a conversation. The message body supports plain text.
+
+        Optionally, attach a file by referencing a previously uploaded attachment ID.
+
+        '
+      operationId: messagesSend
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: SendMessageRequest
+              type: object
+              required:
+              - conversation
+              - content
+              - accommodation
+              properties:
+                conversation:
+                  type: string
+                  description: Unique identifier of the conversation.
+                accommodation:
+                  type: string
+                  description: Unique identifier of the property.
+                content:
+                  type: string
+                  description: The message text to send.
+                attachments:
+                  type: array
+                  items:
+                    type: string
+                  description: Optional list of attachment IDs, if sending one or more files.
+            example:
+              conversation: 8586a789-44f4-5521-9f27-f5efd097cba6
+              accommodation: '6819547'
+              content: Hello, I'm your guest!.
+              attachments:
+              - c325f460-1dc6-11f0-80f0-8d0908786f77
+      responses:
+        '200':
+          description: Message sent successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                    description: Unique identifier for this request. Provide this ID when contacting support.
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        description: Unique identifier for the sent message.
+              example:
+                request_id: cdb0b154-2eae-481b-8fee-fb2725296e1f
+                data:
+                  message: 3164e570-19e0-11f0-baca-e5019c8df435
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /messages/latest:
+    post:
+      summary: Booking.com Fetch Latest Messages
+      description: 'Retrieves up to **100 of the most recent messages** including messages from both property and guest.<br/>
+
+
+        - Messages are returned in reverse chronological order (newest first).
+
+        - Use this endpoint to sync message threads or poll for updates.
+
+
+        **Important:**  To retrieve the latest messages, send an empty POST request.  Any content in the request body will be ignored.
+
+        '
+      operationId: messagesLatest
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      responses:
+        '200':
+          description: Latest messages fetched successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                    description: Unique identifier for this request. Provide this ID when contacting support.
+                  data:
+                    type: object
+                    properties:
+                      messages:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            message_id:
+                              type: string
+                              description: Unique identifier of the message.
+                            reply_to:
+                              type:
+                              - string
+                              - 'null'
+                              description: ID of the message this is replying to (if applicable).
+                            conversation:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  description: Unique identifier of the conversation.
+                                accommodation:
+                                  type: string
+                                  description: Unique identifier of the property.
+                                reservation:
+                                  type: string
+                                  description: Unique identifier of the reservation.
+                            content:
+                              type: string
+                              description: Message text content.
+                            sender:
+                              type: object
+                              properties:
+                                participant_id:
+                                  type: string
+                                  description: Unique identifier of the conversation participant.
+                                metadata:
+                                  type: object
+                                  description: Additional metadata about the sender.
+                            attachments:
+                              type: array
+                              items:
+                                type: string
+                                description: Attachment IDs included with the message.
+                            timestamp:
+                              type: string
+                              format: date-time
+                              description: Timestamp in ISO 8601 format (UTC) when the message was sent.
+              example:
+                request_id: 0248d85a-17e0-44b3-a37c-7d4b5c03f58b
+                data:
+                  messages:
+                  - message_id: daca26da-4ce3-519d-b9eb-623eeb674800
+                    reply_to: null
+                    conversation:
+                      id: b2364f9b-6466-599a-a947-0d35cff4f492
+                      accommodation: '5589515'
+                      reservation: '4439608993'
+                    content: Hello Anne, welcome to CS Training Test Hotel...
+                    sender:
+                      participant_id: 930d9af8-2390-5e43-a4d7-235b52a30a14
+                      metadata:
+                        type: property
+                        name: CS Training Test Hotel Sloterdijk 10
+                    attachments: []
+                    timestamp: '2025-05-08T08:49:15.000Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /messages/latest/confirm:
+    post:
+      summary: Booking.com Confirm Message Receipt
+      description: 'Confirms receipt of specified messages.
+
+        This confirmation is required before receiving new messages from the POST /messages/latest endpoint.
+
+        '
+      operationId: messagesLatestConfirm
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: ConfirmMessageReceiptRequest
+              type: object
+              properties:
+                messages:
+                  type: array
+                  items:
+                    type: string
+                    description: Unique identifier of a message to confirm receipt of.
+              example: &id001
+                messages:
+                - 8586a789-44f4-5521-9f27-f5efd097cba
+            examples:
+              MessagesLatestConfirmRequestExample:
+                summary: Default messagesLatestConfirm request
+                x-microcks-default: true
+                value: *id001
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    AffiliateIdHeader:
+      in: header
+      name: X-Affiliate-Id
+      schema:
+        type: integer
+      required: true
+      description: Include here your Affiliate identifier number
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: string
+x-tagGroups:
+- name: Travel services
+  tags:
+  - Accommodations
+  - Cars
+- name: Common
+  tags:
+  - Common/locations
+  - Common/payments
+  - Common/languages
+- name: Orders
+  tags:
+  - Orders
+- name: Messaging
+  tags:
+  - Messages
+  - Conversations
+  - Attachments

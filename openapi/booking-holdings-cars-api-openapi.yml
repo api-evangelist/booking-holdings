@@ -1,0 +1,1711 @@
+openapi: 3.1.0
+info:
+  title: Booking.com Demand Accommodations Cars API
+  version: '3.1'
+  summary: "The Booking.com Demand API enables Affiliate Partners to access Booking.com's travel inventory, including accommodations, car rentals, and flights. \n\nUse Demand API to search, retrieve details, check availability, manage bookings and run reports using orders details.\n\n- RESTful API with JSON responses.\n- Make HTTPS POST requests to interact with endpoints.\n- Requires authentication using your Affiliate ID and token credentials.\n\n[Check the try out guide!](/demand/docs/getting-started/try-out-the-api)\n"
+  x-last-validated: '2026-06-02'
+  x-generated-from: documentation
+  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+servers:
+- url: https://demandapi.booking.com/3.1
+  description: Production environment
+- url: https://demandapi-sandbox.booking.com/3.1
+  description: Sandbox environment
+security:
+- BearerAuth: []
+tags:
+- name: Cars
+  x-displayName: Car rentals
+  description: This API collection is specific to the car rentals part of the connected trip.</br></br> Use these endpoints to search for car rentals, check car details and look for depots and suppliers.
+paths:
+  /cars/search:
+    post:
+      description: Use this endpoint to retrieve the available car rentals matching the search criteria.
+      summary: Booking.com Search Car Rentals
+      operationId: carsSearch
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      tags:
+      - Cars
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                booker:
+                  description: Defines the booker context.
+                  type: object
+                  properties:
+                    country:
+                      description: The booker country for showing the best price for that user and obeying laws regarding the display of taxes and fees.
+                      type: string
+                      pattern: ^[a-z]{2}$
+                      example: nl
+                  required:
+                  - country
+                currency:
+                  description: A three-letter code that uniquely identifies a monetary currency as defined by the ISO 4217 standard. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonpayments/common/payments/currencies" target="_blank">common/payments/currencies</a>.
+                  type: string
+                  pattern: ^[A-Z]{3}$
+                  example: EUR
+                driver:
+                  description: Defines the driver context.
+                  type: object
+                  properties:
+                    age:
+                      description: Driver age. Affect the availability and price of the products.
+                      type: integer
+                      minimum: 18
+                      maximum: 99
+                  required:
+                  - age
+                filters:
+                  description: Defines the filtering criteria for refining the request results. It allows you to specify various parameters to narrow down the available car rental options based on specific attributes.
+                  type: object
+                  properties:
+                    air_conditioning:
+                      description: Filters the results to include car rentals with or without air conditioning. Setting this value to true will only return vehicles with air conditioning, while false will exclude them.
+                      type: boolean
+                    car_categories:
+                      description: Filters the result based on the selected car category.
+                      items:
+                        oneOf:
+                        - const: carrier
+                          description: Vans or minivans designed for carrying larger groups or luggage.
+                        - const: estate
+                          description: Station wagons or estate cars offering extra luggage space.
+                        - const: large
+                          description: Large vehicles offering ample interior space and comfort.
+                        - const: medium
+                          description: Mid-sized vehicles offering a balance of comfort and fuel efficiency.
+                        - const: premium
+                          description: High-end or luxury vehicles with premium features.
+                        - const: small
+                          description: Compact cars ideal for city driving and short distances.
+                        - const: suvs
+                          description: Sport Utility Vehicles offering higher ground clearance and versatility.
+                    depot_location_type:
+                      description: Indicates the specific type of location where the car rental depot is situated. This helps you accurately inform travellers about the nature of the pick-up point—whether it's located inside an airport terminal, at a train station, in a downtown area, or elsewhere. This field is optional and may be null if the location type is not defined.
+                      items:
+                        oneOf:
+                        - const: in_terminal
+                          description: Depot is located inside the airport terminal building.
+                        - const: car_rental_centre
+                          description: Depot is located in a dedicated car rental centre on or near airport grounds.
+                        - const: outside_terminal
+                          description: Depot is outside the terminal area, usually a short walk or drive away.
+                        - const: airport_hotel
+                          description: Depot is located at or inside an airport hotel.
+                        - const: shuttle_bus
+                          description: Depot requires a shuttle bus transfer from the airport or another meeting point.
+                        - const: meet_greet
+                          description: A rental agent meets the traveller in person at an agreed pick-up point (e.g., arrivals hall).
+                        - const: trainstation
+                          description: Depot is located in or near a train station.
+                        - const: downtown
+                          description: Depot is located in a central/downtown city area.
+                    mileage_type:
+                      description: Filters the results based on the mileage type associated with the rental vehicle
+                      type: string
+                      enum:
+                      - limited
+                      - unlimited
+                    number_of_seats:
+                      description: Filters the results based on the number of seats in the vehicle. This allows you to specify a vehicle that can accommodate a specific number of passengers.
+                      type: integer
+                    supplier_ids:
+                      description: Filters the results based on the supplier ID of the vehicle. This allows you to retrieve vehicles from specific suppliers. A maximum of 10 supplier IDs can be provided.
+                      type: array
+                      items:
+                        description: Supplier id.
+                        type: integer
+                    transmission_type:
+                      description: Filters the results based on the transmission type of the vehicle.
+                      type: string
+                      enum:
+                      - automatic
+                      - manual
+                maximum_results:
+                  default: 100
+                  description: The maximum number of results to return per page.
+                  type: integer
+                  multipleOf: 10
+                  minimum: 10
+                  maximum: 500
+                language:
+                  description: Effects on the selected language of the target website after redirection by provided url.
+                  type: string
+                  pattern: ^[a-z]{2}(-[a-z]{2})?$
+                  example: en-us
+                page:
+                  description: Pagination token used to retrieve the next page of results. Obtained from `next_page`.
+                  type: string
+                payment:
+                  description: Payment-related input filters that allow you to narrow down car search results based on the payment timing options.
+                  type: object
+                  properties:
+                    timings:
+                      description: Filters the results to include only car rentals that offer the specified payment timings. Use this parameter to search for cars based on the timing of payment (e.g., payment upfront, partial payment, or payment at the depot).
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                        - pay_now
+                        - part_pay
+                        - pay_local
+                route:
+                  description: Defines the route context.
+                  type: object
+                  properties:
+                    dropoff:
+                      description: Drop off location and time.
+                      type: object
+                      properties:
+                        datetime:
+                          description: Pick up / drop off datetime.
+                          example: '2025-11-10T11:05:00'
+                          type: string
+                          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$
+                        location:
+                          description: Pick up / drop off location.
+                          oneOf:
+                          - title: Aeroport
+                            description: Defines location of the related route point by airport.
+                            type: object
+                            properties:
+                              airport:
+                                description: A three-letter code that uniquely identifies an airport as defined by the International Air Transport Association (IATA). The full list can be obtained by calling  <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/airports" target="_blank">common/locations/airports</a>.
+                                type: string
+                                pattern: ^[A-Z]{3}$
+                                example: AMS
+                          - description: Defines location of the related route point by coordinates.
+                            title: Coordinates
+                            type: object
+                            properties:
+                              coordinates:
+                                description: Defines the geographic coordinates of the searched location.
+                                title: Coordinates
+                                type: object
+                                properties:
+                                  latitude:
+                                    type: number
+                                    format: double
+                                  longitude:
+                                    type: number
+                                    format: double
+                          - description: Defines location of the related route point by city.
+                            title: City
+                            type: object
+                            properties:
+                              city:
+                                description: A signed integer number that uniquely identifies a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/cities" target="_blank">common/locations/cities</a>.
+                                type: integer
+                      required:
+                      - datetime
+                      - location
+                    pickup:
+                      description: Pick up location and time.
+                      type: object
+                      properties:
+                        datetime:
+                          description: Pick up / drop off datetime.
+                          example: '2025-11-05T11:05:00'
+                          type: string
+                          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$
+                        location:
+                          description: Pick up / drop off location.
+                          oneOf:
+                          - description: Defines location of the related route point by airport.
+                            type: object
+                            properties:
+                              airport:
+                                description: A three-letter code that uniquely identifies an airport as defined by the International Air Transport Association (IATA). The full list can be obtained by calling  <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/airports" target="_blank">common/locations/airports</a>.
+                                type: string
+                                pattern: ^[A-Z]{3}$
+                                example: AMS
+                          - description: Defines location of the related route point by coordinates.
+                            type: object
+                            properties:
+                              coordinates:
+                                description: Defines the geographic coordinates of the searched location.
+                                title: Coordinates
+                                type: object
+                                properties:
+                                  latitude:
+                                    type: number
+                                    format: double
+                                  longitude:
+                                    type: number
+                                    format: double
+                          - description: Defines location of the related route point by city.
+                            type: object
+                            properties:
+                              city:
+                                description: A signed integer number that uniquely identifies a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/cities" target="_blank">common/locations/cities</a>.
+                                type: integer
+                      required:
+                      - datetime
+                      - location
+                  required:
+                  - dropoff
+                  - pickup
+                sort:
+                  description: The sorting parameters for the response.
+                  type: object
+                  properties:
+                    by:
+                      description: The way to sort your results.
+                      type: string
+                      enum:
+                      - distance
+                      - price
+                      - review_score
+                    direction:
+                      description: The direction you wish for your sort.by parameter to be sorted in.
+                      type: string
+                      enum:
+                      - ascending
+                      - descending
+              required:
+              - booker
+              - currency
+              - driver
+              - route
+            examples:
+              searchByAirport:
+                summary: Search example by airport.
+                value:
+                  booker:
+                    country: nl
+                  currency: EUR
+                  driver:
+                    age: 36
+                  route:
+                    dropoff:
+                      datetime: '2025-11-10T11:05:00'
+                      location:
+                        airport: AMS
+                    pickup:
+                      datetime: '2025-11-05T11:05:00'
+                      location:
+                        airport: AMS
+              searchByCoordinatesWithResponseLimit:
+                summary: Search example by coordinates and max response limit up to 100 products.
+                value:
+                  booker:
+                    country: nl
+                  currency: EUR
+                  driver:
+                    age: 36
+                  route:
+                    dropoff:
+                      datetime: '2025-11-10T11:05:00'
+                      location:
+                        coordinates:
+                          latitude: 52.309456
+                          longitude: 4.762266
+                    pickup:
+                      datetime: '2025-11-05T11:05:00'
+                      location:
+                        coordinates:
+                          latitude: 52.309456
+                          longitude: 4.762266
+                  maximum_results: 100
+              searchByCityIdWithSorting:
+                summary: Search example by city id, filters and sorting by price.
+                value:
+                  booker:
+                    country: nl
+                  currency: EUR
+                  driver:
+                    age: 36
+                  filters:
+                    transmission_type: automatic
+                    mileage_type: limited
+                    depot_location_type: in_terminal
+                  route:
+                    dropoff:
+                      datetime: '2025-11-10T11:05:00'
+                      location:
+                        city: -2140479
+                    pickup:
+                      datetime: '2025-11-05T11:05:00'
+                      location:
+                        city: -2140479
+                  sort:
+                    by: price
+                    direction: descending
+              filterbypayment:
+                summary: Search by payment timing.
+                value:
+                  booker:
+                    country: nl
+                  currency: EUR
+                  driver:
+                    age: 36
+                  route:
+                    dropoff:
+                      datetime: '2025-11-10T11:05:00'
+                      location:
+                        city: -2140479
+                    pickup:
+                      datetime: '2025-11-05T11:05:00'
+                      location:
+                        city: -2140479
+                  payment:
+                    timings: pay_now
+              filterbydepotlocation:
+                summary: Filter results by depot location.
+                value:
+                  booker:
+                    country: nl
+                  currency: EUR
+                  driver:
+                    age: 36
+                  route:
+                    dropoff:
+                      datetime: '2025-11-10T11:05:00'
+                      location:
+                        city: -2140479
+                    pickup:
+                      datetime: '2025-11-05T11:05:00'
+                      location:
+                        city: -2140479
+                  filters:
+                    depot_location_type: in_terminal
+              multiplefilters:
+                summary: Use multiple filters in one request.
+                value:
+                  booker:
+                    country: nl
+                  currency: EUR
+                  driver:
+                    age: 36
+                  route:
+                    dropoff:
+                      datetime: '2025-11-12T10:00:00'
+                      location:
+                        city: -2140479
+                    pickup:
+                      datetime: '2025-11-01T10:00:00'
+                      location:
+                        city: -2140479
+                  filters:
+                    depot_location_type: car_rental_centre
+                    number_of_seats: 7
+                    air_conditioning: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      description: Detailed information about car rental product.
+                      type: object
+                      properties:
+                        car:
+                          description: Related car id
+                          type: integer
+                          minimum: 1
+                        deal:
+                          title: Deal
+                          description: This specifies the deal tagging for the product.
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            discount_percentage:
+                              description: Discount percentage of the applied deals.
+                              type: integer
+                              minimum: 1
+                            public_price:
+                              description: Original price of this product, before applying any discounts.
+                              type: number
+                              multipleOf: 0.01
+                              exclusiveMinimum: 0
+                            tags:
+                              description: The tags of all the applied deals.
+                              type: array
+                              items:
+                                type: string
+                                enum:
+                                - black_friday
+                                - getaway_deal
+                                - mobile_rate
+                        policies:
+                          description: The policies that apply to this product.
+                          type: object
+                          properties:
+                            cancellation:
+                              description: The cancellation policy that applies to this product.
+                              type: object
+                              properties:
+                                details:
+                                  description: "Provides the policy details if the cancellation is free. For example: \n 1. duration='PT48H' and context=before_pickup means 'Free cancellation is available up to 48 hrs before pick up'. \n 2. duration='P7D' and context=within_given_time_period_of_booking means 'Free cancellation is available within 7 days of booking'"
+                                  type:
+                                  - object
+                                  - 'null'
+                                  properties:
+                                    context:
+                                      description: The context in which the cancellation policy applies. For example 'before_pickup'
+                                      type: string
+                                      enum:
+                                      - before_pickup
+                                      - within_given_time_period_of_booking
+                                    duration:
+                                      description: The duration until which the cancellation is free. This is in ISO-8601/Duration format.
+                                      type: string
+                                      pattern: ^P(?:\dY)?(?:\dM)?(?:\dD)?(?:T(?:\dH)?(?:\dM)?(?:\dS)?)?$
+                                type:
+                                  description: The type of cancellation present. For example 'free_cancellation' or 'non_refundable'.
+                                  type: string
+                                  enum:
+                                  - free_cancellation
+                                  - non_refundable
+                            damage_excess:
+                              description: The maximum amount a traveller may be charged for damages to the car during the rental period, as specified by the rental agreement.
+                              type:
+                              - number
+                              - 'null'
+                              format: double
+                            deposit:
+                              description: The amount of money that will be temporarily pre-authorised or blocked on the traveller’s credit card at the rental location as a security deposit, to cover potential damage or extra charges.
+                              type:
+                              - number
+                              - 'null'
+                              format: double
+                            insurance_package:
+                              description: "The supplier insurance package that applies to this car rental product. Possible values:\n  - `basic`: No insurance is included. The traveller is usually required to purchase coverage at the rental counter.\n  - `inclusive`: Full protection is provided. Collision Damage Waiver (CDW) is included, limiting the traveller’s financial liability for damage.\n  - `zero_excess`: Partial protection is provided. CDW is included, but some coverage elements (e.g., theft protection) may not be included, so the traveller could still be liable for certain costs.\n"
+                              type: string
+                              enum:
+                              - basic
+                              - inclusive
+                              - zero_excess
+                            fuel:
+                              description: The fuel policy that applies to this product.
+                              type: string
+                              enum:
+                              - return_same
+                              - return_same_or_prepay_no_refunds
+                              - return_same_preauth
+                              - free_tank
+                              - prepay_no_refunds
+                              - prepay_part_refunds
+                              - prepay_refunds
+                            mileage:
+                              description: The mileage policy that applies to this product.
+                              type: object
+                              properties:
+                                distance:
+                                  description: The maximal distance limit allowed for this product before additional fees apply.
+                                  type:
+                                  - integer
+                                  - 'null'
+                                  minimum: 0
+                                distance_unit:
+                                  description: The unit of measurement for the distance limit. For example 'km' or 'miles'.
+                                  type: string
+                                  enum:
+                                  - kilometers
+                                  - miles
+                                fee:
+                                  description: The fee that must be paid if the distance limit is exceeded.
+                                  type:
+                                  - number
+                                  - 'null'
+                                  format: double
+                                type:
+                                  description: The type of mileage policy applied.
+                                  type: string
+                                  enum:
+                                  - limited
+                                  - unlimited
+                              required:
+                              - fee
+                              - type
+                            payment:
+                              description: The payment policy that applies to this product.
+                              type: object
+                              properties:
+                                timing:
+                                  description: The applied payment timing. For example 'pay_now'.
+                                  type: string
+                                  enum:
+                                  - pay_now
+                                  - part_pay
+                                  - pay_local
+                              required:
+                              - timing
+                            theft_excess:
+                              description: The maximum amount a traveller may be charged in the event of car theft during the rental period, as outlined in the rental agreement.
+                              type:
+                              - number
+                              - 'null'
+                              format: double
+                        price:
+                          description: The price components of this product.
+                          type: object
+                          properties:
+                            currency:
+                              description: A three-letter code that uniquely identifies a monetary currency as defined by the ISO 4217 standard. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonpayments/common/payments/currencies" target="_blank">common/payments/currencies</a>.
+                              type: string
+                              pattern: ^[A-Z]{3}$
+                              example: EUR
+                            extra_charges:
+                              title: CarsProductExtraCharges
+                              description: The charge breakdown. Includes taxes and fees included in the drive away price.
+                              type: array
+                              items:
+                                title: CarsCharge
+                                description: Defines the charge, including the type of charge and its total amount.
+                                type: object
+                                properties:
+                                  charge:
+                                    description: The type of this charge.
+                                    type: string
+                                    enum:
+                                    - age_fee
+                                    - one_way_fee
+                                  total_amount:
+                                    description: The total price for this charge.
+                                    type: number
+                                    multipleOf: 0.01
+                                    exclusiveMinimum: 0
+                            total:
+                              description: The total price. Includes all extra charges.
+                              type: number
+                              multipleOf: 0.01
+                              exclusiveMinimum: 0
+                        route:
+                          description: Defines the actual route associated with the product.
+                          type: object
+                          properties:
+                            dropoff:
+                              description: Defines the product drop off route point.
+                              type: object
+                              properties:
+                                depot:
+                                  description: Pick up / drop off depot.
+                                  type: integer
+                                  minimum: 1
+                                  example: 5944
+                            pickup:
+                              description: Defines the product pick up route point.
+                              type: object
+                              properties:
+                                depot:
+                                  description: Pick up / drop off depot.
+                                  type: integer
+                                  minimum: 1
+                                  example: 5944
+                        supplier:
+                          description: Related supplier id.
+                          type: integer
+                          minimum: 1
+                        url:
+                          description: Urls to the relevant pages.
+                          type: object
+                          properties:
+                            app:
+                              description: URL for the related page on Booking App.
+                              type: string
+                              format: uri
+                            web:
+                              description: URL for the related page on cars.booking.com.
+                              type: string
+                              format: uri
+                  metadata:
+                    title: MetadataOutput
+                    description: Metadata about the request.
+                    type: object
+                    properties:
+                      next_page:
+                        description: Indicates that more results are available. Use this pagination token to retrieve the next page of results (via parameter `page`).
+                        type:
+                        - string
+                        - 'null'
+                      total_results:
+                        description: The total number of results available.
+                        type: integer
+                        minimum: 0
+                  search_token:
+                    description: 'Encoded string that must be passed in subsequent requests to identify the context of the car search. Note: It is specific to Car rentals and differs from other tokens used in booking flows.'
+                    type: string
+              example:
+                request_id: 01h00fr9y7qkbxtc6kyv97j49z
+                data:
+                - car: 122655
+                  policies:
+                    cancellation:
+                      type: free_cancellation
+                      details:
+                        context: before_pickup
+                        duration: P7D
+                    damage_excess: 3000
+                    deposit: 1500
+                    insurance_package: basic
+                    fuel: return_same
+                    mileage:
+                      distance: 200
+                      distance_unit: kilometers
+                      fee: 12.54
+                      type: limited
+                    payment:
+                      timing: pay_now
+                    theft_excess: 3000
+                  price:
+                    total: '121.90'
+                    currency: EUR
+                    extra_charges:
+                    - charge: age_fee
+                      total_amount: 21.9
+                    - charge: one_way_fee
+                      total_amount: 50
+                  route:
+                    dropoff:
+                      depot: 112314
+                    pickup:
+                      depot: 112314
+                  supplier: 7455
+                  url:
+                    app: booking://page
+                    web: https://example.com
+                metadata:
+                  next_page: eyJhbGciOiJIUzI1NiJ9.eyJwIjp7Im1heGltdW1fcmVzdWx0cyI6MTAsIm9mZnNldCI6MTB9LCJhdWQiOiJDQVJTX1NVUFBMSUVSUyIsImV4cCI6MTY4MzY0NzMwNX0.y7NmH48mm7lImd2WxsHdotj6n-dVQAzJCGCnIJCKy3A
+                  total_results: 122
+                search_token: eyJhbGciOiJIUzI1NiJ9.eyJwIjp7ImJvb2tlciI6eyJjb3VudHJ5IjoidXMifX0sImF1ZCI6Ii9ob3RlbHMvc2VhcmNoIiwiZXhwIjoxNzUwMDAwMDAwfQ.XYZ123AbcDefGHIjklMNOpqrsTUVwxYZ456789
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cars/depots:
+    post:
+      description: Use this endpoint to retrieve the list of all available car rental depots.
+      summary: Booking.com Depots
+      operationId: carsDepots
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      tags:
+      - Cars
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                last_modified:
+                  description: The last modified date-time, only returns depots newer than this timestamp.
+                  example: '2025-11-01T11:05:00+00:00'
+                  format: date-time
+                  type: string
+                maximum_results:
+                  description: The maximum number of results to return.
+                  type: integer
+                  multipleOf: 10
+                  minimum: 10
+                  maximum: 100
+                  default: 100
+                languages:
+                  type: array
+                  items:
+                    description: 'A [IETF language tag code](https://en.wikipedia.org/wiki/IETF_language_tag) that uniquely identifies a supported human language or dialect. **Note:** Demand API only accepts lowercase for the language codes. Examples: "nl" for Dutch/Nederlands or "en-us" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.'
+                    type: string
+                    pattern: ^[a-z]{2}(-[a-z]{2})?$
+                    example: en-us
+                  default:
+                  - en-gb
+                page:
+                  description: Pagination token used to retrieve the next page of results. Obtained from `next_page`.
+                  type: string
+            example:
+              last_modified: '2025-11-01T11:05:00+00:00'
+              maximum_results: 100
+              languages:
+              - en-gb
+              - nl
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      description: All static information related to car rental depot.
+                      properties:
+                        id:
+                          description: Unique depot's ID.
+                          type: integer
+                          minimum: 1
+                          example: 5944
+                        contact:
+                          description: Contact information of the depot. It can be `null` if the data is missing.
+                          type: object
+                          properties:
+                            email:
+                              description: Email address of the depot. It can be `null` if the data is missing.
+                              example: depot@test.booking.com
+                              type:
+                              - string
+                              - 'null'
+                            telephone:
+                              description: Telephone number of the depot. It can be `null` if the data is missing.
+                              example: '+31882847620'
+                              type:
+                              - string
+                              - 'null'
+                        city:
+                          description: A signed integer number that uniquely identifies a city. You can see the full list of cities ids calling common/locations/cities.
+                          type: integer
+                          example: -1471393
+                        drop_off:
+                          description: Contains rented car drop off information.
+                          properties:
+                            instructions:
+                              description: Drop off/pick up instructions.
+                              title: TranslatedString
+                              type:
+                              - object
+                              - 'null'
+                              patternProperties:
+                                ^[a-z]{2}(-[a-z]{2})$:
+                                  description: The content localised in this language.
+                                  type:
+                                  - string
+                                  - 'null'
+                            working_hours:
+                              description: Depot's working hours.
+                              patternProperties:
+                                ^(monday|tuesday|wednesday|thursday|friday|saturday|sunday)$:
+                                  description: Day working hours.
+                                  items:
+                                    description: Describes depot working hours.
+                                    properties:
+                                      closing_time:
+                                        description: Depot's closing time
+                                        example: '21:00'
+                                        format: time
+                                        type: string
+                                      opening_time:
+                                        description: Depot's opening time.
+                                        example: 07:00
+                                        format: time
+                                        type: string
+                                    type: object
+                                  type: array
+                              type:
+                              - object
+                              - 'null'
+                          type: object
+                        location:
+                          description: Depot location information.
+                          properties:
+                            address:
+                              description: Depot address information.
+                              example: 5 Aankomstpassage
+                              type:
+                              - string
+                              - 'null'
+                            airport:
+                              description: Airport IATA code.
+                              example: AMS
+                              type:
+                              - string
+                              - 'null'
+                            city:
+                              description: A signed integer number that uniquely identifies a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/cities" target="_blank">common/locations/cities</a>.
+                              type: integer
+                            depot_location_type:
+                              description: Indicates the specific type of location where the car rental depot is situated. This helps you accurately inform travellers about the nature of the pick-up point—whether it's located inside an airport terminal, at a train station, in a downtown area, or elsewhere. This field is optional and may be null if the location type is not defined.
+                              type: string
+                              enum:
+                              - in_terminal
+                              - car_rental_centre
+                              - outside_terminal
+                              - airport_hotel
+                              - shuttle_bus
+                              - meet_greet
+                              - trainstation
+                              - downtown
+                              x-enum-descriptions:
+                              - Depot is located inside the airport terminal building.
+                              - Depot is located in a dedicated car rental centre on or near airport grounds.
+                              - Depot is outside the terminal area, usually a short walk or drive away.
+                              - Depot is located at or inside an airport hotel.
+                              - Depot requires a shuttle bus transfer from the airport or another meeting point.
+                              - A rental agent meets the traveller in person at an agreed pick-up point (e.g., arrivals hall).
+                              - Depot is located in or near a train station.
+                              - Depot is located in a central/downtown city area.
+                              nullable: true
+                            coordinates:
+                              title: Coordinates
+                              type: object
+                              properties:
+                                latitude:
+                                  type: number
+                                  format: double
+                                longitude:
+                                  type: number
+                                  format: double
+                            country:
+                              description: 'A two-letter code that uniquely identifies a country. This code is defined by the ISO 3166-1 alpha-2 standard (ISO2) as described here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/countries" target="_blank">common/locations/countries</a>.'
+                              type: string
+                              pattern: ^[a-z]{2}$
+                              example: nl
+                            name:
+                              description: Translated depot name.
+                              example: Amsterdam Airport Schiphol - Terminal 3
+                              title: TranslatedString
+                              type: object
+                              patternProperties:
+                                ^[a-z]{2}(-[a-z]{2})$:
+                                  description: The content localised in this language.
+                                  type:
+                                  - string
+                                  - 'null'
+                            post_code:
+                              description: Depot post code
+                              example: 1118 AX
+                              type: string
+                          type: object
+                        pick_up:
+                          description: Contains rented car pick up information.
+                          properties:
+                            instructions:
+                              description: Drop off/pick up instructions.
+                              title: TranslatedString
+                              type:
+                              - object
+                              - 'null'
+                              patternProperties:
+                                ^[a-z]{2}(-[a-z]{2})$:
+                                  description: The content localised in this language.
+                                  type:
+                                  - string
+                                  - 'null'
+                            working_hours:
+                              description: Depot's working hours.
+                              patternProperties:
+                                ^(monday|tuesday|wednesday|thursday|friday|saturday|sunday)$:
+                                  description: Day working hours.
+                                  items:
+                                    description: Describes depot working hours.
+                                    properties:
+                                      closing_time:
+                                        description: Depot's closing time
+                                        example: '21:00'
+                                        format: time
+                                        type: string
+                                      opening_time:
+                                        description: Depot's opening time.
+                                        example: 07:00
+                                        format: time
+                                        type: string
+                                    type: object
+                                  type: array
+                              type: object
+                          type: object
+                        services:
+                          description: List of services provided by the depot.
+                          type: array
+                          items:
+                            type: string
+                            enum:
+                            - shuttle
+                            - meet_greet
+                            - unknown
+                        supplier:
+                          description: Related supplier id
+                          type: integer
+                          minimum: 1
+                        ratings:
+                          description: Number of reviews and average score for the depot.
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            number_of_reviews:
+                              nullable: false
+                              description: Number of validated reviews for this depot.
+                              type: integer
+                              minimum: 0
+                            score:
+                              nullable: false
+                              description: A decimal number indicating the current review score of this depot, in the range 1..10.
+                              type: number
+                              multipleOf: 0.1
+                              minimum: 1
+                              maximum: 10
+                      type: object
+                  metadata:
+                    description: Metadata about the request.
+                    type: object
+                    properties:
+                      next_page:
+                        description: Indicates that more results are available. Use this pagination token to retrieve the next page of results (via parameter `page`).
+                        type:
+                        - string
+                        - 'null'
+              example:
+                request_id: 01fr9ez700exycb98w90w5r9sh
+                data:
+                - id: 5944
+                  contact:
+                    email: depot@test.booking.com
+                    telephone: '+31882847620'
+                  city: '-1471393'
+                  drop_off:
+                    instructions:
+                      en-gb: The procedure for returning the vehicle will be explained to you at the rental counter.
+                      de: De procedure voor het inleveren van de auto zal worden toegelicht aan de balie.
+                    working_hours:
+                      monday:
+                      - closing_time: '21:00:00'
+                        opening_time: 07:00:00
+                      tuesday:
+                      - closing_time: '12:00:00'
+                        opening_time: 07:00:00
+                      - closing_time: '21:00:00'
+                        opening_time: '14:00:00'
+                      wednesday:
+                      - closing_time: '21:00:00'
+                        opening_time: 07:00:00
+                      thursday:
+                      - closing_time: '21:00:00'
+                        opening_time: 07:00:00
+                      friday:
+                      - closing_time: '21:00:00'
+                        opening_time: 07:00:00
+                      saturday:
+                      - closing_time: '21:00:00'
+                        opening_time: 07:00:00
+                      sunday:
+                      - closing_time: '21:00:00'
+                        opening_time: 07:00:00
+                  location:
+                    address: 5 Aankomstpassage
+                    airport: AMS
+                    city: -2140479
+                    coordinates:
+                      latitude: 52.309456
+                      longitude: 4.762266
+                    country: nl
+                    depot_location_type: airport_hotel
+                    name:
+                      en-gb: Amsterdam Airport Schiphol - Terminal 3
+                      de: Amsterdam Luchthaven Schiphol - Terminal 3
+                    post_code: 1118 AX
+                  pick_up:
+                    instructions:
+                      en-gb: '-'
+                      de: '-'
+                    working_hours:
+                      monday:
+                      - closing_time: '21:00:00'
+                        opening_time: 07:00:00
+                      tuesday:
+                      - closing_time: '12:00:00'
+                        opening_time: 07:00:00
+                      - closing_time: '21:00:00'
+                        opening_time: '14:00:00'
+                      wednesday:
+                      - closing_time: '21:00:00'
+                        opening_time: 07:00:00
+                      thursday:
+                      - closing_time: '21:00:00'
+                        opening_time: 07:00:00
+                      friday:
+                      - closing_time: '21:00:00'
+                        opening_time: 07:00:00
+                      saturday:
+                      - closing_time: '21:00:00'
+                        opening_time: 07:00:00
+                      sunday:
+                      - closing_time: '21:00:00'
+                        opening_time: 07:00:00
+                  services:
+                  - shuttle
+                  supplier: 47
+                metadata:
+                  next_page: null
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cars/depots/reviews/scores:
+    post:
+      description: Use this endpoint to return the score breakdown for the specified depots together with the overall number of reviews and score. </br></br>- Please note that the **ratings score is based on all traveller traffic across Booking.com/cars**, and may not necessarily reflect the experience of your own customers.</br></br> - If you choose to display or use these ratings, you are responsible for ensuring that your travellers are properly informed about what these scores represent.
+      summary: Booking.com Depot Scores
+      operationId: carsDepotsReviewsScores
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      tags:
+      - Cars
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                maximum_results:
+                  description: The maximum number of results to return.
+                  type: integer
+                  multipleOf: 10
+                  minimum: 10
+                  maximum: 100
+                  default: 100
+                page:
+                  description: Pagination token used to retrieve the next page of results. Obtained from `next_page`.
+                  type: string
+            example:
+              maximum_results: 10
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      description: ''
+                      type: object
+                      properties:
+                        id:
+                          description: Uniquely identifies a depot. The full list can be obtained by calling [/cars/depots](#/cars/depots).
+                          type: integer
+                          minimum: 1
+                          example: 5944
+                        breakdown:
+                          description: 'Review scores breakdown for each criteria. List of criteria includes: cleanliness, condition, drop_off_speed, efficiency, expense, location, pick_up_speed.'
+                          type: object
+                          patternProperties:
+                            ^(cleanliness|condition|drop_off_speed|friendliness|likeliness_rent_again|location|pick_up_speed|value_for_money)$:
+                              type: object
+                              properties:
+                                score:
+                                  description: A decimal number indicating the review score of this criteria, in the range 1..10.
+                                  type:
+                                  - number
+                                  - 'null'
+                                  multipleOf: 0.1
+                                  minimum: 1
+                                  maximum: 10
+                        number_of_reviews:
+                          description: Number of validated reviews for this depot.
+                          type:
+                          - integer
+                          - 'null'
+                          minimum: 0
+                        score:
+                          description: A decimal number indicating the current review score of this depot, in the range 1..10.
+                          type:
+                          - number
+                          - 'null'
+                          multipleOf: 0.1
+                          minimum: 1
+                          maximum: 10
+                  metadata:
+                    description: Metadata about the request.
+                    type: object
+                    properties:
+                      next_page:
+                        description: Indicates that more results are available. Use this pagination token to retrieve the next page of results (via parameter `page`).
+                        type:
+                        - string
+                        - 'null'
+              example:
+                request_id: 01fr9ez700exycb98w90w5r9sh
+                data:
+                - id: 5944
+                  breakdown:
+                    cleanliness:
+                      score: 8.7
+                    condition:
+                      score: 8.7
+                    drop_off_speed:
+                      score: 8.7
+                    friendliness:
+                      score: null
+                    likeliness_rent_again:
+                      score: 8.7
+                    location:
+                      score: 8.7
+                    pick_up_speed:
+                      score: 8.7
+                    value_for_money:
+                      score: 8.7
+                  number_of_reviews: 105
+                  score: 9.1
+                metadata:
+                  next_page: null
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cars/details:
+    post:
+      description: Use this endpoint to fetch car details like bag capacity, number of doors, brand and model, etc.
+      summary: Booking.com Car Details
+      operationId: carsDetails
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      tags:
+      - Cars
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                last_modified:
+                  description: The last modified date-time, only returns depots newer than this timestamp. The value should be within last 7 days
+                  example: '2025-12-01T11:05:00+00:00'
+                  format: date-time
+                  type: string
+                maximum_results:
+                  description: The maximum number of results to return.
+                  type: integer
+                  multipleOf: 10
+                  minimum: 10
+                  maximum: 100
+                  default: 100
+                page:
+                  description: Pagination token used to retrieve the next page of results. Obtained from `next_page`.
+                  type: string
+            example:
+              last_modified: '2025-12-01T11:05:00+00:00'
+              maximum_results: 100
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      description: All static information related to cars.
+                      properties:
+                        id:
+                          description: Unique car's ID.
+                          type: integer
+                          minimum: 1
+                        capacity:
+                          description: Car's capacity
+                          type: object
+                          properties:
+                            bags:
+                              description: Car's baggage capacity.
+                              type:
+                              - object
+                              - 'null'
+                              properties:
+                                large:
+                                  description: Number of large bags.
+                                  type: number
+                                  minimum: 0
+                                small:
+                                  description: Number of small bags.
+                                  type: number
+                                  minimum: 0
+                            doors:
+                              description: Number of doors in the car.
+                              type: string
+                            seats:
+                              description: Number of seats in the car.
+                              type: string
+                        features:
+                          description: List of possible car's features.
+                          type: array
+                          items:
+                            type: string
+                            enum:
+                            - air_conditioning
+                            - all_wheel_drive
+                        image:
+                          description: Car's image URL.
+                          type: string
+                        make:
+                          description: Car's maker/brand.
+                          type: string
+                        model:
+                          description: Car's model.
+                          type: string
+                        specification:
+                          description: Car's specification.
+                          properties:
+                            code:
+                              description: Car's code in [ACRISS Standard](https://www.acriss.org/car-codes/expanded-matrix/).
+                              type: string
+                            description:
+                              description: Car Description Based on [ACRISS Category and Type](https://www.acriss.org/car-codes/expanded-matrix/).
+                              type: string
+                            fuel:
+                              description: Car's fuel type.
+                              type: string
+                              enum:
+                              - electric
+                              - petrol
+                              - plug_in_hybrid
+                              - multi_fuel
+                              - diesel
+                              - hybrid
+                              - lpg
+                              - hydrogen
+                              - ethanol
+                              - unspecified
+                            transmission:
+                              description: Car's transmission.
+                              type: string
+                              enum:
+                              - automatic
+                              - manual
+                        supplier:
+                          description: Related supplier id.
+                          type: integer
+                          minimum: 1
+                      type: object
+                  metadata:
+                    description: Metadata about the request.
+                    type: object
+                    properties:
+                      next_page:
+                        description: Indicates that more results are available. Use this pagination token to retrieve the next page of results (via parameter `page`).
+                        type:
+                        - string
+                        - 'null'
+              example:
+                request_id: 01fr9ez700exycb98w90w5r9sh
+                data:
+                - id: 37715
+                  capacity:
+                    bags:
+                      large: 1
+                      small: 1
+                    doors: 4/2
+                    seats: 4+2
+                  features:
+                  - air_conditioning
+                  - all_wheel_drive
+                  image: https://example.com/image.jpg
+                  make: hyundai
+                  model: elantra
+                  specification:
+                    code: ECAR
+                    description: economy
+                    fuel: petrol
+                    transmission: automatic
+                  supplier: 423
+                metadata:
+                  next_page: null
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cars/suppliers:
+    post:
+      description: Use this endpoint to fetch a list of car rental suppliers. <br/>You can use a supplier ID (or an array of them), to retrieve specific details. <br/>Alternatively, if you do not add any ID in the request, the response will include all suppliers.
+      summary: Booking.com Suppliers
+      operationId: carsSuppliers
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      tags:
+      - Cars
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                maximum_results:
+                  description: The maximum number of results to return.
+                  type: integer
+                  multipleOf: 10
+                  minimum: 10
+                  maximum: 100
+                  default: 100
+                page:
+                  description: Pagination token used to retrieve the next page of results. Obtained from `next_page`.
+                  type: string
+                suppliers:
+                  description: Defines the suppliers that should be returned. Without it all suppliers will be returned
+                  type: array
+                  items:
+                    description: Uniquely identifies a vehicle supplier. The full list can be obtained by calling /cars/suppliers.
+                    type: integer
+                    minimum: 1
+                  maxItems: 100
+            example:
+              suppliers:
+              - 62
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      description: All static information related to an vehicle supplier.
+                      type: object
+                      properties:
+                        id:
+                          description: Uniquely identifies a vehicle supplier. The full list can be obtained by calling /cars/suppliers.
+                          type: integer
+                          minimum: 1
+                        logo:
+                          description: Supplier logo image URL.
+                          type: string
+                          format: uri
+                        name:
+                          description: Brand name of the vehicle supplier.
+                          type: string
+                  metadata:
+                    title: MetadataOutput
+                    description: Metadata about the request.
+                    type: object
+                    properties:
+                      next_page:
+                        description: Indicates that more results are available. Use this pagination token to retrieve the next page of results (via parameter `page`).
+                        type:
+                        - string
+                        - 'null'
+                      total_results:
+                        description: The total number of results available.
+                        type: integer
+                        minimum: 0
+              example:
+                request_id: 01fr9ez700exycb98w90w5r9sh
+                data:
+                - id: 62
+                  name: Budget
+                  logo: https://example.com/path_to_the_logo.jpeg
+                metadata:
+                  next_page: null
+                  total_results: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cars/constants:
+    post:
+      summary: Booking.com Car Constants
+      description: This endpoint returns a list of relevant car constants names in the specified languages. For example, calling with the parameters {"languages":"en-us","fr"} will return the list in English (US) and French. To retrieve the full list, make the request with an empty body.
+      operationId: carsConstants
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      tags:
+      - Cars
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: CarsConstantsInput
+              type: object
+              properties:
+                constants:
+                  description: A list of car rental constant types to filter the results by. This allows you to narrow down the result based on particular criteria, such as fuel_policy, payment_timings etc.
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - depot_services
+                    - fuel_policies
+                    - fuel_types
+                    - general
+                    - payment_timings
+                    - transmission
+                languages:
+                  type: array
+                  items:
+                    description: 'A [IETF language tag code](https://en.wikipedia.org/wiki/IETF_language_tag) that uniquely identifies a supported human language or dialect. **Note:** Demand API only accepts lowercase for the language codes. Examples: "nl" for Dutch/Nederlands or "en-us" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.'
+                    type: string
+                    pattern: ^[a-z]{2}(-[a-z]{2})?$
+                    example: en-us
+                  default:
+                  - en-gb
+            example:
+              languages:
+              - de
+              - en-gb
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                title: CarsConstantsOutput
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    title: ConstantsDataOutput
+                    type: object
+                    properties:
+                      depot_services:
+                        title: CarsConstant
+                        description: Id and translated names for the constant.
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            title: TranslatedString
+                            description: A string localised in multiple languages.
+                            type: object
+                            patternProperties:
+                              ^[a-z]{2}(-[a-z]{2})$:
+                                description: The content localised in this language.
+                                type:
+                                - string
+                                - 'null'
+                      fuel_policies:
+                        title: CarsConstant
+                        description: Id and translated names for the constant.
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            title: TranslatedString
+                            description: A string localised in multiple languages.
+                            type: object
+                            patternProperties:
+                              ^[a-z]{2}(-[a-z]{2})$:
+                                description: The content localised in this language.
+                                type:
+                                - string
+                                - 'null'
+                      fuel_types:
+                        title: CarsConstant
+                        description: Id and translated names for the constant.
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            title: TranslatedString
+                            description: A string localised in multiple languages.
+                            type: object
+                            patternProperties:
+                              ^[a-z]{2}(-[a-z]{2})$:
+                                description: The content localised in this language.
+                                type:
+                                - string
+                                - 'null'
+                      general:
+                        title: CarsConstant
+                        description: Id and translated names for the constant.
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            title: TranslatedString
+                            description: A string localised in multiple languages.
+                            type: object
+                            patternProperties:
+                              ^[a-z]{2}(-[a-z]{2})$:
+                                description: The content localised in this language.
+                                type:
+                                - string
+                                - 'null'
+                      payment_timings:
+                        title: CarsConstant
+                        description: Id and translated names for the constant.
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            title: TranslatedString
+                            description: A string localised in multiple languages.
+                            type: object
+                            patternProperties:
+                              ^[a-z]{2}(-[a-z]{2})$:
+                                description: The content localised in this language.
+                                type:
+                                - string
+                                - 'null'
+                      transmission:
+                        title: CarsConstant
+                        description: Id and translated names for the constant.
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            title: TranslatedString
+                            description: A string localised in multiple languages.
+                            type: object
+                            patternProperties:
+                              ^[a-z]{2}(-[a-z]{2})$:
+                                description: The content localised in this language.
+                                type:
+                                - string
+                                - 'null'
+              example:
+                request_id: 01jpvx9va93ghgwxq7zypagvdr
+                data:
+                  depot_services:
+                  - id: meet_greet
+                    name:
+                      de: Meet & Greet
+                      en-gb: Meet & Greet
+                  - id: shuttle
+                    name:
+                      de: Shuttlebus
+                      en-gb: Shuttle Bus
+                  fuel_policies:
+                  - id: free_tank
+                    name:
+                      de: Kostenlose Tankfüllung
+                      en-gb: Free Tank
+                  - id: prepay_no_refunds
+                    name:
+                      de: Vorab-Einkauf
+                      en-gb: Pre-Purchase
+                  - id: prepay_part_refunds
+                    name:
+                      de: Vorab-Einkauf (Teilerstattung)
+                      en-gb: Pre-purchase (partial refund)
+                  - id: prepay_refunds
+                    name:
+                      de: Vorab-Einkauf
+                      en-gb: Pre-Purchase
+                  - id: return_same
+                    name:
+                      de: Gleiche Tankfüllung
+                      en-gb: Like for like
+                  fuel_types:
+                  - id: electric
+                    name:
+                      de: Rein elektrisch
+                      en-gb: Fully electric
+                  - id: hybrid
+                    name:
+                      de: Hybrid
+                      en-gb: Hybrid
+                  - id: petrol
+                    name:
+                      de: Benzin
+                      en-gb: Petrol
+                  - id: plug_in_hybrid
+                    name:
+                      de: Plug-in-Hybrid
+                      en-gb: Plug-in hybrid
+                  general:
+                  - id: air_conditioning
+                    name:
+                      de: Flughafen (im Terminal)
+                      en-gb: Airport (in terminal)
+                  - id: airport
+                    name:
+                      de: Klimaanlage
+                      en-gb: Air Conditioning
+                  - id: free_cancellation
+                    name:
+                      de: Kostenlose Stornierung
+                      en-gb: Free cancellation
+                  - id: kilometers
+                    name:
+                      de: km
+                      en-gb: km
+                  - id: limited
+                    name:
+                      de: Begrenzt
+                      en-gb: Limited
+                  - id: miles
+                    name:
+                      de: Meilen
+                      en-gb: miles
+                  - id: n_large_bags
+                    name:
+                      de: N große Koffer
+                      en-gb: N Large bags
+                  - id: n_small_bags
+                    name:
+                      de: N kleine Koffer
+                      en-gb: N Small bags
+                  payment_timings:
+                  - id: part_pay
+                    name:
+                      de: Teils jetzt zahlen, teils später
+                      en-gb: Pay part now, part later
+                  - id: pay_now
+                    name:
+                      de: Jetzt zahlbar
+                      en-gb: Pay now
+                  transmission:
+                  - id: automatic
+                    name:
+                      de: Automatik
+                      en-gb: Automatic
+                  - id: manual
+                    name:
+                      de: Schaltgetriebe
+                      en-gb: Manual
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    AffiliateIdHeader:
+      in: header
+      name: X-Affiliate-Id
+      schema:
+        type: integer
+      required: true
+      description: Include here your Affiliate identifier number
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: string
+x-tagGroups:
+- name: Travel services
+  tags:
+  - Accommodations
+  - Cars
+- name: Common
+  tags:
+  - Common/locations
+  - Common/payments
+  - Common/languages
+- name: Orders
+  tags:
+  - Orders
+- name: Messaging
+  tags:
+  - Messages
+  - Conversations
+  - Attachments

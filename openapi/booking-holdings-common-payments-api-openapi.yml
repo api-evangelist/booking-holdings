@@ -1,0 +1,169 @@
+openapi: 3.1.0
+info:
+  title: Booking.com Demand Accommodations Common/payments API
+  version: '3.1'
+  summary: "The Booking.com Demand API enables Affiliate Partners to access Booking.com's travel inventory, including accommodations, car rentals, and flights. \n\nUse Demand API to search, retrieve details, check availability, manage bookings and run reports using orders details.\n\n- RESTful API with JSON responses.\n- Make HTTPS POST requests to interact with endpoints.\n- Requires authentication using your Affiliate ID and token credentials.\n\n[Check the try out guide!](/demand/docs/getting-started/try-out-the-api)\n"
+  x-last-validated: '2026-06-02'
+  x-generated-from: documentation
+  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+servers:
+- url: https://demandapi.booking.com/3.1
+  description: Production environment
+- url: https://demandapi-sandbox.booking.com/3.1
+  description: Sandbox environment
+security:
+- BearerAuth: []
+tags:
+- name: Common/payments
+  x-displayName: Payments
+  description: Provides generic payment-related endpoints, including supported currencies and payment types.
+paths:
+  /common/payments/cards:
+    post:
+      summary: Booking.com Payment Cards
+      description: This endpoint returns a list of supported payment cards and their names in English. Examples of payment types are the different credit and debit cards. <br/><br/>To get the full list call the endpoint passing an empty body. The codes returned are what is used as input and output for other endpoints.
+      operationId: commonPaymentsCards
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      tags:
+      - Common/payments
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                title: CardsDataOutput
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      title: PaymentCardOutput
+                      description: The payment card identifier code and its designation in English.
+                      type: object
+                      properties:
+                        id:
+                          description: A signed integer number that uniquely identifies a payment type. Examples of payment types are the different credit and debit cards. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonpayments/common/payments/cards" target="_blank">common/payments/cards</a>.
+                          type: integer
+                          minimum: 1
+                        name:
+                          type: string
+              example:
+                request_id: 01fr9ez700exycb98w90w5r9sh
+                data:
+                - id: 1
+                  name: American Express
+                - '...'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /common/payments/currencies:
+    post:
+      summary: Booking.com Currencies
+      description: This endpoint returns a list of currency codes and their names in the selected languages. To get the full list call the endpoint passing an empty body. <br/><br/>The currency codes returned are what is used as input and output for other endpoints.
+      operationId: commonPaymentsCurrencies
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      tags:
+      - Common/payments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: CurrenciesInput
+              type: object
+              properties:
+                languages:
+                  type: array
+                  items:
+                    description: 'A [IETF language tag code](https://en.wikipedia.org/wiki/IETF_language_tag) that uniquely identifies a supported human language or dialect. **Note:** Demand API only accepts lowercase for the language codes. Examples: "nl" for Dutch/Nederlands or "en-us" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.'
+                    type: string
+                    pattern: ^[a-z]{2}(-[a-z]{2})?$
+                    example: en-us
+                  default:
+                  - en-gb
+            example:
+              languages:
+              - en-gb
+              - zh-cn
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                title: CurrenciesOutput
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      title: CurrencyOutput
+                      description: The ISO 4217 currency code and its designation in the selected language.
+                      type: object
+                      properties:
+                        id:
+                          description: A three-letter code that uniquely identifies a monetary currency as defined by the ISO 4217 standard. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonpayments/common/payments/currencies" target="_blank">common/payments/currencies</a>.
+                          type: string
+                          pattern: ^[A-Z]{3}$
+                          example: EUR
+                        name:
+                          title: TranslatedString
+                          description: A string localised in multiple languages.
+                          type: object
+                          patternProperties:
+                            ^[a-z]{2}(-[a-z]{2})$:
+                              description: The content localised in this language.
+                              type:
+                              - string
+                              - 'null'
+              example:
+                request_id: 01fr9ez700exycb98w90w5r9sh
+                data:
+                - id: AED
+                  name:
+                    en-gb: U.A.E. dirham
+                    zh-cn: 阿联酋迪拉姆
+                - '...'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    AffiliateIdHeader:
+      in: header
+      name: X-Affiliate-Id
+      schema:
+        type: integer
+      required: true
+      description: Include here your Affiliate identifier number
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: string
+x-tagGroups:
+- name: Travel services
+  tags:
+  - Accommodations
+  - Cars
+- name: Common
+  tags:
+  - Common/locations
+  - Common/payments
+  - Common/languages
+- name: Orders
+  tags:
+  - Orders
+- name: Messaging
+  tags:
+  - Messages
+  - Conversations
+  - Attachments

@@ -1,0 +1,188 @@
+openapi: 3.1.0
+info:
+  title: Booking.com Demand Accommodations Conversations API
+  version: '3.1'
+  summary: "The Booking.com Demand API enables Affiliate Partners to access Booking.com's travel inventory, including accommodations, car rentals, and flights. \n\nUse Demand API to search, retrieve details, check availability, manage bookings and run reports using orders details.\n\n- RESTful API with JSON responses.\n- Make HTTPS POST requests to interact with endpoints.\n- Requires authentication using your Affiliate ID and token credentials.\n\n[Check the try out guide!](/demand/docs/getting-started/try-out-the-api)\n"
+  x-last-validated: '2026-06-02'
+  x-generated-from: documentation
+  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+servers:
+- url: https://demandapi.booking.com/3.1
+  description: Production environment
+- url: https://demandapi-sandbox.booking.com/3.1
+  description: Sandbox environment
+security:
+- BearerAuth: []
+tags:
+- name: Conversations
+  x-displayName: Conversations
+  description: Provides endpoints to retrieve and manage messaging conversations. </br></br>Use these endpoints to list conversations, fetch conversation details, and track updates.
+paths:
+  /messages/conversations:
+    post:
+      summary: Booking.com Retrieve a Conversation
+      description: 'Retrieves a conversation accessible to the authenticated user, including message history and participants.
+
+        '
+      operationId: messagesConversations
+      tags:
+      - Conversations
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: RetrieveConversationRequest
+              type: object
+              properties:
+                accommodation:
+                  type: string
+                  description: Unique identifier of the property.
+              required:
+              - accommodation
+              oneOf:
+              - required:
+                - reservation
+                title: InputByreservation
+                properties:
+                  reservation:
+                    type: string
+                    description: Unique identifier of the reservation.
+              - required:
+                - conversation
+                title: InputByconversation
+                properties:
+                  conversation:
+                    type: string
+                    description: Unique identifier of the conversation.
+            examples:
+              InputByconversation:
+                summary: Retrieve conversation based on accommodation and conversation ID.
+                value:
+                  accommodation: '6819547'
+                  conversation: c3cc6522-aa63-559d-99f1-94efdd527c3c
+              InputByreservation:
+                summary: Retrieve conversation based on accommodation and reservation ID.
+                value:
+                  accommodation: '6819547'
+                  reservation: '4338284887'
+      responses:
+        '200':
+          description: Conversation retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                    description: Unique identifier for this request. Provide this ID when contacting support.
+                  data:
+                    type: object
+                    properties:
+                      conversation:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: Unique identifier of the conversation.
+                          reservation:
+                            type: string
+                            description: Unique identifier of the reservation.
+                          messages:
+                            type: array
+                            description: List of messages in the conversation.
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  description: Unique identifier of the message.
+                                sender:
+                                  type: string
+                                  description: Unique identifier of the sender.
+                                reply_to:
+                                  type: string
+                                  description: Message ID this message replies to (if applicable).
+                                content:
+                                  type: string
+                                  description: Message text content.
+                                attachments:
+                                  type: array
+                                  items:
+                                    type: string
+                                    description: Attachment IDs included with the message.
+                                timestamp:
+                                  type: string
+                                  format: date-time
+                                  description: Timestamp in ISO 8601 format (UTC) when the message was sent.
+                          participants:
+                            type: array
+                            description: List of participants in the conversation.
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  description: Unique identifier of the participant.
+                                metadata:
+                                  type: object
+                                  description: Additional participant metadata.
+              example:
+                request_id: 7889a8c0-aa43-494c-863d-72d2306849c1
+                data:
+                  conversation:
+                    id: c3cc6522-aa63-559d-99f1-94efdd527c3c
+                    reservation: '4338284887'
+                    messages:
+                    - id: af3d7fd0-1c50-11f0-81cd-6d243d208da3
+                      sender: 6c22a16d-a3bd-5f5b-82d9-ce1030f21b1f
+                      reply_to: c3cc6522-aa63-559d-99f1-94efdd527c3c
+                      content: Thank you for choosing Demand API Messaging Test Hotel. We are looking forward to your stay
+                      attachments: []
+                      timestamp: '2025-04-18T12:28:51.149Z'
+                    participants:
+                    - id: 5dba2525-2c49-5d2c-91cc-7195526c0c7a
+                      metadata:
+                        type: guest
+                    - id: 6c22a16d-a3bd-5f5b-82d9-ce1030f21b1f
+                      metadata:
+                        type: property
+                        accommodation_id: '6819547'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    AffiliateIdHeader:
+      in: header
+      name: X-Affiliate-Id
+      schema:
+        type: integer
+      required: true
+      description: Include here your Affiliate identifier number
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: string
+x-tagGroups:
+- name: Travel services
+  tags:
+  - Accommodations
+  - Cars
+- name: Common
+  tags:
+  - Common/locations
+  - Common/payments
+  - Common/languages
+- name: Orders
+  tags:
+  - Orders
+- name: Messaging
+  tags:
+  - Messages
+  - Conversations
+  - Attachments

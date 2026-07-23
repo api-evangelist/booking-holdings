@@ -1,0 +1,242 @@
+openapi: 3.1.0
+info:
+  title: Booking.com Demand Accommodations Attachments API
+  version: '3.1'
+  summary: "The Booking.com Demand API enables Affiliate Partners to access Booking.com's travel inventory, including accommodations, car rentals, and flights. \n\nUse Demand API to search, retrieve details, check availability, manage bookings and run reports using orders details.\n\n- RESTful API with JSON responses.\n- Make HTTPS POST requests to interact with endpoints.\n- Requires authentication using your Affiliate ID and token credentials.\n\n[Check the try out guide!](/demand/docs/getting-started/try-out-the-api)\n"
+  x-last-validated: '2026-06-02'
+  x-generated-from: documentation
+  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+servers:
+- url: https://demandapi.booking.com/3.1
+  description: Production environment
+- url: https://demandapi-sandbox.booking.com/3.1
+  description: Sandbox environment
+security:
+- BearerAuth: []
+tags:
+- name: Attachments
+  x-displayName: Attachments
+  description: Provides endpoints for handling message attachments. </br></br>Use these endpoints to upload and download images shared within conversations.
+paths:
+  /messages/attachments/upload:
+    post:
+      summary: Booking.com Upload an Attachment
+      description: 'Uploads a file to be used as a message attachment.
+
+        The response includes an attachment ID to reference when sending messages.
+
+        '
+      operationId: messagesAttachmentsUpload
+      tags:
+      - Attachments
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: UploadAttachmentRequest
+              type: object
+              required:
+              - conversation
+              - accommodation
+              - file_size
+              - file_name
+              - file_type
+              - file_content
+              properties:
+                conversation:
+                  type: string
+                  description: Unique identifier of the conversation.
+                accommodation:
+                  type: string
+                  description: Unique identifier of the property.
+                file_size:
+                  type: integer
+                  description: Size of the file in bytes.
+                file_name:
+                  type: string
+                  description: Original file name including extension.
+                file_type:
+                  type: string
+                  description: MIME type of the file.
+                file_content:
+                  type: string
+                  description: Base64-encoded content of the file.
+            example:
+              accommodation: '6819547'
+              conversation: 8586a789-44f4-5521-9f27-f5efd097cba6
+              file_size: 17580
+              file_name: a3e062a0-3e6b-4592-9df2-64cf83688084.jpg
+              file_type: image/jpeg
+              file_content: /9j/4AAQSkZJRgABAQACWAJYAAD/2wCEAAgGBgc
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /messages/attachments/download:
+    post:
+      summary: Booking.com Download a Message Attachment
+      description: 'Retrieves a file that was attached to a message. The response includes the file''s content as a base64-encoded string.
+
+        '
+      operationId: messagesAttachmentsDownload
+      tags:
+      - Attachments
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: DownloadAttachmentRequest
+              type: object
+              required:
+              - conversation
+              - accommodation
+              - attachment
+              properties:
+                conversation:
+                  type: string
+                  description: The unique identifier of the conversation that contains the attachment.
+                accommodation:
+                  type: string
+                  description: The unique identifier of the property where the conversation occurred.
+                attachment:
+                  type: string
+                  description: The unique identifier of the attachment to download.
+            example:
+              conversation: 8586a789-44f4-5521-9f27-f5efd097cba6
+              accommodation: '6819547'
+              attachment: 9635be40-1dc6-11f0-8893-0130f0cdef6d
+      responses:
+        '200':
+          description: Attachment successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                    description: A unique ID for this request. Please include this when contacting support.
+                  data:
+                    type: object
+                    properties:
+                      conversation:
+                        type: string
+                        description: The ID of the conversation the file belongs to.
+                      file_content:
+                        type: string
+                        description: The base64-encoded content of the attachment.
+              example:
+                request_id: 773e2c0d-1ab3-449b-b88a-3d6b5ce09ae7
+                data:
+                  conversation: 8586a789-44f4-5521-9f27-f5efd097cba6
+                  file_content: /9j/4AAQSkZJRgABAQACWAJYAAD/2wCEAAgGBgc...
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /messages/attachments/metadata:
+    post:
+      summary: Booking.com Retrieve Attachment Metadata
+      description: 'Returns metadata for a file uploaded in a message, including its name, type, and size.
+
+        '
+      operationId: messagesAttachmentsMetadata
+      tags:
+      - Attachments
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: AttachmentMetadataRequest
+              type: object
+              required:
+              - conversation
+              - accommodation
+              - attachment
+              properties:
+                conversation:
+                  type: string
+                  description: The unique identifier of the conversation that includes the attachment.
+                accommodation:
+                  type: string
+                  description: The unique identifier of the property associated with the conversation.
+                attachment:
+                  type: string
+                  description: The unique identifier of the attachment whose metadata is being requested.
+            example:
+              conversation: 8586a789-44f4-5521-9f27-f5efd097cba6
+              accommodation: '6819547'
+              attachment: 9635be40-1dc6-11f0-8893-0130f0cdef6d
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      metadata:
+                        type: object
+                        properties:
+                          file_size:
+                            description: The size of the attachment (up to 1MB)
+                            type: integer
+                          file_name:
+                            description: Original name of the file, including extension.
+                            type: string
+                          file_type:
+                            description: MIME type of the file (e.g., image/jpeg).
+                            type: string
+              example:
+                request_id: fec1a9bb-9c85-42fc-a109-3707e1ed4de7
+                data:
+                  metadata:
+                    file_name: 1ce51916-d8de-4144-a4be-265ccae5df9d.jpg
+                    file_type: image/jpeg
+                    file_size: '92620'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    AffiliateIdHeader:
+      in: header
+      name: X-Affiliate-Id
+      schema:
+        type: integer
+      required: true
+      description: Include here your Affiliate identifier number
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: string
+x-tagGroups:
+- name: Travel services
+  tags:
+  - Accommodations
+  - Cars
+- name: Common
+  tags:
+  - Common/locations
+  - Common/payments
+  - Common/languages
+- name: Orders
+  tags:
+  - Orders
+- name: Messaging
+  tags:
+  - Messages
+  - Conversations
+  - Attachments

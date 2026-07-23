@@ -1,0 +1,773 @@
+openapi: 3.1.0
+info:
+  title: Booking.com Demand Accommodations Common/locations API
+  version: '3.1'
+  summary: "The Booking.com Demand API enables Affiliate Partners to access Booking.com's travel inventory, including accommodations, car rentals, and flights. \n\nUse Demand API to search, retrieve details, check availability, manage bookings and run reports using orders details.\n\n- RESTful API with JSON responses.\n- Make HTTPS POST requests to interact with endpoints.\n- Requires authentication using your Affiliate ID and token credentials.\n\n[Check the try out guide!](/demand/docs/getting-started/try-out-the-api)\n"
+  x-last-validated: '2026-06-02'
+  x-generated-from: documentation
+  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+servers:
+- url: https://demandapi.booking.com/3.1
+  description: Production environment
+- url: https://demandapi-sandbox.booking.com/3.1
+  description: Sandbox environment
+security:
+- BearerAuth: []
+tags:
+- name: Common/locations
+  x-displayName: Locations
+  description: 'Provides identifiers for a wide range of geographical locations, including airports, countries, cities, and regions. </br></br>Use these identifiers to construct your requests. </br></br>Note: These identifiers are available across all travel services and you can use them for both accommodotation and car rentals requests.'
+paths:
+  /common/locations/airports:
+    post:
+      summary: Booking.com Airports
+      description: 'This endpoint returns a list of airport codes and their names in the selected languages. The airports returned may be filtered by a location id. For example, you can get the list of airports in The Netherlands by passing: `{"country":"nl"}`. To get the full list call the endpoint passing an empty body. The airport codes returned are what is used as input and output for other endpoints. This endpoint implements pagination of the results.'
+      operationId: commonLocationsAirports
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      tags:
+      - Common/locations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: AirportsInput
+              type: object
+              properties:
+                airport:
+                  description: A three-letter code that uniquely identifies an airport as defined by the International Air Transport Association (IATA). The full list can be obtained by calling  <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/airports" target="_blank">common/locations/airports</a>.
+                  type: string
+                  pattern: ^[A-Z]{3}$
+                  example: AMS
+                city:
+                  description: A signed integer number that uniquely identifies a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/cities" target="_blank">common/locations/cities</a>.
+                  type: integer
+                country:
+                  description: 'A two-letter code that uniquely identifies a country. This code is defined by the ISO 3166-1 alpha-2 standard (ISO2) as described here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/countries" target="_blank">common/locations/countries</a>.'
+                  type: string
+                  pattern: ^[a-z]{2}$
+                  example: nl
+                district:
+                  description: A signed integer number that uniquely identifies a district. Typically, districts define known areas within a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/districts" target="_blank">common/locations/districts</a>.
+                  type: integer
+                  minimum: 1
+                landmark:
+                  description: A signed integer number that uniquely identifies a relevant geographical landmark, like a monument or a natural attraction. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/landmarks" target="_blank">common/locations/landmarks</a>.
+                  type: integer
+                  minimum: 1
+                languages:
+                  type: array
+                  items:
+                    description: 'An IETF language tag code that uniquely identifies a supported human language or dialect as described here: https://en.wikipedia.org/wiki/IETF_language_tag. Note that in v3 the whole tag is always lowercase. Examples: "nl" for Dutch/Nederlands or "en-us" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.'
+                    type: string
+                    pattern: ^[a-z]{2}(-[a-z]{2})?$
+                    example: en-us
+                  default:
+                  - en-gb
+                page:
+                  description: Pagination token used to retrieve the next page of results. Obtained from `next_page`.
+                  type: string
+                region:
+                  description: A signed integer number that uniquely identifies a geographical region. Regions usually define official administrative areas within a country, but may also include multiple countries and in some cases un-official but popular designations for geographical areas. An example of a region that crosses multiple countries is the Alps in Europe. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/regions" target="_blank">common/locations/regions</a>.
+                  type: integer
+                  minimum: 1
+                rows:
+                  maximum: 1000
+                  description: The maximum number of results to return.
+                  type: integer
+                  multipleOf: 10
+                  minimum: 10
+                  default: 100
+            example:
+              country: nl
+              languages:
+              - en-gb
+              - zh-cn
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                title: AirportsOutput
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      title: AirportOutput
+                      description: The three-letter IATA airport code and the translated name(s).
+                      type: object
+                      properties:
+                        id:
+                          description: A three-letter code that uniquely identifies an airport as defined by the International Air Transport Association (IATA). The full list can be obtained by calling  <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/airports" target="_blank">common/locations/airports</a>.
+                          type: string
+                          pattern: ^[A-Z]{3}$
+                          example: AMS
+                        name:
+                          title: TranslatedString
+                          description: A string localised in multiple languages.
+                          type: object
+                          patternProperties:
+                            ^[a-z]{2}(-[a-z]{2})$:
+                              description: The content localised in this language.
+                              type:
+                              - string
+                              - 'null'
+                  next_page:
+                    description: Indicates that more results are available. Use this pagination token to retrieve the next page of results (via parameter `page`). - string - 'null'
+              example:
+                request_id: 01fr9ez700exycb98w90w5r9sh
+                data:
+                - id: AMS
+                  name:
+                    en-gb: Schiphol Airport
+                    zh-cn: 史基浦机场
+                - '...'
+                next_page: null
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /common/locations/cities:
+    post:
+      summary: Booking.com Cities
+      description: 'This endpoint returns a list of city codes and their names in the selected languages. The cities returned may be filtered by a location id. For example, you can get the list of cities in The Netherlands by passing: `{"country":"nl"}`. To get the full list call the endpoint passing an empty body. The city codes returned are what is used as input and output for other endpoints. This endpoint implements pagination of the results.'
+      operationId: commonLocationsCities
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      tags:
+      - Common/locations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: CitiesInput
+              type: object
+              properties:
+                airport:
+                  description: A three-letter code that uniquely identifies an airport as defined by the International Air Transport Association (IATA). The full list can be obtained by calling  <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/airports" target="_blank">common/locations/airports</a>.
+                  type: string
+                  pattern: ^[A-Z]{3}$
+                  example: AMS
+                city:
+                  description: A signed integer number that uniquely identifies a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/cities" target="_blank">common/locations/cities</a>.
+                  type: integer
+                country:
+                  description: 'A two-letter code that uniquely identifies a country. This code is defined by the ISO 3166-1 alpha-2 standard (ISO2) as described here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/countries" target="_blank">common/locations/countries</a>.'
+                  type: string
+                  pattern: ^[a-z]{2}$
+                  example: nl
+                district:
+                  description: A signed integer number that uniquely identifies a district. Typically, districts define known areas within a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/districts" target="_blank">common/locations/districts</a>.
+                  type: integer
+                  minimum: 1
+                landmark:
+                  description: A signed integer number that uniquely identifies a relevant geographical landmark, like a monument or a natural attraction. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/landmarks" target="_blank">common/locations/landmarks</a>.
+                  type: integer
+                  minimum: 1
+                languages:
+                  type: array
+                  items:
+                    description: 'An IETF language tag code that uniquely identifies a supported human language or dialect as described here: https://en.wikipedia.org/wiki/IETF_language_tag. Note that in v3 the whole tag is always lowercase. Examples: "nl" for Dutch/Nederlands or "en-us" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.'
+                    type: string
+                    pattern: ^[a-z]{2}(-[a-z]{2})?$
+                    example: en-us
+                  default:
+                  - en-gb
+                page:
+                  description: Pagination token used to retrieve the next page of results. Obtained from `next_page`.
+                  type: string
+                region:
+                  description: A signed integer number that uniquely identifies a geographical region. Regions usually define official administrative areas within a country, but may also include multiple countries and in some cases un-official but popular designations for geographical areas. An example of a region that crosses multiple countries is the Alps in Europe. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/regions" target="_blank">common/locations/regions</a>.
+                  type: integer
+                  minimum: 1
+                rows:
+                  maximum: 1000
+                  description: The maximum number of results to return.
+                  type: integer
+                  multipleOf: 10
+                  minimum: 10
+                  default: 100
+            example:
+              country: nl
+              languages:
+              - en-gb
+              - zh-cn
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                title: CitiesOutput
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      title: CityOutput
+                      description: The city internal code and the translated name(s).
+                      type: object
+                      properties:
+                        id:
+                          description: A signed integer number that uniquely identifies a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/cities" target="_blank">common/locations/cities</a>.
+                          type: integer
+                        name:
+                          title: TranslatedString
+                          description: A string localised in multiple languages.
+                          type: object
+                          patternProperties:
+                            ^[a-z]{2}(-[a-z]{2})$:
+                              description: The content localised in this language.
+                              type:
+                              - string
+                              - 'null'
+                        coordinates:
+                          title: Coordinates
+                          type: object
+                          properties:
+                            latitude:
+                              type: number
+                              format: double
+                            longitude:
+                              type: number
+                              format: double
+                  next_page:
+                    description: Indicates that more results are available. Use this pagination token to retrieve the next page of results (via parameter `page`).
+                    type:
+                    - string
+                    - 'null'
+              example:
+                request_id: 01fr9ez700exycb98w90w5r9sh
+                data:
+                - id: -2156821
+                  name:
+                    zh-cn: 兹沃勒
+                  coordinates:
+                    latitude: 52.378281
+                    longitude: 4.90007
+                - '...'
+                next_page: '...'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /common/locations/countries:
+    post:
+      summary: Booking.com Countries
+      description: 'This endpoint returns a list of country codes and their names in the selected languages. The countries returned may be filtered by a location id. For example, you can get the list of countries that are associated with the European Alps region by passing: `{"region":1199}`. <br/><br/>To get the full list call the endpoint passing an empty body. The returned country codes are used as input and output for other endpoints. <br/><br/>This endpoint implements pagination of the results.'
+      operationId: commonLocationsCountries
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      tags:
+      - Common/locations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: CountriesInput
+              type: object
+              properties:
+                airport:
+                  description: A three-letter code that uniquely identifies an airport as defined by the International Air Transport Association (IATA). The full list can be obtained by calling  <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/airports" target="_blank">common/locations/airports</a>.
+                  type: string
+                  pattern: ^[A-Z]{3}$
+                  example: AMS
+                city:
+                  description: A signed integer number that uniquely identifies a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/cities" target="_blank">common/locations/cities</a>.
+                  type: integer
+                country:
+                  description: 'A two-letter code that uniquely identifies a country. This code is defined by the ISO 3166-1 alpha-2 standard (ISO2) as described here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/countries" target="_blank">common/locations/countries</a>.'
+                  type: string
+                  pattern: ^[a-z]{2}$
+                  example: nl
+                district:
+                  description: A signed integer number that uniquely identifies a district. Typically, districts define known areas within a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/districts" target="_blank">common/locations/districts</a>.
+                  type: integer
+                  minimum: 1
+                landmark:
+                  description: A signed integer number that uniquely identifies a relevant geographical landmark, like a monument or a natural attraction. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/landmarks" target="_blank">common/locations/landmarks</a>.
+                  type: integer
+                  minimum: 1
+                languages:
+                  type: array
+                  items:
+                    description: 'An IETF language tag code that uniquely identifies a supported human language or dialect as described here: https://en.wikipedia.org/wiki/IETF_language_tag. Note that in v3 the whole tag is always lowercase. Examples: "nl" for Dutch/Nederlands or "en-us" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.'
+                    type: string
+                    pattern: ^[a-z]{2}(-[a-z]{2})?$
+                    example: en-us
+                  default:
+                  - en-gb
+                page:
+                  description: Pagination token used to retrieve the next page of results. Obtained from `next_page`.
+                  type: string
+                region:
+                  description: A signed integer number that uniquely identifies a geographical region. Regions usually define official administrative areas within a country, but may also include multiple countries and in some cases un-official but popular designations for geographical areas. An example of a region that crosses multiple countries is the Alps in Europe. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/regions" target="_blank">common/locations/regions</a>.
+                  type: integer
+                  minimum: 1
+                rows:
+                  maximum: 1000
+                  description: The maximum number of results to return.
+                  type: integer
+                  multipleOf: 10
+                  minimum: 10
+                  default: 100
+            example:
+              languages:
+              - en-gb
+              - zh-cn
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                title: CountriesOutput
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      title: CountryOutput
+                      description: The two-letter ISO2 country code and the translated name(s).
+                      type: object
+                      properties:
+                        id:
+                          description: 'A two-letter code that uniquely identifies a country. This code is defined by the ISO 3166-1 alpha-2 standard (ISO2) as described here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/countries" target="_blank">common/locations/countries</a>.'
+                          type: string
+                          pattern: ^[a-z]{2}$
+                          example: nl
+                        name:
+                          title: TranslatedString
+                          description: A string localised in multiple languages.
+                          type: object
+                          patternProperties:
+                            ^[a-z]{2}(-[a-z]{2})$:
+                              description: The content localised in this language.
+                              type:
+                              - string
+                              - 'null'
+                  next_page:
+                    description: Indicates that more results are available. Use this pagination token to retrieve the next page of results (via parameter `page`).
+                    type:
+                    - string
+                    - 'null'
+              example:
+                request_id: 01fr9ez700exycb98w90w5r9sh
+                data:
+                - id: ad
+                  name:
+                    en-gb: Andorra
+                    zh-cn: 安道尔
+                - '...'
+                next_page: '...'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /common/locations/districts:
+    post:
+      summary: Booking.com Districts
+      description: 'This endpoint returns a list of districts with translations in the selected languages. The districts returned may be filtered by a location id. For example, you can get the list of districts in Amsterdam by passing: `{"city":-2140479}`. <br/><br/>To get the full list call the endpoint passing an empty body. The district ids returned are what is used as input and output for other endpoints.<br/><br/> This endpoint implements pagination of the results.'
+      operationId: commonLocationsDistricts
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      tags:
+      - Common/locations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: DistrictsInput
+              type: object
+              properties:
+                airport:
+                  description: A three-letter code that uniquely identifies an airport as defined by the International Air Transport Association (IATA). The full list can be obtained by calling  <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/airports" target="_blank">common/locations/airports</a>.
+                  type: string
+                  pattern: ^[A-Z]{3}$
+                  example: AMS
+                city:
+                  description: A signed integer number that uniquely identifies a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/cities" target="_blank">common/locations/cities</a>.
+                  type: integer
+                country:
+                  description: 'A two-letter code that uniquely identifies a country. This code is defined by the ISO 3166-1 alpha-2 standard (ISO2) as described here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/countries" target="_blank">common/locations/countries</a>.'
+                  type: string
+                  pattern: ^[a-z]{2}$
+                  example: nl
+                district:
+                  description: A signed integer number that uniquely identifies a district. Typically, districts define known areas within a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/districts" target="_blank">common/locations/districts</a>.
+                  type: integer
+                  minimum: 1
+                landmark:
+                  description: A signed integer number that uniquely identifies a relevant geographical landmark, like a monument or a natural attraction. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/landmarks" target="_blank">common/locations/landmarks</a>.
+                  type: integer
+                  minimum: 1
+                languages:
+                  type: array
+                  items:
+                    description: 'An IETF language tag code that uniquely identifies a supported human language or dialect as described here: https://en.wikipedia.org/wiki/IETF_language_tag. Note that in v3 the whole tag is always lowercase. Examples: "nl" for Dutch/Nederlands or "en-us" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.'
+                    type: string
+                    pattern: ^[a-z]{2}(-[a-z]{2})?$
+                    example: en-us
+                  default:
+                  - en-gb
+                page:
+                  description: Pagination token used to retrieve the next page of results. Obtained from `next_page`.
+                  type: string
+                region:
+                  description: A signed integer number that uniquely identifies a geographical region. Regions usually define official administrative areas within a country, but may also include multiple countries and in some cases un-official but popular designations for geographical areas. An example of a region that crosses multiple countries is the Alps in Europe. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/regions" target="_blank">common/locations/regions</a>.
+                  type: integer
+                  minimum: 1
+                rows:
+                  maximum: 1000
+                  description: The maximum number of results to return.
+                  type: integer
+                  multipleOf: 10
+                  minimum: 10
+                  default: 100
+            example:
+              city: -2140479
+              languages:
+              - en-gb
+              - zh-cn
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                title: DistrictsOutput
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      title: DistrictOutput
+                      description: The district id and the translated name(s).
+                      type: object
+                      properties:
+                        id:
+                          description: A signed integer number that uniquely identifies a district. Typically, districts define known areas within a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/districts" target="_blank">common/locations/districts</a>.
+                          type: integer
+                          minimum: 1
+                        name:
+                          title: TranslatedString
+                          description: A string localised in multiple languages.
+                          type: object
+                          patternProperties:
+                            ^[a-z]{2}(-[a-z]{2})$:
+                              description: The content localised in this language.
+                              type:
+                              - string
+                              - 'null'
+                        coordinates:
+                          title: Coordinates
+                          type: object
+                          properties:
+                            latitude:
+                              type: number
+                              format: double
+                            longitude:
+                              type: number
+                              format: double
+                  next_page:
+                    description: Indicates that more results are available. Use this pagination token to retrieve the next page of results (via parameter `page`).
+                    type:
+                    - string
+                    - 'null'
+              example:
+                request_id: 01fr9ez700exycb98w90w5r9sh
+                data:
+                - id: 145
+                  name:
+                    en-gb: Amsterdam City Centre
+                    zh-cn: 阿姆斯特丹市中心
+                  coordinates:
+                    latitude: 52.378281
+                    longitude: 4.90007
+                - '...'
+                next_page: null
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /common/locations/landmarks:
+    post:
+      summary: Booking.com Landmarks
+      description: 'This endpoint returns a list of relevant geographical landmark codes and their names in the selected languages. The landmarks returned may be filtered by a location id. For example, you can get the list of landmarks that are associated with the city of Paris in France by passing: `{"city":-1456928}`. <br/><br/>To get the full list call the endpoint passing an empty body. The landmark codes returned are what is used as input and output for other endpoints. <br/><br/>This endpoint implements pagination of the results.'
+      operationId: commonLocationsLandmarks
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      tags:
+      - Common/locations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: LandmarksInput
+              type: object
+              properties:
+                airport:
+                  description: A three-letter code that uniquely identifies an airport as defined by the International Air Transport Association (IATA). The full list can be obtained by calling  <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/airports" target="_blank">common/locations/airports</a>.
+                  type: string
+                  pattern: ^[A-Z]{3}$
+                  example: AMS
+                city:
+                  description: A signed integer number that uniquely identifies a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/cities" target="_blank">common/locations/cities</a>.
+                  type: integer
+                country:
+                  description: 'A two-letter code that uniquely identifies a country. This code is defined by the ISO 3166-1 alpha-2 standard (ISO2) as described here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/countries" target="_blank">common/locations/countries</a>.'
+                  type: string
+                  pattern: ^[a-z]{2}$
+                  example: nl
+                district:
+                  description: A signed integer number that uniquely identifies a district. Typically, districts define known areas within a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/districts" target="_blank">common/locations/districts</a>.
+                  type: integer
+                  minimum: 1
+                landmark:
+                  description: A signed integer number that uniquely identifies a relevant geographical landmark, like a monument or a natural attraction. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/landmarks" target="_blank">common/locations/landmarks</a>.
+                  type: integer
+                  minimum: 1
+                languages:
+                  type: array
+                  items:
+                    description: 'An IETF language tag code that uniquely identifies a supported human language or dialect as described here: https://en.wikipedia.org/wiki/IETF_language_tag. Note that in v3 the whole tag is always lowercase. Examples: "nl" for Dutch/Nederlands or "en-us" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.'
+                    type: string
+                    pattern: ^[a-z]{2}(-[a-z]{2})?$
+                    example: en-us
+                  default:
+                  - en-gb
+                page:
+                  description: Pagination token used to retrieve the next page of results. Obtained from `next_page`.
+                  type: string
+                region:
+                  description: A signed integer number that uniquely identifies a geographical region. Regions usually define official administrative areas within a country, but may also include multiple countries and in some cases un-official but popular designations for geographical areas. An example of a region that crosses multiple countries is the Alps in Europe. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/regions" target="_blank">common/locations/regions</a>.
+                  type: integer
+                  minimum: 1
+                rows:
+                  maximum: 1000
+                  description: The maximum number of results to return.
+                  type: integer
+                  multipleOf: 10
+                  minimum: 10
+                  default: 100
+            example:
+              city: -2140479
+              languages:
+              - en-gb
+              - zh-cn
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                title: LandmarksOutput
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      title: LandmarkOutput
+                      description: The landmark internal code and the translated name(s).
+                      type: object
+                      properties:
+                        id:
+                          description: A signed integer number that uniquely identifies a relevant geographical landmark, like a monument or a natural attraction. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/landmarks" target="_blank">common/locations/landmarks</a>.
+                          type: integer
+                          minimum: 1
+                        name:
+                          title: TranslatedString
+                          description: A string localised in multiple languages.
+                          type: object
+                          patternProperties:
+                            ^[a-z]{2}(-[a-z]{2})$:
+                              description: The content localised in this language.
+                              type:
+                              - string
+                              - 'null'
+                        coordinates:
+                          title: Coordinates
+                          type: object
+                          properties:
+                            latitude:
+                              type: number
+                              format: double
+                            longitude:
+                              type: number
+                              format: double
+                  next_page:
+                    description: Indicates that more results are available. Use this pagination token to retrieve the next page of results (via parameter `page`).
+                    type:
+                    - string
+                    - 'null'
+              example:
+                request_id: 01fr9ez700exycb98w90w5r9sh
+                data:
+                - id: 1
+                  coordinates:
+                    latitude: 52.378281
+                    longitude: 4.90007
+                  name:
+                    en-gb: Amsterdam Central Station
+                    zh-cn: 阿姆斯特丹中央车站
+                - '...'
+                next_page: '...'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /common/locations/regions:
+    post:
+      summary: Booking.com Regions
+      description: 'This endpoint returns a list of regions with translations in the selected languages. The regions returned may be filtered by a location id. For example, you can get the list of regions in the Netherlands or that the Netherlands is a part of by passing: `{"country":"nl"}`.  To get the full list call the endpoint passing an empty body. The region ids returned are what is used as input and output for other endpoints. This endpoint implements pagination of the results.'
+      operationId: commonLocationsRegions
+      parameters:
+      - $ref: '#/components/parameters/AffiliateIdHeader'
+      tags:
+      - Common/locations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: RegionsInput
+              type: object
+              properties:
+                airport:
+                  description: A three-letter code that uniquely identifies an airport as defined by the International Air Transport Association (IATA). The full list can be obtained by calling  <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/airports" target="_blank">common/locations/airports</a>.
+                  type: string
+                  pattern: ^[A-Z]{3}$
+                  example: AMS
+                city:
+                  description: A signed integer number that uniquely identifies a city. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/cities" target="_blank">common/locations/cities</a>.
+                  type: integer
+                country:
+                  description: 'A two-letter code that uniquely identifies a country. This code is defined by the ISO 3166-1 alpha-2 standard (ISO2) as described here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/countries" target="_blank">common/locations/countries</a>.'
+                  type: string
+                  pattern: ^[a-z]{2}$
+                  example: nl
+                landmark:
+                  description: A signed integer number that uniquely identifies a relevant geographical landmark, like a monument or a natural attraction. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/landmarks" target="_blank">common/locations/landmarks</a>.
+                  type: integer
+                  minimum: 1
+                languages:
+                  type: array
+                  items:
+                    description: 'An IETF language tag code that uniquely identifies a supported human language or dialect as described here: https://en.wikipedia.org/wiki/IETF_language_tag. Note that in v3 the whole tag is always lowercase. Examples: "nl" for Dutch/Nederlands or "en-us" for English (US). To retrieve the full list of supported languages, call the `/common/languages` endpoint in the same Demand API version you are using.'
+                    type: string
+                    pattern: ^[a-z]{2}(-[a-z]{2})?$
+                    example: en-us
+                  default:
+                  - en-gb
+                page:
+                  description: Pagination token used to retrieve the next page of results. Obtained from `next_page`.
+                  type: string
+                region:
+                  description: A signed integer number that uniquely identifies a geographical region. Regions usually define official administrative areas within a country, but may also include multiple countries and in some cases un-official but popular designations for geographical areas. An example of a region that crosses multiple countries is the Alps in Europe. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/regions" target="_blank">common/locations/regions</a>.
+                  type: integer
+                  minimum: 1
+                rows:
+                  maximum: 1000
+                  description: The maximum number of results to return.
+                  type: integer
+                  multipleOf: 10
+                  minimum: 10
+                  default: 100
+            example:
+              country: nl
+              languages:
+              - en-gb
+              - zh-cn
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                title: RegionsOutput
+                type: object
+                properties:
+                  request_id:
+                    description: Uniquely identifies the request. Please provide this identifier when contacting support.
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      title: RegionOutput
+                      description: The region id and the translated name(s).
+                      type: object
+                      properties:
+                        id:
+                          description: A signed integer number that uniquely identifies a geographical region. Regions usually define official administrative areas within a country, but may also include multiple countries and in some cases un-official but popular designations for geographical areas. An example of a region that crosses multiple countries is the Alps in Europe. The full list can be obtained by calling <a href="/demand/docs/open-api/demand-api/commonlocations/common/locations/regions" target="_blank">common/locations/regions</a>.
+                          type: integer
+                          minimum: 1
+                        name:
+                          title: TranslatedString
+                          description: A string localised in multiple languages.
+                          type: object
+                          patternProperties:
+                            ^[a-z]{2}(-[a-z]{2})$:
+                              description: The content localised in this language.
+                              type:
+                              - string
+                              - 'null'
+                  next_page:
+                    description: Indicates that more results are available. Use this pagination token to retrieve the next page of results (via parameter `page`).
+                    type:
+                    - string
+                    - 'null'
+              example:
+                request_id: 01fr9ez700exycb98w90w5r9sh
+                data:
+                - id: 1003
+                  name:
+                    en-gb: Drenthe
+                    zh-cn: 德伦特省
+                - '...'
+                next_page: null
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    AffiliateIdHeader:
+      in: header
+      name: X-Affiliate-Id
+      schema:
+        type: integer
+      required: true
+      description: Include here your Affiliate identifier number
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: string
+x-tagGroups:
+- name: Travel services
+  tags:
+  - Accommodations
+  - Cars
+- name: Common
+  tags:
+  - Common/locations
+  - Common/payments
+  - Common/languages
+- name: Orders
+  tags:
+  - Orders
+- name: Messaging
+  tags:
+  - Messages
+  - Conversations
+  - Attachments
