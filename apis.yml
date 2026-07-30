@@ -6,7 +6,20 @@ description: >-
   HotelsCombined, Cheapflights, and Momondo. The company connects travelers with accommodations, flights, rental cars,
   restaurant reservations, and travel experiences worldwide.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/booking-holdings.png
 url: https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/apis.yml
 created: '2024-01-01'
 modified: '2026-06-02'
@@ -20,28 +33,151 @@ tags:
   - Restaurants
   - Travel
 apis:
-  - name: Booking.com Demand API
-    description: >-
-      The Booking.com Demand API enables approved Affiliate Partners to access Booking.com's travel inventory —
-      accommodations, car rentals, and flights. A RESTful, RPC-style API (HTTPS POST, JSON) for searching inventory,
-      retrieving details, checking availability, managing orders, and exchanging partner-guest messages. This is Booking
-      Holdings' primary publicly documented developer API; restaurant inventory (OpenTable) and other brand APIs are
-      partner-gated and not included here.
-    humanURL: https://developers.booking.com/demand/docs
-    baseURL: https://demandapi.booking.com/3.1
-    tags:
-      - Accommodations
-      - Car Rentals
-      - Travel
-      - Orders
-      - Affiliate
-    properties:
-      - type: OpenAPI
-        url: openapi/booking-com-demand-api.yaml
-      - type: Documentation
-        url: https://developers.booking.com/demand/docs
-      - type: Authentication
-        url: https://developers.booking.com/demand/docs/getting-started
+- aid: booking-holdings:booking-holdings-accommodations-api
+  name: Booking Holdings Accommodations API
+  description: >-
+    This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints
+    to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed
+    property information.
+  humanURL: https://developers.booking.com/demand/docs
+  baseURL: https://demandapi.booking.com/3.1
+  tags:
+  - Accommodations
+  properties:
+  - type: OpenAPI
+    url: openapi/booking-holdings-accommodations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.booking.com/demand/docs
+  - type: Authentication
+    url: https://developers.booking.com/demand/docs/getting-started
+- aid: booking-holdings:booking-holdings-attachments-api
+  name: Booking Holdings Attachments API
+  description: >-
+    Provides endpoints for handling message attachments. </br></br>Use these endpoints to upload and download
+    images shared within conversations.
+  humanURL: https://developers.booking.com/demand/docs
+  baseURL: https://demandapi.booking.com/3.1
+  tags:
+  - Attachments
+  properties:
+  - type: OpenAPI
+    url: openapi/booking-holdings-attachments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.booking.com/demand/docs
+  - type: Authentication
+    url: https://developers.booking.com/demand/docs/getting-started
+- aid: booking-holdings:booking-holdings-cars-api
+  name: Booking Holdings Cars API
+  description: >-
+    This API collection is specific to the car rentals part of the connected trip.</br></br> Use these
+    endpoints to search for car rentals, check car details and look for depots and suppliers.
+  humanURL: https://developers.booking.com/demand/docs
+  baseURL: https://demandapi.booking.com/3.1
+  tags:
+  - Cars
+  properties:
+  - type: OpenAPI
+    url: openapi/booking-holdings-cars-api-openapi.yml
+  - type: Documentation
+    url: https://developers.booking.com/demand/docs
+  - type: Authentication
+    url: https://developers.booking.com/demand/docs/getting-started
+- aid: booking-holdings:booking-holdings-common-languages-api
+  name: Booking Holdings Common/languages API
+  description: Provides a list of supported language codes for use in API requests.
+  humanURL: https://developers.booking.com/demand/docs
+  baseURL: https://demandapi.booking.com/3.1
+  tags:
+  - Common/languages
+  properties:
+  - type: OpenAPI
+    url: openapi/booking-holdings-common-languages-api-openapi.yml
+  - type: Documentation
+    url: https://developers.booking.com/demand/docs
+  - type: Authentication
+    url: https://developers.booking.com/demand/docs/getting-started
+- aid: booking-holdings:booking-holdings-common-locations-api
+  name: Booking Holdings Common/locations API
+  description: >-
+    Provides identifiers for a wide range of geographical locations, including airports, countries, cities,
+    and regions. </br></br>Use these identifiers to construct your requests. </br></br>Note: These identifiers
+    are available across all travel services and you can use them for both accommodotation and car rentals
+    requests.
+  humanURL: https://developers.booking.com/demand/docs
+  baseURL: https://demandapi.booking.com/3.1
+  tags:
+  - Common/locations
+  properties:
+  - type: OpenAPI
+    url: openapi/booking-holdings-common-locations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.booking.com/demand/docs
+  - type: Authentication
+    url: https://developers.booking.com/demand/docs/getting-started
+- aid: booking-holdings:booking-holdings-common-payments-api
+  name: Booking Holdings Common/payments API
+  description: >-
+    Provides generic payment-related endpoints, including supported currencies and payment types.
+  humanURL: https://developers.booking.com/demand/docs
+  baseURL: https://demandapi.booking.com/3.1
+  tags:
+  - Common/payments
+  properties:
+  - type: OpenAPI
+    url: openapi/booking-holdings-common-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.booking.com/demand/docs
+  - type: Authentication
+    url: https://developers.booking.com/demand/docs/getting-started
+- aid: booking-holdings:booking-holdings-conversations-api
+  name: Booking Holdings Conversations API
+  description: >-
+    Provides endpoints to retrieve and manage messaging conversations. </br></br>Use these endpoints to
+    list conversations, fetch conversation details, and track updates.
+  humanURL: https://developers.booking.com/demand/docs
+  baseURL: https://demandapi.booking.com/3.1
+  tags:
+  - Conversations
+  properties:
+  - type: OpenAPI
+    url: openapi/booking-holdings-conversations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.booking.com/demand/docs
+  - type: Authentication
+    url: https://developers.booking.com/demand/docs/getting-started
+- aid: booking-holdings:booking-holdings-messages-api
+  name: Booking Holdings Messages API
+  description: >-
+    Provides endpoints for two-way post-booking communication between guests and properties. </br></br>Use
+    these endpoints to send and retrieve messages, exchange images, and check conversation details.
+  humanURL: https://developers.booking.com/demand/docs
+  baseURL: https://demandapi.booking.com/3.1
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/booking-holdings-messages-api-openapi.yml
+  - type: Documentation
+    url: https://developers.booking.com/demand/docs
+  - type: Authentication
+    url: https://developers.booking.com/demand/docs/getting-started
+- aid: booking-holdings:booking-holdings-orders-api
+  name: Booking Holdings Orders API
+  description: >-
+    Enables management of booking orders within the Demand API. </br></br>Use these endpoints to preview
+    and create new orders, check order details, cancel or modify existing orders. This collection is required
+    to integrate booking and order management functionality.
+  humanURL: https://developers.booking.com/demand/docs
+  baseURL: https://demandapi.booking.com/3.1
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/booking-holdings-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developers.booking.com/demand/docs
+  - type: Authentication
+    url: https://developers.booking.com/demand/docs/getting-started
 common:
   - type: AgenticAccess
     url: agentic-access/booking-holdings-agentic-access.yml
