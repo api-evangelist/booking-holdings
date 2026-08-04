@@ -1,0 +1,30 @@
+{
+  "provider": "booking-holdings",
+  "sources": [
+    "booking-holdings-accommodations-api-openapi.yml",
+    "booking-holdings-attachments-api-openapi.yml",
+    "booking-holdings-cars-api-openapi.yml",
+    "booking-holdings-common-languages-api-openapi.yml",
+    "booking-holdings-common-locations-api-openapi.yml",
+    "booking-holdings-common-payments-api-openapi.yml",
+    "booking-holdings-conversations-api-openapi.yml",
+    "booking-holdings-messages-api-openapi.yml",
+    "booking-holdings-orders-api-openapi.yml"
+  ],
+  "outputs": [
+    "booking-holdings-accommodations-api-openapi.yml",
+    "booking-holdings-attachments-api-openapi.yml",
+    "booking-holdings-cars-api-openapi.yml",
+    "booking-holdings-common-languages-api-openapi.yml",
+    "booking-holdings-common-locations-api-openapi.yml",
+    "booking-holdings-common-payments-api-openapi.yml",
+    "booking-holdings-conversations-api-openapi.yml",
+    "booking-holdings-messages-api-openapi.yml",
+    "booking-holdings-orders-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
