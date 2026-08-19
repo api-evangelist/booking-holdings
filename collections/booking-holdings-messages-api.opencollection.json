@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Booking.com Demand Accommodations Messages API",
+    "version": "3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Booking.com Send a Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/messages/send",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a message within a conversation. The message body supports plain text.\nOptionally, attach a file by referencing a previously uploaded attachment ID.\n"
+        },
+        {
+          "info": {
+            "name": "Booking.com Fetch Latest Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/messages/latest",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Retrieves up to **100 of the most recent messages** including messages from both property and guest.<br/>\n\n- Messages are returned in reverse chronological order (newest first).\n- Use this endpoint to sync message threads or poll for updates.\n\n**Important:**  To retrieve the latest messages, send an empty POST request.  Any content in the request body will be ignored.\n"
+        },
+        {
+          "info": {
+            "name": "Booking.com Confirm Message Receipt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/messages/latest/confirm",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Confirms receipt of specified messages.\nThis confirmation is required before receiving new messages from the POST /messages/latest endpoint.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

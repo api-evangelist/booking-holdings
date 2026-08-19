@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Booking.com Demand Accommodations Attachments API",
+    "version": "3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Attachments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Booking.com Upload an Attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/messages/attachments/upload",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a file to be used as a message attachment.\nThe response includes an attachment ID to reference when sending messages.\n"
+        },
+        {
+          "info": {
+            "name": "Booking.com Download a Message Attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/messages/attachments/download",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves a file that was attached to a message. The response includes the file's content as a base64-encoded string.\n"
+        },
+        {
+          "info": {
+            "name": "Booking.com Retrieve Attachment Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/messages/attachments/metadata",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns metadata for a file uploaded in a message, including its name, type, and size.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

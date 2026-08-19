@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Booking.com Demand Accommodations Common/locations API",
+    "version": "3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Common/locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Booking.com Airports",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/common/locations/airports",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns a list of airport codes and their names in the selected languages. The airports returned may be filtered by a location id. For example, you can get the list of airports in The Netherlands by passing: `{\"country\":\"nl\"}`. To get the full list call the endpoint passing an empty body. The airport codes returned are what is used as input and output for other endpoints. This endpoint implements pagination of the results."
+        },
+        {
+          "info": {
+            "name": "Booking.com Cities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/common/locations/cities",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns a list of city codes and their names in the selected languages. The cities returned may be filtered by a location id. For example, you can get the list of cities in The Netherlands by passing: `{\"country\":\"nl\"}`. To get the full list call the endpoint passing an empty body. The city codes returned are what is used as input and output for other endpoints. This endpoint implements pagination of the results."
+        },
+        {
+          "info": {
+            "name": "Booking.com Countries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/common/locations/countries",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns a list of country codes and their names in the selected languages. The countries returned may be filtered by a location id. For example, you can get the list of countries that are associated with the European Alps region by passing: `{\"region\":1199}`. <br/><br/>To get the full list call the endpoint passing an empty body. The returned country codes are used as input and output for other endpoints. <br/><br/>This endpoint implements pagination of the results."
+        },
+        {
+          "info": {
+            "name": "Booking.com Districts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/common/locations/districts",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns a list of districts with translations in the selected languages. The districts returned may be filtered by a location id. For example, you can get the list of districts in Amsterdam by passing: `{\"city\":-2140479}`. <br/><br/>To get the full list call the endpoint passing an empty body. The district ids returned are what is used as input and output for other endpoints.<br/><br/> This endpoint implements pagination of the results."
+        },
+        {
+          "info": {
+            "name": "Booking.com Landmarks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/common/locations/landmarks",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns a list of relevant geographical landmark codes and their names in the selected languages. The landmarks returned may be filtered by a location id. For example, you can get the list of landmarks that are associated with the city of Paris in France by passing: `{\"city\":-1456928}`. <br/><br/>To get the full list call the endpoint passing an empty body. The landmark codes returned are what is used as input and output for other endpoints. <br/><br/>This endpoint implements pagin"
+        },
+        {
+          "info": {
+            "name": "Booking.com Regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/common/locations/regions",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns a list of regions with translations in the selected languages. The regions returned may be filtered by a location id. For example, you can get the list of regions in the Netherlands or that the Netherlands is a part of by passing: `{\"country\":\"nl\"}`.  To get the full list call the endpoint passing an empty body. The region ids returned are what is used as input and output for other endpoints. This endpoint implements pagination of the results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

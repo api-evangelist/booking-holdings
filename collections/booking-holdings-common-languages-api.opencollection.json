@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Booking.com Demand Accommodations Common/languages API",
+    "version": "3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Common/languages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Booking.com Retrieve Language Codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/common/languages",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "This endpoint returns a list of human language codes and their names in the corresponding language. To get the full list call the endpoint passing an empty body. The language codes returned are what is used as input and output for other endpoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

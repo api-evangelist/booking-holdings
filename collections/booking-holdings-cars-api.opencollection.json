@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Booking.com Demand Accommodations Cars API",
+    "version": "3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cars",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Booking.com Search Car Rentals",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/cars/search",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to retrieve the available car rentals matching the search criteria."
+        },
+        {
+          "info": {
+            "name": "Booking.com Depots",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/cars/depots",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to retrieve the list of all available car rental depots."
+        },
+        {
+          "info": {
+            "name": "Booking.com Depot Scores",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/cars/depots/reviews/scores",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to return the score breakdown for the specified depots together with the overall number of reviews and score. </br></br>- Please note that the **ratings score is based on all traveller traffic across Booking.com/cars**, and may not necessarily reflect the experience of your own customers.</br></br> - If you choose to display or use these ratings, you are responsible for ensuring that your travellers are properly informed about what these scores represent."
+        },
+        {
+          "info": {
+            "name": "Booking.com Car Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/cars/details",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to fetch car details like bag capacity, number of doors, brand and model, etc."
+        },
+        {
+          "info": {
+            "name": "Booking.com Suppliers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/cars/suppliers",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to fetch a list of car rental suppliers. <br/>You can use a supplier ID (or an array of them), to retrieve specific details. <br/>Alternatively, if you do not add any ID in the request, the response will include all suppliers."
+        },
+        {
+          "info": {
+            "name": "Booking.com Car Constants",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/cars/constants",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns a list of relevant car constants names in the specified languages. For example, calling with the parameters {\"languages\":\"en-us\",\"fr\"} will return the list in English (US) and French. To retrieve the full list, make the request with an empty body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

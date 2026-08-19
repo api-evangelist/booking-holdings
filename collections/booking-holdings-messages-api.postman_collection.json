@@ -1,0 +1,297 @@
+{
+  "item": [
+    {
+      "id": "f40b0f25-eb7b-4755-b872-f110efc3afcc",
+      "name": "Messages",
+      "description": {
+        "content": "Provides endpoints for two-way post-booking communication between guests and properties. </br></br>Use these endpoints to send and retrieve messages, exchange images, and check conversation details.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1f5462b3-686f-41ac-9896-2d674eeacb99",
+          "name": "Booking.com Send a Message",
+          "request": {
+            "name": "Booking.com Send a Message",
+            "description": {
+              "content": "Sends a message within a conversation. The message body supports plain text.\nOptionally, attach a file by referencing a previously uploaded attachment ID.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"conversation\": \"<string>\",\n  \"content\": \"<string>\",\n  \"accommodation\": \"<string>\",\n  \"attachments\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "18a2cc7f-f472-4826-a2a8-7240c327e6f5",
+              "name": "Message sent successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversation\": \"8586a789-44f4-5521-9f27-f5efd097cba6\",\n  \"accommodation\": \"6819547\",\n  \"content\": \"Hello, I'm your guest!.\",\n  \"attachments\": [\n    \"c325f460-1dc6-11f0-80f0-8d0908786f77\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"cdb0b154-2eae-481b-8fee-fb2725296e1f\",\n  \"data\": {\n    \"message\": \"3164e570-19e0-11f0-baca-e5019c8df435\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ebe6f8c-d559-4e4a-9326-c8f03c784c8e",
+          "name": "Booking.com Fetch Latest Messages",
+          "request": {
+            "name": "Booking.com Fetch Latest Messages",
+            "description": {
+              "content": "Retrieves up to **100 of the most recent messages** including messages from both property and guest.<br/>\n\n- Messages are returned in reverse chronological order (newest first).\n- Use this endpoint to sync message threads or poll for updates.\n\n**Important:**  To retrieve the latest messages, send an empty POST request.  Any content in the request body will be ignored.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e36900c-b7cc-4288-af72-c46d9c04d9f7",
+              "name": "Latest messages fetched successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"0248d85a-17e0-44b3-a37c-7d4b5c03f58b\",\n  \"data\": {\n    \"messages\": [\n      {\n        \"message_id\": \"daca26da-4ce3-519d-b9eb-623eeb674800\",\n        \"reply_to\": null,\n        \"conversation\": {\n          \"id\": \"b2364f9b-6466-599a-a947-0d35cff4f492\",\n          \"accommodation\": \"5589515\",\n          \"reservation\": \"4439608993\"\n        },\n        \"content\": \"Hello Anne, welcome to CS Training Test Hotel...\",\n        \"sender\": {\n          \"participant_id\": \"930d9af8-2390-5e43-a4d7-235b52a30a14\",\n          \"metadata\": {\n            \"type\": \"property\",\n            \"name\": \"CS Training Test Hotel Sloterdijk 10\"\n          }\n        },\n        \"attachments\": [],\n        \"timestamp\": \"2025-05-08T08:49:15.000Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3ef134c-d035-4c7d-880b-d8b6d326e665",
+          "name": "Booking.com Confirm Message Receipt",
+          "request": {
+            "name": "Booking.com Confirm Message Receipt",
+            "description": {
+              "content": "Confirms receipt of specified messages.\nThis confirmation is required before receiving new messages from the POST /messages/latest endpoint.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                "latest",
+                "confirm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://demandapi.booking.com/3.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "10f96025-4ae7-458d-b65f-d6940a19d101",
+    "name": "Booking.com Demand Accommodations Messages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,939 @@
+{
+  "item": [
+    {
+      "id": "7c4a229f-fae2-47b8-a1e4-fb20a70f8885",
+      "name": "Orders",
+      "description": {
+        "content": "Enables management of booking orders within the Demand API. </br></br>Use these endpoints to preview and create new orders, check order details, cancel or modify existing orders. This collection is required to integrate booking and order management functionality. ",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8bd1a163-f046-4923-a460-d2da5629f60e",
+          "name": "Booking.com Preview an Order",
+          "request": {
+            "name": "Booking.com Preview an Order",
+            "description": {
+              "content": "This endpoint returns the total final price with final charges, as well as the price breakdown and payment/cancellation policies for each product passed in the input.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "preview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"booker\": {\n    \"country\": \"<string>\",\n    \"platform\": \"<string>\",\n    \"travel_purpose\": \"<string>\",\n    \"user_groups\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"accommodation\": {\n    \"id\": \"<integer>\",\n    \"checkin\": \"<date>\",\n    \"checkout\": \"<date>\",\n    \"products\": [\n      {\n        \"id\": \"<string>\",\n        \"allocation\": {\n          \"number_of_adults\": \"<integer>\",\n          \"children\": [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"allocation\": {\n          \"number_of_adults\": \"<integer>\",\n          \"children\": [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        }\n      }\n    ]\n  },\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "481fbf34-9b78-4dde-8e62-b02c776531f2",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "preview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"booker\": {\n    \"country\": \"nl\",\n    \"platform\": \"mobile\",\n    \"travel_purpose\": \"leisure\",\n    \"user_groups\": [\n      \"authenticated\"\n    ]\n  },\n  \"currency\": \"EUR\",\n  \"accommodation\": {\n    \"id\": 6745031,\n    \"checkin\": \"!START_DATE!\",\n    \"checkout\": \"!END_DATE!\",\n    \"products\": [\n      {\n        \"id\": \"674503106_275710478_0_2_0\",\n        \"allocation\": {\n          \"number_of_adults\": 1,\n          \"children\": [\n            8\n          ]\n        }\n      },\n      {\n        \"id\": \"674503113_275710486_0_1_0\",\n        \"allocation\": {\n          \"number_of_adults\": 1,\n          \"children\": []\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": {\n    \"accommodation\": {\n      \"id\": 6745031,\n      \"currency\": {\n        \"accommodation\": \"EUR\",\n        \"booker\": null\n      },\n      \"general_policies\": {\n        \"payment\": {\n          \"pay_online_now\": {\n            \"dates\": [\n              {\n                \"at\": \"!TODAY!\",\n                \"price\": {\n                  \"accommodation_currency\": 177.65,\n                  \"booker_currency\": null\n                }\n              }\n            ],\n            \"method_required\": false,\n            \"methods\": {\n              \"airplus\": true,\n              \"cards\": [\n                1,\n                2,\n                3\n              ],\n              \"wallet\": true\n            }\n          },\n          \"pay_online_later\": {\n            \"dates\": [\n              {\n                \"at\": \"!TODAY!\",\n                \"price\": {\n                  \"accommodation_currency\": 0,\n                  \"booker_currency\": null\n                }\n              },\n              {\n                \"at\": \"!START_DATE-2!\",\n                \"price\": {\n                  \"accommodation_currency\": 177.65,\n                  \"booker_currency\": null\n                }\n              },\n              {\n                \"at\": \"!START_DATE!\",\n                \"price\": {\n                  \"accommodation_currency\": 0,\n                  \"booker_currency\": null\n                }\n              }\n            ],\n            \"method_required\": false,\n            \"methods\": {\n              \"airplus\": true,\n              \"cards\": [\n                1,\n                2,\n                3,\n                5\n              ],\n              \"wallet\": true\n            }\n          },\n          \"pay_at_the_property\": {\n            \"dates\": [\n              {\n                \"at\": \"!TODAY!\",\n                \"price\": {\n                  \"accommodation_currency\": 0,\n                  \"booker_currency\": null\n                }\n              },\n              {\n                \"at\": \"!START_DATE!\",\n                \"price\": {\n                  \"accommodation_currency\": 177.65,\n                  \"booker_currency\": null\n                }\n              }\n            ],\n            \"method_required\": true,\n            \"methods\": {\n              \"airplus\": true,\n              \"cards\": [\n                1,\n                2\n              ],\n              \"wallet\": false\n            }\n          }\n        }\n      },\n      \"price\": {\n        \"base\": {\n          \"accommodation_currency\": 100,\n          \"booker_currency\": null\n        },\n        \"chargeable_online\": {\n          \"accommodation_currency\": 100,\n          \"booker_currency\": null\n        },\n        \"total\": {\n          \"accommodation_currency\": 123,\n          \"booker_currency\": null\n        },\n        \"extra_charges\": {\n          \"conditional\": [],\n          \"non_conditional\": [\n            {\n              \"charge\": 142,\n              \"chargeable_online\": true,\n              \"total_amount\": {\n                \"accommodation_currency\": 6,\n                \"booker_currency\": null\n              }\n            },\n            {\n              \"charge\": 21,\n              \"chargeable_online\": false,\n              \"total_amount\": {\n                \"accommodation_currency\": 14.67,\n                \"booker_currency\": null\n              }\n            },\n            {\n              \"charge\": 22,\n              \"chargeable_online\": true,\n              \"total_amount\": {\n                \"accommodation_currency\": 11.41,\n                \"booker_currency\": null\n              }\n            }\n          ]\n        }\n      },\n      \"products\": [\n        {\n          \"id\": \"1000420_278556531_2_0_0\",\n          \"bundle\": null,\n          \"deal\": null,\n          \"inventory\": {\n            \"third_party\": false,\n            \"type\": \"sell\"\n          },\n          \"policies\": {\n            \"cancellation\": [\n              {\n                \"from\": \"now\",\n                \"price\": {\n                  \"accommodation_currency\": 0,\n                  \"booker_currency\": null\n                }\n              },\n              {\n                \"from\": \"!START_DATE-2!T22:00:00+00:00\",\n                \"price\": {\n                  \"accommodation_currency\": 177.65,\n                  \"booker_currency\": null\n                }\n              }\n            ],\n            \"meal_plan\": {\n              \"meals\": [],\n              \"plan\": \"no_plan\"\n            }\n          },\n          \"price\": {\n            \"base\": {\n              \"accommodation_currency\": 155.96,\n              \"booker_currency\": null\n            },\n            \"chargeable_online\": {\n              \"accommodation_currency\": 186.92,\n              \"booker_currency\": null\n            },\n            \"extra_charges\": {\n              \"conditional\": [],\n              \"non_conditional\": [\n                {\n                  \"charge\": 142,\n                  \"chargeable_online\": true,\n                  \"mode\": \"per_person_per_night\",\n                  \"percentage\": null,\n                  \"total_amount\": {\n                    \"accommodation_currency\": 6,\n                    \"booker_currency\": null\n                  },\n                  \"unit_amount\": 3\n                },\n                {\n                  \"charge\": 21,\n                  \"chargeable_online\": false,\n                  \"mode\": \"percentage\",\n                  \"percentage\": 9,\n                  \"total_amount\": {\n                    \"accommodation_currency\": 14.04,\n                    \"booker_currency\": null\n                  },\n                  \"unit_amount\": null\n                },\n                {\n                  \"charge\": 22,\n                  \"chargeable_online\": true,\n                  \"mode\": \"percentage\",\n                  \"percentage\": 7,\n                  \"total_amount\": {\n                    \"accommodation_currency\": 10.92,\n                    \"booker_currency\": null\n                  },\n                  \"unit_amount\": null\n                }\n              ]\n            },\n            \"total\": {\n              \"accommodation_currency\": 186.92,\n              \"booker_currency\": null\n            }\n          },\n          \"third_party_inventory\": false\n        },\n        {\n          \"id\": \"tpi-1000420_95127794_2_0_0\",\n          \"deal\": null,\n          \"inventory\": {\n            \"third_party\": true,\n            \"type\": \"sell\"\n          },\n          \"policies\": {\n            \"cancellation\": [\n              {\n                \"from\": \"now\",\n                \"price\": {\n                  \"accommodation_currency\": 170,\n                  \"booker_currency\": null\n                }\n              }\n            ],\n            \"meal_plan\": {\n              \"meals\": [],\n              \"plan\": \"no_plan\"\n            }\n          },\n          \"price\": {\n            \"base\": {\n              \"accommodation_currency\": 162.98,\n              \"booker_currency\": null\n            },\n            \"extra_charges\": {\n              \"conditional\": [\n                {\n                  \"charge\": 3,\n                  \"condition\": 30,\n                  \"mode\": \"per_stay\",\n                  \"percentage\": null,\n                  \"total_amount\": {\n                    \"accommodation_currency\": 10,\n                    \"booker_currency\": null\n                  },\n                  \"unit_amount\": null\n                }\n              ],\n              \"non_conditional\": [\n                {\n                  \"charge\": 142,\n                  \"mode\": \"per_person_per_night\",\n                  \"percentage\": null,\n                  \"total_amount\": {\n                    \"accommodation_currency\": 6,\n                    \"booker_currency\": null\n                  },\n                  \"unit_amount\": {\n                    \"accommodation_currency\": 3,\n                    \"booker_currency\": null\n                  }\n                },\n                {\n                  \"charge\": 21,\n                  \"mode\": \"percentage\",\n                  \"percentage\": 9,\n                  \"total_amount\": {\n                    \"accommodation_currency\": 14.67,\n                    \"booker_currency\": null\n                  },\n                  \"unit_amount\": null\n                },\n                {\n                  \"charge\": 22,\n                  \"mode\": \"percentage\",\n                  \"percentage\": 7,\n                  \"total_amount\": {\n                    \"accommodation_currency\": 11.41,\n                    \"booker_currency\": null\n                  },\n                  \"unit_amount\": null\n                }\n              ]\n            },\n            \"total\": {\n              \"accommodation_currency\": 195.06,\n              \"booker_currency\": null\n            }\n          },\n          \"third_party_inventory\": true\n        }\n      ]\n    },\n    \"order_token\": \"...\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee520a8b-9bc6-43f1-a283-0be3c449cda4",
+          "name": "Booking.com Create an Order",
+          "request": {
+            "name": "Booking.com Create an Order",
+            "description": {
+              "content": "Use this endpoint to confirm the booking and proceed the payment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"booker\": {\n    \"address\": {\n      \"country\": \"<string>\",\n      \"address_line\": \"<string>\",\n      \"city\": \"<string>\",\n      \"post_code\": \"<string>\"\n    },\n    \"email\": \"<string>\",\n    \"name\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\"\n    },\n    \"telephone\": \"<string>\",\n    \"company\": \"<string>\",\n    \"language\": \"<string>\"\n  },\n  \"order_token\": \"<string>\",\n  \"payment\": {\n    \"timing\": \"<string>\",\n    \"airplus\": {\n      \"number\": \"<string>\",\n      \"dbi\": {\n        \"accounting_code\": \"<string>\",\n        \"accounting_unit\": \"<string>\",\n        \"cost_centre\": \"<string>\",\n        \"department_code\": \"<string>\",\n        \"employee_number\": \"<string>\",\n        \"internal_account\": \"<string>\",\n        \"order_number\": \"<string>\",\n        \"project_number\": \"<string>\"\n      }\n    },\n    \"business_information\": {\n      \"company\": \"<string>\",\n      \"authorisation_form\": {\n        \"chargeable_items\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"billing\": {\n        \"email\": \"<string>\",\n        \"vat\": \"<string>\",\n        \"address\": {\n          \"address_line\": \"<string>\",\n          \"city\": \"<string>\",\n          \"country\": \"<string>\",\n          \"post_code\": \"<string>\"\n        }\n      }\n    },\n    \"card\": {\n      \"cardholder\": \"<string>\",\n      \"cvc\": \"<string>\",\n      \"expiry_date\": \"<string>\",\n      \"number\": \"<string>\",\n      \"authentication\": {\n        \"riskified\": {\n          \"ip_address\": \"<ipv4>\",\n          \"session_id\": \"<string>\"\n        },\n        \"sca_exemption\": \"<string>\",\n        \"3d_secure\": {\n          \"authentication_value\": \"<string>\",\n          \"eci\": \"<string>\",\n          \"transaction\": \"<string>\",\n          \"cavv\": \"<string>\"\n        }\n      }\n    },\n    \"include_receipt\": \"<boolean>\",\n    \"method\": \"<string>\"\n  },\n  \"accommodation\": {\n    \"label\": \"<string>\",\n    \"products\": [\n      {\n        \"id\": \"<string>\",\n        \"bed_configuration\": \"<string>\",\n        \"guests\": [\n          {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"bed_configuration\": \"<string>\",\n        \"guests\": [\n          {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"email\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"remarks\": {\n      \"estimated_arrival_time\": {\n        \"hour\": \"<integer>\",\n        \"next_day\": \"false\"\n      },\n      \"special_requests\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e641708-b549-43ab-ba9d-8e7c906729b4",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accommodation\": {\n    \"label\": \"Sample label\",\n    \"products\": [\n      {\n        \"id\": \"333\",\n        \"bed_configuration\": \"123456\",\n        \"guests\": [\n          {\n            \"email\": \"test.name@booking.com\",\n            \"name\": \"Test Name\"\n          }\n        ]\n      }\n    ],\n    \"remarks\": {\n      \"estimated_arrival_time\": {\n        \"hour\": 12\n      },\n      \"special_requests\": \"We will need an extra cot.\"\n    }\n  },\n  \"booker\": {\n    \"address\": {\n      \"address_line\": \"Road-1, house-2\",\n      \"city\": \"Amsterdam\",\n      \"country\": \"nl\",\n      \"post_code\": \"11111\"\n    },\n    \"company\": \"Booking B.V\",\n    \"email\": \"test.name@booking.com\",\n    \"language\": \"en-gb\",\n    \"name\": {\n      \"first_name\": \"Test\",\n      \"last_name\": \"Name\"\n    },\n    \"telephone\": \"12345678\"\n  },\n  \"order_token\": \"sample-token\",\n  \"payment\": {\n    \"card\": {\n      \"cardholder\": \"Test Name\",\n      \"cvc\": \"111\",\n      \"expiry_date\": \"2030-10\",\n      \"number\": \"23333333333333\"\n    },\n    \"include_receipt\": true,\n    \"method\": \"card\",\n    \"timing\": \"pay_at_the_property\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": {\n    \"accommodation\": {\n      \"order\": \"509430129718799\",\n      \"pincode\": \"0000\",\n      \"reservation\": 12345678,\n      \"third_party_inventory\": {\n        \"checkin_number\": \"123456789\",\n        \"confirmation_number\": \"12345678912345678912\"\n      }\n    },\n    \"payment\": {\n      \"receipt_url\": \"https://secure.booking.com/payment_receipt.html?bn=0000000000&pincode=0000&lang=en\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d17325b-afb2-47f9-b529-c4117f866fa8",
+          "name": "Booking.com Orders Details",
+          "request": {
+            "name": "Booking.com Orders Details",
+            "description": {
+              "content": "This endpoint returns basic information for orders filtered according to the input.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"updated\": {\n    \"from\": \"<dateTime>\",\n    \"to\": \"<dateTime>\"\n  },\n  \"currency\": \"<string>\",\n  \"maximum_results\": 100,\n  \"sort\": {\n    \"by\": \"created\",\n    \"direction\": \"descending\"\n  },\n  \"extras\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"services\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1922f7b4-4777-412e-a5ac-684f2e092453",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created\": {\n    \"from\": \"2025-07-28T02:00:00+00:00\",\n    \"to\": \"2025-07-28T02:00:00+00:00\"\n  },\n  \"currency\": \"EUR\",\n  \"maximum_results\": 20,\n  \"sort\": {\n    \"by\": \"updated\",\n    \"direction\": \"descending\"\n  },\n  \"extras\": [\n    \"payment\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": \"509430129718799\",\n      \"accommodations\": {\n        \"inventory\": {\n          \"third_party\": false,\n          \"type\": \"sell\"\n        },\n        \"reservation\": 12345677\n      },\n      \"affiliate\": 111111,\n      \"booker\": {\n        \"address\": {\n          \"city\": \"Amsterdam\",\n          \"country\": \"nl\"\n        },\n        \"email\": \"johndoe@booking.com\",\n        \"language\": \"en-gb\",\n        \"name\": {\n          \"first_name\": \"john\",\n          \"last_name\": \"doe\"\n        },\n        \"platform\": \"mobile_browser\",\n        \"telephone\": \"+100000000\",\n        \"travel_purpose\": \"business\"\n      },\n      \"commission\": {\n        \"actual_amount\": 17.5,\n        \"estimated_amount\": null\n      },\n      \"created\": \"2025-07-28T02:00:00+00:00\",\n      \"currency\": \"EUR\",\n      \"flights\": null,\n      \"loyalty_reward\": [\n        {\n          \"amount\": 15,\n          \"currency\": \"USD\",\n          \"eligible\": true,\n          \"fulfillment_at\": \"2025-02-10\",\n          \"fulfillment_by\": \"partner\",\n          \"loyalty_data\": [\n            {\n              \"name\": \"Email Id\",\n              \"value\": \"john_doe@booking.com\"\n            },\n            {\n              \"name\": \"Loyalty ID\",\n              \"value\": \"10101010\"\n            }\n          ],\n          \"type\": \"point\"\n        }\n      ],\n      \"price\": {\n        \"commissionable\": 160,\n        \"total\": 170.01\n      },\n      \"status\": \"booked\",\n      \"updated\": \"2025-07-28T02:00:00+00:00\"\n    }\n  ],\n  \"metadata\": {\n    \"next_page\": null,\n    \"total_results\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d43577a-a0b3-41f4-9757-dab55a7bd8a7",
+          "name": "Booking.com Orders with Accommodation Details",
+          "request": {
+            "name": "Booking.com Orders with Accommodation Details",
+            "description": {
+              "content": "This endpoint returns all information for given accommodation orders, sorted by `bookingDate` in descending order",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "details",
+                "accommodations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orders\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"currency\": \"<string>\",\n  \"extras\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"language\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f5c4bb0f-19dd-428c-a4ac-d59a1129d0a2",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "details",
+                    "accommodations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currency\": \"USD\",\n  \"extras\": [\n    \"policies\",\n    \"extra_charges\"\n  ],\n  \"reservations\": [\n    2321873123,\n    4666773123\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": \"509430129718799\",\n      \"accommodation\": 123456,\n      \"accommodation_details\": {\n        \"email\": \"test_hotel@booking.com\",\n        \"location\": {\n          \"address\": \"111 Street Road\",\n          \"city\": 20089219,\n          \"coordinates\": {\n            \"latitude\": 11.923274,\n            \"longitude\": -92.716188\n          },\n          \"country\": \"us\",\n          \"post_code\": \"NY 1234\"\n        },\n        \"name\": \"Test Booking Hotel USA\",\n        \"telephone\": \"+19876543210\"\n      },\n      \"accommodation_order_references\": [\n        \"12345\",\n        \"ABED2312\"\n      ],\n      \"booker\": {\n        \"external_account\": 13610217,\n        \"platform\": \"mobile\"\n      },\n      \"cancellation_details\": {\n        \"at\": \"2022-11-09T00:00:00+00:00\",\n        \"fee\": {\n          \"accommodation_currency\": 170.01,\n          \"booker_currency\": 186.87\n        },\n        \"original_total_price\": {\n          \"accommodation_currency\": 170.01,\n          \"booker_currency\": 186.87\n        }\n      },\n      \"checkin\": \"2022-11-10\",\n      \"checkout\": \"2022-11-10\",\n      \"commission\": {\n        \"actual_amount\": null,\n        \"actual_percentage\": null,\n        \"estimated_amount\": {\n          \"accommodation_currency\": 17.5,\n          \"booker_currency\": 19.23\n        }\n      },\n      \"credit_slip_number\": \"hsnl1223445\",\n      \"currency\": {\n        \"accommodation\": \"EUR\",\n        \"booker\": \"USD\"\n      },\n      \"inventory\": {\n        \"third_party\": false,\n        \"type\": \"sell\"\n      },\n      \"key_collection_information\": [\n        {\n          \"additional_instructions\": \"The keys are in a keybox located next to the front door.\",\n          \"alternate_location\": {\n            \"address\": \"abc\",\n            \"city\": \"bdweb\",\n            \"postal_code\": \"1015XX\"\n          },\n          \"checkin_method\": \"someone_will_meet\",\n          \"key_location\": \"key_location_at_the_property\"\n        }\n      ],\n      \"label\": \"One123\",\n      \"pin_code\": \"1234\",\n      \"price\": {\n        \"commissionable\": {\n          \"accommodation_currency\": 164.01,\n          \"booker_currency\": 180.27\n        },\n        \"total\": {\n          \"accommodation_currency\": 170.01,\n          \"booker_currency\": 186.87\n        }\n      },\n      \"products\": [\n        {\n          \"allocation\": {\n            \"adults\": 2,\n            \"children\": [\n              3,\n              4,\n              5\n            ],\n            \"guests\": 5\n          },\n          \"guests\": [\n            {\n              \"email\": \"test.name@booking.com\",\n              \"name\": \"Test Name\"\n            }\n          ],\n          \"policies\": {\n            \"cancellation\": [\n              {\n                \"from\": null,\n                \"price\": {\n                  \"accommodation_currency\": 170.01,\n                  \"booker_currency\": 186.87\n                }\n              }\n            ],\n            \"meal_plan\": {\n              \"meals\": [\n                \"breakfast\"\n              ],\n              \"plan\": \"breakfast_included\"\n            },\n            \"smoking_preference\": \"non-smoking\"\n          },\n          \"price\": {\n            \"base\": {\n              \"accommodation_currency\": 170.01,\n              \"booker_currency\": 186.87\n            },\n            \"extra_charges\": {\n              \"conditional\": [],\n              \"non_conditional\": [\n                {\n                  \"charge\": 142,\n                  \"mode\": \"per_person_per_night\",\n                  \"percentage\": null,\n                  \"total_amount\": {\n                    \"accommodation_currency\": 6,\n                    \"booker_currency\": 6.6\n                  },\n                  \"unit_amount\": {\n                    \"accommodation_currency\": 3,\n                    \"booker_currency\": 3.3\n                  }\n                },\n                {\n                  \"charge\": 21,\n                  \"mode\": \"percentage\",\n                  \"percentage\": 9,\n                  \"total_amount\": {\n                    \"accommodation_currency\": 14.04,\n                    \"booker_currency\": 15.43\n                  },\n                  \"unit_amount\": null\n                },\n                {\n                  \"charge\": 22,\n                  \"mode\": \"percentage\",\n                  \"percentage\": 7,\n                  \"total_amount\": {\n                    \"accommodation_currency\": 10.92,\n                    \"booker_currency\": 12\n                  },\n                  \"unit_amount\": null\n                }\n              ]\n            },\n            \"total\": {\n              \"accommodation_currency\": 200.97,\n              \"booker_currency\": 220.9\n            }\n          },\n          \"room\": 12345,\n          \"room_details\": {\n            \"name\": \"Double Deluxe Room\"\n          },\n          \"room_reservation\": 1234567890,\n          \"status\": \"booked\"\n        }\n      ],\n      \"remarks\": \"We will need an extra cot. Need room on higher floor\",\n      \"reservation\": 12345678,\n      \"status\": \"booked\",\n      \"stay_probability\": 0.12\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "719e21a8-2346-4bda-bd4e-aca12719c8c0",
+          "name": "Booking.com Orders with Car Details",
+          "request": {
+            "name": "Booking.com Orders with Car Details",
+            "description": {
+              "content": "This endpoint returns car order details, sorted by `bookingDate` in descending order",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "details",
+                "cars"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orders\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"currency\": \"<string>\",\n  \"extras\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a1ff2ad-36c7-43ac-81b5-0d71cfad9ae1",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "details",
+                    "cars"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currency\": \"USD\",\n  \"extras\": [\n    \"policies\"\n  ],\n  \"orders\": [\n    \"123456789\",\n    98765432\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": \"123456789\",\n      \"affiliate\": 1234567,\n      \"commission\": {\n        \"actual_amount\": {\n          \"depot_currency\": 45.5,\n          \"booker_currency\": 66.34\n        },\n        \"actual_percentage\": 0.25,\n        \"estimated_amount\": {\n          \"depot_currency\": 45.5,\n          \"booker_currency\": 66.34\n        }\n      },\n      \"currency\": {\n        \"depot\": \"EUR\",\n        \"booker\": \"USD\"\n      },\n      \"dropoff\": {\n        \"date\": \"2025-10-18T00:00:00\"\n      },\n      \"label\": \"One123\",\n      \"pickup\": {\n        \"date\": \"2025-10-15T00:00:00\"\n      },\n      \"price\": {\n        \"commissionable\": {\n          \"depot_currency\": 170.01,\n          \"booker_currency\": 186.87\n        },\n        \"total\": {\n          \"depot_currency\": 170.01,\n          \"booker_currency\": 186.87\n        }\n      },\n      \"products\": [\n        {\n          \"policies\": {\n            \"payment\": {\n              \"timing\": \"pay_now\"\n            }\n          },\n          \"price\": {\n            \"base\": {\n              \"depot_currency\": 170.01,\n              \"booker_currency\": 186.87\n            },\n            \"total\": {\n              \"depot_currency\": 170.01,\n              \"booker_currency\": 186.87\n            }\n          },\n          \"status\": \"booked\"\n        }\n      ],\n      \"status\": \"booked\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11442b9d-4783-4a7f-877e-15972bdd0b80",
+          "name": "Booking.com Orders with Flight Details",
+          "request": {
+            "name": "Booking.com Orders with Flight Details",
+            "description": {
+              "content": "Use this endpoint to retrieve detailed information for one or more flight orders. - You can request car order details either by **order ID** or by **reservation ID**. - The response includes all relevant information for each order, such as booking and cancellation details, commission, pricing, and optional extras (for example, policies).   Results are sorted by `bookingDate` in descending order, with the most recently booked orders listed first. It returns structured order data, including pricing, itinerary segments with IATA airport codes, etc. </br></br>This endpoint is ideal for:</br></br> - Displaying flight booking details in traveller dashboards or confirmation pages.</br> - Generating post-booking communications and invoices. </br> - Performing reporting or reconciliation tasks that require accurate itinerary and pricing data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "details",
+                "flights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orders\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "de48951c-be60-478e-83ce-7f3b629305bb",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "details",
+                    "flights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currency\": \"EUR\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"ORDER_ID\",\n      \"reservation\": \"RESERVATION_ID\",\n      \"currency\": {\n        \"booker\": \"EUR\",\n        \"order\": \"USD\"\n      },\n      \"itineraries\": [\n        {\n          \"departure\": {\n            \"airport\": \"CAI\",\n            \"date_time\": \"2024-03-01T07:00:00+00:00\"\n          },\n          \"arrival\": {\n            \"airport\": \"LXR\",\n            \"date_time\": \"2024-03-01T08:10:00+00:00\"\n          }\n        }\n      ],\n      \"label\": \"SAMPLE LABEL\",\n      \"price\": {\n        \"order_currency\": 212.86,\n        \"booker_currency\": 197.87\n      },\n      \"status\": \"booked\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d7ba344-bee1-4c6a-92f6-f490c1d0ed8d",
+          "name": "Booking.com Modify an Order",
+          "request": {
+            "name": "Booking.com Modify an Order",
+            "description": {
+              "content": "Use this endpoint to modify certain aspects of an accommodation order, such as credit card details, checkin/checkout dates, and room configurations (guest allocation, guest names, and smoking preferences). \n  - See the [Orders modification guide](/demand/docs/orders-api/order-modify) for examples and best practices.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "modify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": \"<string>\",\n  \"modification\": {\n    \"accommodation\": {\n      \"reservation\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"change\": {\n        \"checkin\": \"<date>\",\n        \"checkout\": \"<date>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d1d188db-fa2f-4429-be8e-c084e86dbaae",
+              "name": "Successful modification",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "modify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "string",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5def9920-eff8-478d-801e-7edde5009a8d",
+          "name": "Booking.com Cancel an Order",
+          "request": {
+            "name": "Booking.com Cancel an Order",
+            "description": {
+              "content": "Use this endpoint to process an order cancellation. Refer to the [Cancellations guide](/demand/docs/orders-api/cancel-order) for instructions, tips and examples.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"request_property_approval\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7fa5249b-0a88-4a11-bc0e-827535262b08",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order\": \"509430129718799\",\n  \"reason\": \"I would like to book another property instead of this one.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": {\n    \"status\": \"successful\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://demandapi.booking.com/3.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0e1a0bd4-9a22-4056-91d6-4a8d02b608bf",
+    "name": "Booking.com Demand Accommodations Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.",
+      "type": "text/plain"
+    }
+  }
+}

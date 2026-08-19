@@ -1,0 +1,250 @@
+{
+  "item": [
+    {
+      "id": "cfc5a4b4-3d4a-4d9a-bad2-3a1c1de0161e",
+      "name": "Common/payments",
+      "description": {
+        "content": "Provides generic payment-related endpoints, including supported currencies and payment types.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d8824571-0f4e-4df7-993e-e9c81a12afc7",
+          "name": "Booking.com Payment Cards",
+          "request": {
+            "name": "Booking.com Payment Cards",
+            "description": {
+              "content": "This endpoint returns a list of supported payment cards and their names in English. Examples of payment types are the different credit and debit cards. <br/><br/>To get the full list call the endpoint passing an empty body. The codes returned are what is used as input and output for other endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "payments",
+                "cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da1deb4c-0178-4db1-89ce-0d7839abd408",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "payments",
+                    "cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"name\": \"American Express\"\n    },\n    \"...\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "105f7221-9879-4178-954b-f4ac0f119c71",
+          "name": "Booking.com Currencies",
+          "request": {
+            "name": "Booking.com Currencies",
+            "description": {
+              "content": "This endpoint returns a list of currency codes and their names in the selected languages. To get the full list call the endpoint passing an empty body. <br/><br/>The currency codes returned are what is used as input and output for other endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "payments",
+                "currencies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"languages\": [\n    \"en-gb\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b1ac6c36-ce06-46ec-a6a8-af418b6f5c38",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "payments",
+                    "currencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"languages\": [\n    \"en-gb\",\n    \"zh-cn\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": \"AED\",\n      \"name\": {\n        \"en-gb\": \"U.A.E. dirham\",\n        \"zh-cn\": \"阿联酋迪拉姆\"\n      }\n    },\n    \"...\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://demandapi.booking.com/3.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0217cb37-aed4-4496-b223-76c7d9e86db4",
+    "name": "Booking.com Demand Accommodations Common/payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.",
+      "type": "text/plain"
+    }
+  }
+}

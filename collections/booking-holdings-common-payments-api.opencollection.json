@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Booking.com Demand Accommodations Common/payments API",
+    "version": "3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Common/payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Booking.com Payment Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/common/payments/cards",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "This endpoint returns a list of supported payment cards and their names in English. Examples of payment types are the different credit and debit cards. <br/><br/>To get the full list call the endpoint passing an empty body. The codes returned are what is used as input and output for other endpoints."
+        },
+        {
+          "info": {
+            "name": "Booking.com Currencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/common/payments/currencies",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns a list of currency codes and their names in the selected languages. To get the full list call the endpoint passing an empty body. <br/><br/>The currency codes returned are what is used as input and output for other endpoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

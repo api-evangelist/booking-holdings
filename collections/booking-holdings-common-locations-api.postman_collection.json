@@ -1,0 +1,731 @@
+{
+  "item": [
+    {
+      "id": "99267f7d-9505-4c79-bba2-e1b2578ebc28",
+      "name": "Common/locations",
+      "description": {
+        "content": "Provides identifiers for a wide range of geographical locations, including airports, countries, cities, and regions. </br></br>Use these identifiers to construct your requests. </br></br>Note: These identifiers are available across all travel services and you can use them for both accommodotation and car rentals requests.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "10ece599-5410-4783-a535-9880e03749d5",
+          "name": "Booking.com Airports",
+          "request": {
+            "name": "Booking.com Airports",
+            "description": {
+              "content": "This endpoint returns a list of airport codes and their names in the selected languages. The airports returned may be filtered by a location id. For example, you can get the list of airports in The Netherlands by passing: `{\"country\":\"nl\"}`. To get the full list call the endpoint passing an empty body. The airport codes returned are what is used as input and output for other endpoints. This endpoint implements pagination of the results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "locations",
+                "airports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"airport\": \"<string>\",\n  \"city\": \"<integer>\",\n  \"country\": \"<string>\",\n  \"district\": \"<integer>\",\n  \"landmark\": \"<integer>\",\n  \"languages\": [\n    \"en-gb\"\n  ],\n  \"page\": \"<string>\",\n  \"region\": \"<integer>\",\n  \"rows\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a224e1f6-18ac-4c33-a894-e09530e296c0",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "locations",
+                    "airports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"nl\",\n  \"languages\": [\n    \"en-gb\",\n    \"zh-cn\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": \"AMS\",\n      \"name\": {\n        \"en-gb\": \"Schiphol Airport\",\n        \"zh-cn\": \"史基浦机场\"\n      }\n    },\n    \"...\"\n  ],\n  \"next_page\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1875d47e-35f6-4209-a391-071713a9cc62",
+          "name": "Booking.com Cities",
+          "request": {
+            "name": "Booking.com Cities",
+            "description": {
+              "content": "This endpoint returns a list of city codes and their names in the selected languages. The cities returned may be filtered by a location id. For example, you can get the list of cities in The Netherlands by passing: `{\"country\":\"nl\"}`. To get the full list call the endpoint passing an empty body. The city codes returned are what is used as input and output for other endpoints. This endpoint implements pagination of the results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "locations",
+                "cities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"airport\": \"<string>\",\n  \"city\": \"<integer>\",\n  \"country\": \"<string>\",\n  \"district\": \"<integer>\",\n  \"landmark\": \"<integer>\",\n  \"languages\": [\n    \"en-gb\"\n  ],\n  \"page\": \"<string>\",\n  \"region\": \"<integer>\",\n  \"rows\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a9794274-43c1-41e2-b971-f841a7e41ea7",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "locations",
+                    "cities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"nl\",\n  \"languages\": [\n    \"en-gb\",\n    \"zh-cn\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": -2156821,\n      \"name\": {\n        \"zh-cn\": \"兹沃勒\"\n      },\n      \"coordinates\": {\n        \"latitude\": 52.378281,\n        \"longitude\": 4.90007\n      }\n    },\n    \"...\"\n  ],\n  \"next_page\": \"...\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8561082d-4223-4039-ab58-c1aa19c0f4f4",
+          "name": "Booking.com Countries",
+          "request": {
+            "name": "Booking.com Countries",
+            "description": {
+              "content": "This endpoint returns a list of country codes and their names in the selected languages. The countries returned may be filtered by a location id. For example, you can get the list of countries that are associated with the European Alps region by passing: `{\"region\":1199}`. <br/><br/>To get the full list call the endpoint passing an empty body. The returned country codes are used as input and output for other endpoints. <br/><br/>This endpoint implements pagination of the results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "locations",
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"airport\": \"<string>\",\n  \"city\": \"<integer>\",\n  \"country\": \"<string>\",\n  \"district\": \"<integer>\",\n  \"landmark\": \"<integer>\",\n  \"languages\": [\n    \"en-gb\"\n  ],\n  \"page\": \"<string>\",\n  \"region\": \"<integer>\",\n  \"rows\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1b92d57f-c6a1-4b14-9edf-34a82e738afa",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "locations",
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"languages\": [\n    \"en-gb\",\n    \"zh-cn\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": \"ad\",\n      \"name\": {\n        \"en-gb\": \"Andorra\",\n        \"zh-cn\": \"安道尔\"\n      }\n    },\n    \"...\"\n  ],\n  \"next_page\": \"...\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90dbaa0f-ccb9-4fa2-8b93-c958427af710",
+          "name": "Booking.com Districts",
+          "request": {
+            "name": "Booking.com Districts",
+            "description": {
+              "content": "This endpoint returns a list of districts with translations in the selected languages. The districts returned may be filtered by a location id. For example, you can get the list of districts in Amsterdam by passing: `{\"city\":-2140479}`. <br/><br/>To get the full list call the endpoint passing an empty body. The district ids returned are what is used as input and output for other endpoints.<br/><br/> This endpoint implements pagination of the results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "locations",
+                "districts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"airport\": \"<string>\",\n  \"city\": \"<integer>\",\n  \"country\": \"<string>\",\n  \"district\": \"<integer>\",\n  \"landmark\": \"<integer>\",\n  \"languages\": [\n    \"en-gb\"\n  ],\n  \"page\": \"<string>\",\n  \"region\": \"<integer>\",\n  \"rows\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7565fdda-0692-4c4d-8a24-cd639141af32",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "locations",
+                    "districts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"city\": -2140479,\n  \"languages\": [\n    \"en-gb\",\n    \"zh-cn\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": 145,\n      \"name\": {\n        \"en-gb\": \"Amsterdam City Centre\",\n        \"zh-cn\": \"阿姆斯特丹市中心\"\n      },\n      \"coordinates\": {\n        \"latitude\": 52.378281,\n        \"longitude\": 4.90007\n      }\n    },\n    \"...\"\n  ],\n  \"next_page\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b81bee5-3f52-42e3-ade4-1767c750cf55",
+          "name": "Booking.com Landmarks",
+          "request": {
+            "name": "Booking.com Landmarks",
+            "description": {
+              "content": "This endpoint returns a list of relevant geographical landmark codes and their names in the selected languages. The landmarks returned may be filtered by a location id. For example, you can get the list of landmarks that are associated with the city of Paris in France by passing: `{\"city\":-1456928}`. <br/><br/>To get the full list call the endpoint passing an empty body. The landmark codes returned are what is used as input and output for other endpoints. <br/><br/>This endpoint implements pagination of the results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "locations",
+                "landmarks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"airport\": \"<string>\",\n  \"city\": \"<integer>\",\n  \"country\": \"<string>\",\n  \"district\": \"<integer>\",\n  \"landmark\": \"<integer>\",\n  \"languages\": [\n    \"en-gb\"\n  ],\n  \"page\": \"<string>\",\n  \"region\": \"<integer>\",\n  \"rows\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a2072481-0dc8-45e8-865e-42aa8d49c9cf",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "locations",
+                    "landmarks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"city\": -2140479,\n  \"languages\": [\n    \"en-gb\",\n    \"zh-cn\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"coordinates\": {\n        \"latitude\": 52.378281,\n        \"longitude\": 4.90007\n      },\n      \"name\": {\n        \"en-gb\": \"Amsterdam Central Station\",\n        \"zh-cn\": \"阿姆斯特丹中央车站\"\n      }\n    },\n    \"...\"\n  ],\n  \"next_page\": \"...\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c4d5dc9-edb6-4216-a496-b7878fb2bd0e",
+          "name": "Booking.com Regions",
+          "request": {
+            "name": "Booking.com Regions",
+            "description": {
+              "content": "This endpoint returns a list of regions with translations in the selected languages. The regions returned may be filtered by a location id. For example, you can get the list of regions in the Netherlands or that the Netherlands is a part of by passing: `{\"country\":\"nl\"}`.  To get the full list call the endpoint passing an empty body. The region ids returned are what is used as input and output for other endpoints. This endpoint implements pagination of the results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "locations",
+                "regions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"airport\": \"<string>\",\n  \"city\": \"<integer>\",\n  \"country\": \"<string>\",\n  \"landmark\": \"<integer>\",\n  \"languages\": [\n    \"en-gb\"\n  ],\n  \"page\": \"<string>\",\n  \"region\": \"<integer>\",\n  \"rows\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5ccae010-342f-4810-868c-d87c139aae30",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "locations",
+                    "regions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"nl\",\n  \"languages\": [\n    \"en-gb\",\n    \"zh-cn\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": 1003,\n      \"name\": {\n        \"en-gb\": \"Drenthe\",\n        \"zh-cn\": \"德伦特省\"\n      }\n    },\n    \"...\"\n  ],\n  \"next_page\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://demandapi.booking.com/3.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "38ff9e25-bc32-4ed0-8b6c-228ad6c24fd3",
+    "name": "Booking.com Demand Accommodations Common/locations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.",
+      "type": "text/plain"
+    }
+  }
+}

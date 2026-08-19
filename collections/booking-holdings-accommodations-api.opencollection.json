@@ -1,0 +1,209 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Booking.com Demand Accommodations API",
+    "version": "3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accommodations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Booking.com Search Accommodation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/accommodations/search",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns, by default, the cheapest available product for each accommodation that matches the specified search criteria. <br/><br/>When you apply location filters using parameters such as country or region id, the results are sorted by Booking.com popularity (top_picks) instead of price.<br/>In this case, accommodations are ranked in descending order of popularity, meaning higher-ranked listings will appear earlier in the response."
+        },
+        {
+          "info": {
+            "name": "Booking.com Check Availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/accommodations/availability",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to return detailed product availability, price and charges of the accommodation matching a given search criteria. <br/>By default, only product availability and price is returned. To receive extended information use the `extras` parameter. <br/><br/>Note: It is mandatory to pass the input parameters: accommodation, booker, checkin, checkout and guest."
+        },
+        {
+          "info": {
+            "name": "Booking.com Check Multiple Availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/accommodations/bulk-availability",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to retrieve detailed product availability, price and charges of a list of accommodations. By default, only product availability and price is returned. <br/>To receive extended information use the `extras` parameter. <br/>Note: It is mandatory to pass the input parameters: accommodations, booker, checkin, checkout and guests."
+        },
+        {
+          "info": {
+            "name": "Booking.com Chains",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/accommodations/chains",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Use this endpoint to retrieve a list of accommodation chains and their associated brands.<br/><br/> A chain-branded accommodation is part of a larger corporate group and operates under a recognised brand. The returned information can be used to filter search results by chain or brand across other endpoints. <br/> - To obtain the full list of chains, call this endpoint with an empty request body. <br/> - The `id` values returned are the codes used as input and output in other API requests, ensuri"
+        },
+        {
+          "info": {
+            "name": "Booking.com Constants",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/accommodations/constants",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to retrieve standardised codes and names for accommodation-specific types, including facilities, room types, bed types, themes, and charges. <br/>These constants can be used to filter searches or populate reference data across other accommodation endpoints. <br/>You can request multiple languages using IETF language tags (see common/languages). <br/> Call with an empty body to retrieve all constants. The codes returned are canonical identifiers used across the API."
+        },
+        {
+          "info": {
+            "name": "Booking.com Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/accommodations/details",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns detailed information on all accommodation properties matching a given search criteria. By default, only basic information is returned. <br/><br/>It is mandatory to pass one of the input parameters: accommodations, airport, city, country or region. <br/><br/>To receive extended information use the `extras` parameter."
+        },
+        {
+          "info": {
+            "name": "Booking.com Updated Accommodations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/accommodations/details/changes",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to track accommodations that have opened, closed, or had relevant content updates since a specific timestamp. Changes can include updates to general information, facilities, rooms, photos, payments, and more. <br/>You can:<br/> - Filter results by country or city.<br/> - Use the \"next\" timestamp from the response to request further updates.<br/><br/>To keep your local accommodation cache up to date, use this endpoint in combination with [accommodations/details](/demand/docs/ope"
+        },
+        {
+          "info": {
+            "name": "Booking.com Accommodation Reviews",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/accommodations/reviews",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint provides access to reviews for specified accommodations, allowing you to retrieve traveller feedback associated with a particular property.</br></br> ✅ The reviews returned can be [filtered and sorted](/demand/docs/accommodations/filter-sorting), with the option to limit the number of reviews per accommodation by specifying the `rows` parameter.</br></br> Please note that the ratings **score is based on all traveller traffic across Booking.com**, and may not necessarily reflect the"
+        },
+        {
+          "info": {
+            "name": "Booking.com Accommodation Review Scores",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/accommodations/reviews/scores",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns score distribution and score breakdown for the specified accommodations. The scores information can be filtered by reviewer parameters and languages."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

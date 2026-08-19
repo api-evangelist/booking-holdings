@@ -1,0 +1,1041 @@
+{
+  "item": [
+    {
+      "id": "3d0757eb-48ed-459b-ac5e-03f6b3875ac5",
+      "name": "Accommodations",
+      "description": {
+        "content": "This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed24bf09-9f82-4564-b9d4-404d27b5cbfd",
+          "name": "Booking.com Search Accommodation",
+          "request": {
+            "name": "Booking.com Search Accommodation",
+            "description": {
+              "content": "This endpoint returns, by default, the cheapest available product for each accommodation that matches the specified search criteria. <br/><br/>When you apply location filters using parameters such as country or region id, the results are sorted by Booking.com popularity (top_picks) instead of price.<br/>In this case, accommodations are ranked in descending order of popularity, meaning higher-ranked listings will appear earlier in the response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accommodations",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"booker\": {\n    \"country\": \"<string>\",\n    \"platform\": \"<string>\",\n    \"state\": \"<string>\",\n    \"travel_purpose\": \"<string>\",\n    \"user_groups\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"checkin\": \"<date>\",\n  \"checkout\": \"<date>\",\n  \"guests\": {\n    \"number_of_adults\": \"<integer>\",\n    \"number_of_rooms\": \"<integer>\",\n    \"allocation\": [\n      {\n        \"number_of_adults\": \"<integer>\",\n        \"children\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      },\n      {\n        \"number_of_adults\": \"<integer>\",\n        \"children\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      }\n    ],\n    \"children\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"24_hour_reception\": \"<boolean>\",\n  \"accommodation_facilities\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"accommodation_types\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"accommodations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"airport\": \"<string>\",\n  \"brands\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"cancellation_type\": \"<string>\",\n  \"city\": \"<integer>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\",\n    \"radius\": \"<double>\"\n  },\n  \"country\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"district\": \"<integer>\",\n  \"dormitories\": \"include\",\n  \"extras\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"landmark\": \"<integer>\",\n  \"meal_plan\": \"<string>\",\n  \"page\": \"<string>\",\n  \"payment\": {\n    \"credit_card_required\": \"<boolean>\",\n    \"timing\": \"<string>\"\n  },\n  \"price\": {\n    \"maximum\": \"<integer>\",\n    \"minimum\": \"<integer>\"\n  },\n  \"rating\": {\n    \"minimum_review_score\": \"<integer>\",\n    \"stars\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"region\": \"<integer>\",\n  \"room_facilities\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"rows\": 100,\n  \"sort\": {\n    \"by\": \"<string>\",\n    \"direction\": \"<string>\"\n  },\n  \"travel_proud\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "76da86c0-a7ff-44a6-b524-c031da8c9f41",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accommodations",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"booker\": {\n    \"country\": \"nl\",\n    \"platform\": \"desktop\"\n  },\n  \"checkin\": \"!START_DATE!\",\n  \"checkout\": \"!END_DATE!\",\n  \"city\": -2140479,\n  \"extras\": [\n    \"extra_charges\",\n    \"products\"\n  ],\n  \"guests\": {\n    \"number_of_adults\": 2,\n    \"number_of_rooms\": 1\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": 10004,\n      \"currency\": \"EUR\",\n      \"deep_link_url\": \"booking://hotel/10004?affiliate_id=!AFFILIATE_ID!&checkin=!START_DATE!&checkout=!END_DATE!&mcid=10\",\n      \"price\": {\n        \"base\": 1081.49,\n        \"book\": 1260.52,\n        \"extra_charges\": {\n          \"excluded\": 0,\n          \"included\": 179.04\n        },\n        \"total\": 1260.52\n      },\n      \"products\": [\n        {\n          \"id\": \"1000420_95127794_2_0_0\",\n          \"bundle\": null,\n          \"children\": [],\n          \"deal\": null,\n          \"inventory\": {\n            \"third_party\": false,\n            \"type\": \"sell\"\n          },\n          \"number_of_adults\": 2,\n          \"policies\": {\n            \"cancellation\": {\n              \"free_cancellation_until\": null,\n              \"type\": \"non_refundable\"\n            },\n            \"meal_plan\": {\n              \"meals\": [],\n              \"plan\": \"no_plan\"\n            },\n            \"payment\": {\n              \"timings\": [\n                \"pay_at_the_property\"\n              ]\n            }\n          },\n          \"price\": {\n            \"base\": 1081.49,\n            \"book\": 1260.52,\n            \"extra_charges\": {\n              \"conditional\": [],\n              \"excluded\": [],\n              \"included\": [\n                {\n                  \"charge\": 21,\n                  \"mode\": \"percentage\",\n                  \"percentage\": 9,\n                  \"total_amount\": 107.07,\n                  \"unit_amount\": null\n                },\n                {\n                  \"charge\": 22,\n                  \"mode\": \"percentage\",\n                  \"percentage\": 7,\n                  \"total_amount\": 83.27,\n                  \"unit_amount\": null\n                },\n                {\n                  \"charge\": 142,\n                  \"mode\": \"per_person_per_night\",\n                  \"percentage\": null,\n                  \"total_amount\": 6,\n                  \"unit_amount\": 3\n                }\n              ]\n            },\n            \"total\": 1260.52\n          },\n          \"room\": 1000426,\n          \"third_party_inventory\": false\n        }\n      ],\n      \"url\": \"https://www.booking.com/hotel/nl/conscious-the-tire-station.html?affiliate_id=!AFFILIATE_ID!&checkin=!START_DATE!&checkout=!END_DATE!&group_adults=2&no_rooms=1\"\n    },\n    \"...\"\n  ],\n  \"next_page\": \"...\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2118aba8-7e7f-40c0-9130-50a62e08c689",
+          "name": "Booking.com Check Availability",
+          "request": {
+            "name": "Booking.com Check Availability",
+            "description": {
+              "content": "Use this endpoint to return detailed product availability, price and charges of the accommodation matching a given search criteria. <br/>By default, only product availability and price is returned. To receive extended information use the `extras` parameter. <br/><br/>Note: It is mandatory to pass the input parameters: accommodation, booker, checkin, checkout and guest.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accommodations",
+                "availability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accommodation\": \"<integer>\",\n  \"booker\": {\n    \"country\": \"<string>\",\n    \"platform\": \"<string>\",\n    \"state\": \"<string>\",\n    \"travel_purpose\": \"<string>\",\n    \"user_groups\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"checkin\": \"<date>\",\n  \"checkout\": \"<date>\",\n  \"guests\": {\n    \"number_of_adults\": \"<integer>\",\n    \"number_of_rooms\": \"<integer>\",\n    \"allocation\": [\n      {\n        \"number_of_adults\": \"<integer>\",\n        \"children\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      },\n      {\n        \"number_of_adults\": \"<integer>\",\n        \"children\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      }\n    ],\n    \"children\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"currency\": \"<string>\",\n  \"extras\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"payment\": {\n    \"timing\": \"<string>\"\n  },\n  \"products\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cae3dc60-4ada-48d6-ac72-b714d2b8b0e8",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accommodations",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accommodation\": 10004,\n  \"booker\": {\n    \"country\": \"nl\",\n    \"platform\": \"desktop\"\n  },\n  \"checkin\": \"!START_DATE!\",\n  \"checkout\": \"!END_DATE!\",\n  \"extras\": [\n    \"extra_charges\"\n  ],\n  \"guests\": {\n    \"number_of_adults\": 2,\n    \"number_of_rooms\": 1\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": {\n    \"id\": 10004,\n    \"currency\": \"EUR\",\n    \"deep_link_url\": \"booking://hotel/10004?affiliate_id=!AFFILIATE_ID!&checkin=!START_DATE!&checkout=!END_DATE!\",\n    \"products\": [\n      {\n        \"id\": \"1000420_358188572_2_0_0\",\n        \"bundle\": null,\n        \"deal\": null,\n        \"inventory\": {\n          \"third_party\": false,\n          \"type\": \"sell\"\n        },\n        \"maximum_occupancy\": {\n          \"adults\": 2,\n          \"children\": null,\n          \"total\": 2\n        },\n        \"number_available_at_this_price\": 3,\n        \"policies\": {\n          \"cancellation\": {\n            \"free_cancellation_until\": \"!START_DATE-2!T00:00:00+00:00\",\n            \"type\": \"free_cancellation\"\n          },\n          \"meal_plan\": {\n            \"meals\": [],\n            \"plan\": \"no_plan\"\n          },\n          \"payment\": {\n            \"prepayment_required\": false,\n            \"timings\": [\n              \"pay_at_the_property\"\n            ]\n          }\n        },\n        \"price\": {\n          \"base\": 1189.63,\n          \"book\": 1385.97,\n          \"chargeable_online\": 1385.97,\n          \"extra_charges\": {\n            \"conditional\": [],\n            \"excluded\": [],\n            \"included\": [\n              {\n                \"charge\": 21,\n                \"chargeable_online\": true,\n                \"mode\": \"percentage\",\n                \"percentage\": 9,\n                \"total_amount\": 107.07,\n                \"unit_amount\": null\n              },\n              {\n                \"charge\": 22,\n                \"chargeable_online\": false,\n                \"mode\": \"percentage\",\n                \"percentage\": 7,\n                \"total_amount\": 83.27,\n                \"unit_amount\": null\n              },\n              {\n                \"charge\": 142,\n                \"chargeable_online\": true,\n                \"mode\": \"per_person_per_night\",\n                \"percentage\": null,\n                \"total_amount\": 6,\n                \"unit_amount\": 3\n              }\n            ]\n          },\n          \"total\": 1385.97\n        },\n        \"room\": 1000420,\n        \"third_party_inventory\": false\n      },\n      \"...\"\n    ],\n    \"recommendation\": {\n      \"price\": {\n        \"base\": 1081.49,\n        \"book\": 1260.52,\n        \"chargeable_online\": 1260.52,\n        \"extra_charges\": {\n          \"excluded\": 0,\n          \"included\": 179.04\n        },\n        \"total\": 1260.52\n      },\n      \"products\": [\n        {\n          \"id\": \"1000420_95127794_2_0_0\",\n          \"children\": [],\n          \"number_of_adults\": 2,\n          \"price\": {\n            \"base\": 1081.49,\n            \"book\": 1260.52,\n            \"chargeable_online\": 1260.52,\n            \"extra_charges\": {\n              \"excluded\": 0,\n              \"included\": 179.04\n            },\n            \"total\": 1260.52\n          }\n        }\n      ]\n    },\n    \"url\": \"https://www.booking.com/hotel/nl/toren.html?aid=!AFFILIATE_ID!&checkin=!START_DATE!&checkout=!END_DATE!&no_rooms=1&group_adults=2\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "88d00af0-f329-41cc-be25-808abc1b950b",
+          "name": "Booking.com Check Multiple Availability",
+          "request": {
+            "name": "Booking.com Check Multiple Availability",
+            "description": {
+              "content": "Use this endpoint to retrieve detailed product availability, price and charges of a list of accommodations. By default, only product availability and price is returned. <br/>To receive extended information use the `extras` parameter. <br/>Note: It is mandatory to pass the input parameters: accommodations, booker, checkin, checkout and guests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accommodations",
+                "bulk-availability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accommodations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"booker\": {\n    \"country\": \"<string>\",\n    \"platform\": \"<string>\",\n    \"state\": \"<string>\",\n    \"travel_purpose\": \"<string>\",\n    \"user_groups\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"checkin\": \"<date>\",\n  \"checkout\": \"<date>\",\n  \"guests\": {\n    \"number_of_adults\": \"<integer>\",\n    \"number_of_rooms\": \"<integer>\",\n    \"allocation\": [\n      {\n        \"number_of_adults\": \"<integer>\",\n        \"children\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      },\n      {\n        \"number_of_adults\": \"<integer>\",\n        \"children\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      }\n    ],\n    \"children\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"currency\": \"<string>\",\n  \"extras\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": {\n    \"cancellation_type\": \"<string>\",\n    \"meal_plan\": \"<string>\",\n    \"payment\": {\n      \"timing\": \"<string>\"\n    },\n    \"third_party_inventory\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "946ea795-d2a4-4c64-b2e9-13970253dfc8",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accommodations",
+                    "bulk-availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accommodations\": [\n    10004\n  ],\n  \"booker\": {\n    \"country\": \"nl\",\n    \"platform\": \"desktop\"\n  },\n  \"checkin\": \"!START_DATE!\",\n  \"checkout\": \"!END_DATE!\",\n  \"extras\": [\n    \"extra_charges\"\n  ],\n  \"filters\": {\n    \"meal_plan\": \"breakfast_included\",\n    \"cancellation_type\": \"free_cancellation\"\n  },\n  \"guests\": {\n    \"number_of_adults\": 2,\n    \"number_of_rooms\": 1\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": 10004,\n      \"currency\": \"EUR\",\n      \"deep_link_url\": \"booking://hotel/10004?affiliate_id=!AFFILIATE_ID!&checkin=!START_DATE!&checkout=!END_DATE!\",\n      \"products\": [\n        {\n          \"id\": \"1000420_358188572_2_0_0\",\n          \"bundle\": null,\n          \"deal\": null,\n          \"maximum_occupancy\": {\n            \"adults\": 2,\n            \"children\": null,\n            \"total\": 2\n          },\n          \"number_available\": 3,\n          \"policies\": {\n            \"cancellation\": {\n              \"free_cancellation_until\": \"!START_DATE-2!T00:00:00+00:00\",\n              \"type\": \"free_cancellation\",\n              \"schedule\": [\n                {\n                  \"from\": \"now\",\n                  \"price\": 0\n                },\n                {\n                  \"from\": \"!START_DATE-2!T00:00:00+00:00\",\n                  \"price\": 1189.63\n                }\n              ]\n            },\n            \"meal_plan\": {\n              \"meals\": [],\n              \"plan\": \"no_plan\"\n            },\n            \"payment\": {\n              \"timings\": [\n                \"pay_at_the_property\"\n              ]\n            }\n          },\n          \"price\": {\n            \"base\": 1189.63,\n            \"book\": 1385.97,\n            \"chargeable_online\": 1385.97,\n            \"extra_charges\": {\n              \"conditional\": [],\n              \"excluded\": [],\n              \"included\": [\n                {\n                  \"charge\": 21,\n                  \"chargeable_online\": true,\n                  \"mode\": \"percentage\",\n                  \"percentage\": 9,\n                  \"total_amount\": 107.07,\n                  \"unit_amount\": null\n                },\n                {\n                  \"charge\": 22,\n                  \"chargeable_online\": false,\n                  \"mode\": \"percentage\",\n                  \"percentage\": 7,\n                  \"total_amount\": 83.27,\n                  \"unit_amount\": null\n                },\n                {\n                  \"charge\": 142,\n                  \"chargeable_online\": true,\n                  \"mode\": \"per_person_per_night\",\n                  \"percentage\": null,\n                  \"total_amount\": 6,\n                  \"unit_amount\": 3\n                }\n              ]\n            },\n            \"total\": 1385.97\n          },\n          \"room\": 1000420,\n          \"third_party_inventory\": true\n        },\n        \"...\"\n      ],\n      \"recommendation\": {\n        \"price\": {\n          \"base\": 1081.49,\n          \"book\": 1260.52,\n          \"chargeable_online\": 1260.52,\n          \"extra_charges\": {\n            \"excluded\": 0,\n            \"included\": 179.04\n          },\n          \"total\": 1260.52\n        },\n        \"products\": [\n          {\n            \"id\": \"1000420_95127794_2_0_0\",\n            \"children\": [],\n            \"number_of_adults\": 2,\n            \"price\": {\n              \"base\": 1081.49,\n              \"book\": 1260.52,\n              \"chargeable_online\": 1260.52,\n              \"extra_charges\": {\n                \"excluded\": 0,\n                \"included\": 179.04\n              },\n              \"total\": 1260.52\n            }\n          }\n        ]\n      },\n      \"url\": \"https://www.booking.com/hotel/nl/toren.html?aid=!AFFILIATE_ID!&checkin=!START_DATE!&checkout=!END_DATE!&no_rooms=1&group_adults=2\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79b83509-2ad6-485e-9caa-fa6703dafff6",
+          "name": "Booking.com Chains",
+          "request": {
+            "name": "Booking.com Chains",
+            "description": {
+              "content": "Use this endpoint to retrieve a list of accommodation chains and their associated brands.<br/><br/> A chain-branded accommodation is part of a larger corporate group and operates under a recognised brand. The returned information can be used to filter search results by chain or brand across other endpoints. <br/> - To obtain the full list of chains, call this endpoint with an empty request body. <br/> - The `id` values returned are the codes used as input and output in other API requests, ensuring consistency across your integration. <br/> **Example of chain** - \"Radisson Hotel Group\" with brands such as \"Radisson Blu\" or \"Park Inn by Radisson.\"",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accommodations",
+                "chains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ba58fee-b562-4f76-b0a6-d1b11e7d4a01",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accommodations",
+                    "chains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": 3,\n      \"brands\": [\n        {\n          \"id\": 1018,\n          \"name\": \"Campanile\"\n        },\n        \"...\"\n      ],\n      \"name\": \"Louvre Hotels Group\"\n    },\n    \"...\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9677d673-d115-433c-be1a-c0cf435f35ce",
+          "name": "Booking.com Constants",
+          "request": {
+            "name": "Booking.com Constants",
+            "description": {
+              "content": "Use this endpoint to retrieve standardised codes and names for accommodation-specific types, including facilities, room types, bed types, themes, and charges. <br/>These constants can be used to filter searches or populate reference data across other accommodation endpoints. <br/>You can request multiple languages using IETF language tags (see common/languages). <br/> Call with an empty body to retrieve all constants. The codes returned are canonical identifiers used across the API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accommodations",
+                "constants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"constants\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languages\": [\n    \"en-gb\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd808ba1-1e26-43d5-a9ff-4414cb3bc001",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accommodations",
+                    "constants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"languages\": [\n    \"en-gb\",\n    \"zh-cn\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": {\n    \"accommodation_facilities\": [\n      {\n        \"id\": 2,\n        \"facility_type\": 16,\n        \"name\": {\n          \"en-gb\": \"Parking\",\n          \"zh-cn\": \"停车场\"\n        }\n      },\n      \"...\"\n    ],\n    \"accommodation_themes\": [\n      {\n        \"id\": 1,\n        \"name\": {\n          \"en-gb\": \"Apartments\",\n          \"zh-cn\": \"公寓\"\n        }\n      },\n      \"...\"\n    ],\n    \"accommodation_types\": [\n      {\n        \"id\": 201,\n        \"name\": {\n          \"en-gb\": \"Apartment\",\n          \"zh-cn\": \"公寓\"\n        }\n      },\n      \"...\"\n    ],\n    \"bed_types\": [\n      {\n        \"id\": 1,\n        \"description\": {\n          \"en-gb\": \"90-130 cm wide\",\n          \"zh-cn\": \"宽 90-130 厘米\"\n        },\n        \"description_imperial\": {\n          \"en-gb\": \"35-51 inches wide\",\n          \"zh-cn\": \"宽 35-51 英寸\"\n        },\n        \"name\": {\n          \"en-gb\": \"Single bed(s)\",\n          \"zh-cn\": \"单人床\"\n        }\n      },\n      \"...\"\n    ],\n    \"charge_types\": [\n      {\n        \"id\": 0,\n        \"name\": {\n          \"en-gb\": \"service charge\",\n          \"zh-cn\": \"服务费\"\n        }\n      },\n      \"...\"\n    ],\n    \"facility_types\": [\n      {\n        \"id\": 1,\n        \"name\": {\n          \"en-gb\": \"General\",\n          \"zh-cn\": \"综合设施\"\n        }\n      },\n      \"...\"\n    ],\n    \"review_scores\": [\n      {\n        \"maximum_score\": 2.9,\n        \"minimum_score\": 2,\n        \"name\": {\n          \"en-gb\": \"very poor\",\n          \"zh-cn\": \"非常差\"\n        }\n      },\n      \"...\"\n    ],\n    \"room_facilities\": [\n      {\n        \"id\": 1,\n        \"facility_type\": 7,\n        \"name\": {\n          \"en-gb\": \"Coffee/Tea maker\",\n          \"zh-cn\": \"沏茶/咖啡设备\"\n        }\n      },\n      \"...\"\n    ],\n    \"room_types\": [\n      {\n        \"id\": 1,\n        \"name\": {\n          \"en-gb\": \"Apartment\",\n          \"zh-cn\": \"公寓\"\n        }\n      },\n      \"...\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c9d3316-cda3-4604-8dc3-6dd1d0e3f735",
+          "name": "Booking.com Details",
+          "request": {
+            "name": "Booking.com Details",
+            "description": {
+              "content": "This endpoint returns detailed information on all accommodation properties matching a given search criteria. By default, only basic information is returned. <br/><br/>It is mandatory to pass one of the input parameters: accommodations, airport, city, country or region. <br/><br/>To receive extended information use the `extras` parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accommodations",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accommodation_facilities\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"accommodation_types\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"accommodations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"airport\": \"<string>\",\n  \"brands\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"city\": \"<integer>\",\n  \"country\": \"<string>\",\n  \"extras\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page\": \"<string>\",\n  \"payment\": {\n    \"timing\": \"<string>\"\n  },\n  \"region\": \"<integer>\",\n  \"rows\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "435b989c-4704-4071-98a7-fcf736ca7f98",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accommodations",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accommodations\": [\n    10004\n  ],\n  \"extras\": [\n    \"bundles\",\n    \"description\",\n    \"facilities\",\n    \"payment\",\n    \"photos\",\n    \"policies\",\n    \"rooms\"\n  ],\n  \"languages\": [\n    \"en-gb\",\n    \"zh-cn\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": 10004,\n      \"accommodation_type\": 204,\n      \"brands\": [],\n      \"bundles\": [\n        {\n          \"id\": 12345,\n          \"value_adds\": [\n            {\n              \"type\": \"high_speed_internet\",\n              \"description\": {\n                \"en-gb\": [\n                  \"High speed internet throughout your stay.\"\n                ]\n              }\n            }\n          ]\n        }\n      ],\n      \"checkin_checkout_times\": {\n        \"checkin_from\": \"15:00:00\",\n        \"checkin_to\": null,\n        \"checkout_from\": \"07:00:00\",\n        \"checkout_to\": \"12:00:00\"\n      },\n      \"currency\": \"EUR\",\n      \"deep_link_url\": \"booking://hotel/10004?affiliate_id=!AFFILIATE_ID!\",\n      \"description\": {\n        \"important_information\": {\n          \"en-gb\": \"The credit card that has been used to book a non-refundable rate, will be charged on the day of booking and needs to be presented upon check-in. In case the credit card owner is not traveling with you, an online payment link will be sent to prepay your stay.\\n\\nPlease note that the hotel pre-authorizes your credit card with the amount for the first night, 8 days prior to arrival. This is not a payment and this only applies to flexible rates.\\n\\nParking in Amsterdam is challenging, there are parking garages near to the hotel or a valet service is possible to arrange upon request. Charges are applicable. Please contact the hotel ahead of time for information\",\n          \"zh-cn\": \"酒店将在预订当天收取用于支付不退款房价的信用卡，客人需在办理入住手续时出示该信用卡。如果信用卡持有人未与客人同行，酒店将发送在线付款链接以预付客人的住宿费用。\\n\\n请注意，酒店将在客人抵达前8天通过其信用卡预授权第一晚的房费。这不是付款，这仅适用于变化的利率。\\n\\n在阿姆斯特丹（Amsterdam）停车很有挑战性，酒店附近有停车库，或者可应要求为客人安排代客泊车服务，收费适用。请提前联系酒店以获取信息。\",\n          \"fallback\": null\n        },\n        \"license_numbers\": [],\n        \"text\": {\n          \"en-gb\": \"The Pavilions Amsterdam, The Toren features elegant accommodation alongside the famous Keizersgracht canal, around the corner from the Anne Frank House. It offers elegant rooms with flat-screen TVs with digital entertainment system.\\n\\nEach air-conditioned room at the Toren has an en suite bathroom with a bathtub. They have classic decorations such as chandeliers and ceiling paintings. Tea/coffee making facilities and a complimentary mini bar are also provided in every room.\\n\\nIn the morning, guests can enjoy a delightful breakfast buffet in the elegant breakfast room with views of the Keizersgracht. The trendy hotel bar serves refreshing drinks during the day.\\n\\nWestermarkt Tram Stop is less than 250 metres from the hotel. Dam Square and the Royal Palace are a 10-minute walk away.\",\n          \"zh-cn\": \"The Pavilions Amsterdam, The Toren酒店位于安妮弗兰克之家（Anne Frank House）拐角处，毗邻著名的Keizersgracht运河，提供典雅的住宿。酒店提供带平板电视和数字娱乐系统的典雅客房。\\n\\nToren酒店的每间空调客房均配有带浴缸的独立浴室。客房拥有典雅的装饰，如吊灯和天花板画。每间客房还提供沏茶/咖啡设施和免费迷你吧。\\n\\n早晨，客人可在典雅的早餐室享用可口的自助早餐，并欣赏Keizersgracht的景色。时髦的酒店酒吧白天提供清凉饮料。\\n\\n酒店距离韦斯特马克特电车站（Westermarkt Tram Stop）不到250米，距离水坝广场（Dam Square）和皇宫（Royal Palace）有10分钟的步行路程。\",\n          \"fallback\": null\n        },\n        \"trader\": {\n          \"address\": {\n            \"address_line\": \"Prinsengract 153\",\n            \"city\": \"Amsterdam\",\n            \"country\": \"nl\",\n            \"post_code\": \"94571\"\n          },\n          \"email\": \"test@test.test\",\n          \"name\": \"Test Test\",\n          \"registration_number\": \"123456788\",\n          \"telephone\": \"+123456789\",\n          \"trade_register\": \"hjdfvhfjd\",\n          \"trader_verified\": true\n        }\n      },\n      \"facilities\": [\n        {\n          \"id\": 5,\n          \"attributes\": []\n        },\n        \"...\"\n      ],\n      \"is_genius\": true,\n      \"is_work_friendly\": false,\n      \"location\": {\n        \"address\": {\n          \"fallback\": \"Keizersgracht 164\"\n        },\n        \"city\": -2140479,\n        \"coordinates\": {\n          \"latitude\": 52.375858,\n          \"longitude\": 4.886006\n        },\n        \"country\": \"nl\",\n        \"districts\": [\n          145,\n          3024,\n          9173\n        ],\n        \"postal_code\": \"1015 CZ\",\n        \"regions\": [\n          1010,\n          2776\n        ]\n      },\n      \"long_stay_friendly_home\": false,\n      \"meal_prices\": {\n        \"breakfast\": 20,\n        \"dinner\": null,\n        \"lunch\": null\n      },\n      \"name\": {\n        \"fallback\": \"The Pavilions Amsterdam, The Toren\"\n      },\n      \"number_of_rooms\": 11,\n      \"payment\": {\n        \"amex_cvc_required\": false,\n        \"cvc_required\": true,\n        \"domestic_no_cc\": false,\n        \"methods\": {\n          \"cash\": true,\n          \"cards\": [\n            1,\n            2,\n            3\n          ],\n          \"virtual_cards\": [\n            1,\n            2,\n            3\n          ]\n        },\n        \"timings\": [\n          \"pay_at_the_property\"\n        ]\n      },\n      \"photos\": [\n        {\n          \"main_photo\": true,\n          \"tags\": [\n            \"Neighbourhood\"\n          ],\n          \"url\": {\n            \"large\": \"https://q-xx.bstatic.com/xdata/images/hotel/max1280/243931754.jpg?k=a1fea83a088f20b8f8a0e68ac06cb0090a093808f6e2a129bfb990165a0009f3&o=\",\n            \"standard\": \"https://q-xx.bstatic.com/xdata/images/hotel/max500/243931754.jpg?k=a1fea83a088f20b8f8a0e68ac06cb0090a093808f6e2a129bfb990165a0009f3&o=\",\n            \"thumbnail\": \"https://q-xx.bstatic.com/xdata/images/hotel/100x100/243931754.jpg?k=a1fea83a088f20b8f8a0e68ac06cb0090a093808f6e2a129bfb990165a0009f3&o=\",\n            \"thumbnail_large\": \"https://q-xx.bstatic.com/xdata/images/hotel/300x300/243931754.jpg?k=a1fea83a088f20b8f8a0e68ac06cb0090a093808f6e2a129bfb990165a0009f3&o=\"\n          }\n        },\n        \"...\"\n      ],\n      \"policies\": {\n        \"cots_and_extra_beds\": [\n          {\n            \"age\": {\n              \"from\": 0,\n              \"to\": 2\n            },\n            \"mode\": \"per_night\",\n            \"price\": 0,\n            \"type\": \"crib\"\n          }\n        ],\n        \"damage\": {\n          \"amount\": 50,\n          \"currency\": \"EUR\",\n          \"deposit\": {\n            \"collect\": {\n              \"date\": {\n                \"days_offset\": 0,\n                \"reference_date\": \"checkin\"\n              },\n              \"payment_method\": \"credit_card\"\n            },\n            \"refund\": {\n              \"date\": {\n                \"days_offset\": 0,\n                \"reference_date\": \"checkout\"\n              },\n              \"payment_method\": \"credit_card\"\n            }\n          }\n        },\n        \"maximum_checkin_age\": null,\n        \"minimum_checkin_age\": 18,\n        \"minimum_guest_age\": 0,\n        \"pets\": {\n          \"allowed\": \"no\",\n          \"charge_mode\": null\n        }\n      },\n      \"price_category\": \"$$$$\",\n      \"programmes\": {\n        \"travel_proud\": false\n      },\n      \"ranking\": 123456,\n      \"rating\": {\n        \"number_of_reviews\": 930,\n        \"preferred\": true,\n        \"review_score\": 9,\n        \"stars\": 4,\n        \"stars_type\": \"official\"\n      },\n      \"rooms\": [\n        {\n          \"id\": 1000420,\n          \"attributes\": [\n            \"non_smoking\"\n          ],\n          \"bed_options\": [\n            {\n              \"bed_configurations\": [\n                {\n                  \"id\": \"1000420-1\",\n                  \"configuration\": [\n                    {\n                      \"bed_type\": 6,\n                      \"number_of_beds\": 1\n                    }\n                  ]\n                },\n                {\n                  \"id\": \"1000420-2\",\n                  \"configuration\": [\n                    {\n                      \"bed_type\": 1,\n                      \"number_of_beds\": 2\n                    }\n                  ]\n                }\n              ],\n              \"has_bathroom\": true,\n              \"is_bedroom\": true\n            }\n          ],\n          \"cots_and_extra_beds\": {\n            \"are_allowed_together\": false,\n            \"maximum_number_of_cots\": 0,\n            \"maximum_number_of_extra_beds\": 0\n          },\n          \"cribs_and_extra_beds\": {\n            \"are_allowed\": false,\n            \"maximum_number_of_cribs\": 0,\n            \"maximum_number_of_extra_beds\": 0\n          },\n          \"description\": {\n            \"en-gb\": \"This room features decor with rich colours and original features. It is located in the annex building, 8 houses away from the main building. It is internally positioned, overlooking a small courtyard.\",\n            \"fallback\": null\n          },\n          \"facilities\": [\n            1,\n            \"...\"\n          ],\n          \"maximum_occupancy\": {\n            \"adults\": 2,\n            \"children\": 1,\n            \"total_guests\": 2\n          },\n          \"name\": {\n            \"en-gb\": \"Standard Double or Twin Room\",\n            \"zh-cn\": \"标准双人或双床间 \",\n            \"fallback\": null\n          },\n          \"number_of_rooms\": {\n            \"bathrooms\": 1,\n            \"bedrooms\": 1,\n            \"living_rooms\": 0\n          },\n          \"photos\": [\n            {\n              \"tags\": [\n                \"Neighbourhood\"\n              ],\n              \"url\": {\n                \"large\": \"https://q-xx.bstatic.com/xdata/images/hotel/max1280/243931754.jpg?k=a1fea83a088f20b8f8a0e68ac06cb0090a093808f6e2a129bfb990165a0009f3&o=\",\n                \"standard\": \"https://q-xx.bstatic.com/xdata/images/hotel/max500/243931754.jpg?k=a1fea83a088f20b8f8a0e68ac06cb0090a093808f6e2a129bfb990165a0009f3&o=\",\n                \"thumbnail\": \"https://q-xx.bstatic.com/xdata/images/hotel/100x100/243931754.jpg?k=a1fea83a088f20b8f8a0e68ac06cb0090a093808f6e2a129bfb990165a0009f3&o=\",\n                \"thumbnail_large\": \"https://q-xx.bstatic.com/xdata/images/hotel/300x300/243931754.jpg?k=a1fea83a088f20b8f8a0e68ac06cb0090a093808f6e2a129bfb990165a0009f3&o=\"\n              }\n            },\n            \"...\"\n          ],\n          \"room_type\": 9,\n          \"size\": 18\n        },\n        \"...\"\n      ],\n      \"spoken_languages\": [\n        \"de\",\n        \"en-gb\",\n        \"fr\",\n        \"nl\"\n      ],\n      \"themes\": [\n        6,\n        \"...\"\n      ],\n      \"url\": \"https://www.booking.com/hotel/nl/toren.html?affiliate_id=!AFFILIATE_ID!\",\n      \"work_friendly_home\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8022d49-4fe9-4209-bb7c-b050804fa5cb",
+          "name": "Booking.com Updated Accommodations",
+          "request": {
+            "name": "Booking.com Updated Accommodations",
+            "description": {
+              "content": "Use this endpoint to track accommodations that have opened, closed, or had relevant content updates since a specific timestamp. Changes can include updates to general information, facilities, rooms, photos, payments, and more. <br/>You can:<br/> - Filter results by country or city.<br/> - Use the \"next\" timestamp from the response to request further updates.<br/><br/>To keep your local accommodation cache up to date, use this endpoint in combination with [accommodations/details](/demand/docs/open-api/demand-api/accommodations/accommodations/details) <br/><br/>The maximum number of IDs returned is approximately 5000 per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accommodations",
+                "details",
+                "changes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"last_change\": \"<dateTime>\",\n  \"filters\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"cities\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd0c5c69-5aa7-46d3-966d-18e88ac2af22",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accommodations",
+                    "details",
+                    "changes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"last_change\": \"!START_DATE!T12:00:00+00:00\",\n  \"filters\": {\n    \"countries\": [\n      \"nl\",\n      \"es\",\n      \"in\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": {\n    \"changes\": {\n      \"changed\": [\n        403115,\n        \"...\"\n      ],\n      \"closed\": [\n        9876832,\n        \"...\"\n      ],\n      \"opened\": [\n        8034270,\n        \"...\"\n      ]\n    },\n    \"from\": \"!START_DATE!T12:00:00+00:00\",\n    \"next\": \"!START_DATE!T12:24:42+00:00\",\n    \"total_changes\": 5125\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbc55f84-931a-473e-8778-963c50c435b8",
+          "name": "Booking.com Accommodation Reviews",
+          "request": {
+            "name": "Booking.com Accommodation Reviews",
+            "description": {
+              "content": "This endpoint provides access to reviews for specified accommodations, allowing you to retrieve traveller feedback associated with a particular property.</br></br> ✅ The reviews returned can be [filtered and sorted](/demand/docs/accommodations/filter-sorting), with the option to limit the number of reviews per accommodation by specifying the `rows` parameter.</br></br> Please note that the ratings **score is based on all traveller traffic across Booking.com**, and may not necessarily reflect the experience of your own customers.</br></br> If you choose to display or use these ratings and reviews, you are responsible for ensuring that your travellers are properly informed about what these scores represent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accommodations",
+                "reviews"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accommodations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"last_change\": \"<date>\",\n  \"page\": \"<string>\",\n  \"reviewer\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"travel_purposes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"types\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"rows\": 100,\n  \"score\": {\n    \"maximum\": \"<integer>\",\n    \"minimum\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f98c3bfb-cb99-4be6-b08f-bf0b476e7409",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accommodations",
+                    "reviews"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accommodations\": [\n    10004\n  ],\n  \"languages\": [\n    \"en-gb\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": 10004,\n      \"reviews\": [\n        {\n          \"id\": 2130645894,\n          \"date\": \"2023-04-12\",\n          \"language\": \"en-gb\",\n          \"negative\": \"front entrance is not clean (\\nbreakfast was served not like a buffet, every time you have to ask a waiter to bring additional food.\",\n          \"positive\": \"beautiful hôtel in the central area\",\n          \"reviewer\": {\n            \"country\": \"ch\",\n            \"name\": \"Svetlana\",\n            \"travel_purpose\": \"leisure\",\n            \"type\": \"couple\"\n          },\n          \"score\": 9,\n          \"summary\": \"Fantastic hotel with kind personal who are providing hospitality and excellent service.\",\n          \"text_meets_guidelines\": true\n        },\n        \"...\"\n      ],\n      \"url\": \"https://www.booking.com/hotel/nl/toren.html?aid=!AFFILIATE_ID!#tab-reviews\"\n    }\n  ],\n  \"next_page\": \"...\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8eed1871-03dc-4f0e-b4e2-731866f7f012",
+          "name": "Booking.com Accommodation Review Scores",
+          "request": {
+            "name": "Booking.com Accommodation Review Scores",
+            "description": {
+              "content": "This endpoint returns score distribution and score breakdown for the specified accommodations. The scores information can be filtered by reviewer parameters and languages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accommodations",
+                "reviews",
+                "scores"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accommodations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reviewer\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"travel_purposes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"types\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a264b47-030b-4a26-804c-f4800a727f43",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accommodations",
+                    "reviews",
+                    "scores"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accommodations\": [\n    10004\n  ],\n  \"languages\": [\n    \"en-gb\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": 10004,\n      \"breakdown\": {\n        \"cleanliness\": {\n          \"number_of_reviews\": 243,\n          \"score\": 9.27\n        },\n        \"comfort\": {\n          \"number_of_reviews\": 242,\n          \"score\": 9.26\n        },\n        \"facilities\": {\n          \"number_of_reviews\": 242,\n          \"score\": 8.84\n        },\n        \"free_wifi\": {\n          \"number_of_reviews\": 24,\n          \"score\": 8.75\n        },\n        \"location\": {\n          \"number_of_reviews\": 242,\n          \"score\": 9.59\n        },\n        \"staff\": {\n          \"number_of_reviews\": 243,\n          \"score\": 9.63\n        },\n        \"value_for_money\": {\n          \"number_of_reviews\": 243,\n          \"score\": 8.25\n        }\n      },\n      \"distribution\": {\n        \"1\": {\n          \"number_of_reviews\": 1,\n          \"percentage\": 0.41\n        },\n        \"2\": {\n          \"number_of_reviews\": 0,\n          \"percentage\": 0\n        },\n        \"3\": {\n          \"number_of_reviews\": 2,\n          \"percentage\": 0.82\n        },\n        \"4\": {\n          \"number_of_reviews\": 2,\n          \"percentage\": 0.82\n        },\n        \"5\": {\n          \"number_of_reviews\": 5,\n          \"percentage\": 2.06\n        },\n        \"6\": {\n          \"number_of_reviews\": 3,\n          \"percentage\": 1.23\n        },\n        \"7\": {\n          \"number_of_reviews\": 18,\n          \"percentage\": 7.41\n        },\n        \"8\": {\n          \"number_of_reviews\": 41,\n          \"percentage\": 16.87\n        },\n        \"9\": {\n          \"number_of_reviews\": 67,\n          \"percentage\": 27.57\n        },\n        \"10\": {\n          \"number_of_reviews\": 104,\n          \"percentage\": 42.8\n        }\n      },\n      \"number_of_reviews\": 243,\n      \"score\": 8.9,\n      \"url\": \"https://www.booking.com/hotel/nl/toren.html?aid=!AFFILIATE_ID!#tab-reviews\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://demandapi.booking.com/3.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "efacca3f-e7ef-42e0-851c-559a281374c8",
+    "name": "Booking.com Demand Accommodations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.",
+      "type": "text/plain"
+    }
+  }
+}

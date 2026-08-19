@@ -1,0 +1,186 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Booking.com Demand Accommodations Orders API",
+    "version": "3.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Booking.com Preview an Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/orders/preview",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns the total final price with final charges, as well as the price breakdown and payment/cancellation policies for each product passed in the input."
+        },
+        {
+          "info": {
+            "name": "Booking.com Create an Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/orders/create",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to confirm the booking and proceed the payment."
+        },
+        {
+          "info": {
+            "name": "Booking.com Orders Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/orders/details",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns basic information for orders filtered according to the input."
+        },
+        {
+          "info": {
+            "name": "Booking.com Orders with Accommodation Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/orders/details/accommodations",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns all information for given accommodation orders, sorted by `bookingDate` in descending order"
+        },
+        {
+          "info": {
+            "name": "Booking.com Orders with Car Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/orders/details/cars",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns car order details, sorted by `bookingDate` in descending order"
+        },
+        {
+          "info": {
+            "name": "Booking.com Orders with Flight Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/orders/details/flights",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to retrieve detailed information for one or more flight orders. - You can request car order details either by **order ID** or by **reservation ID**. - The response includes all relevant information for each order, such as booking and cancellation details, commission, pricing, and optional extras (for example, policies).   Results are sorted by `bookingDate` in descending order, with the most recently booked orders listed first. It returns structured order data, including pricin"
+        },
+        {
+          "info": {
+            "name": "Booking.com Modify an Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/orders/modify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to modify certain aspects of an accommodation order, such as credit card details, checkin/checkout dates, and room configurations (guest allocation, guest names, and smoking preferences). \n  - See the [Orders modification guide](/demand/docs/orders-api/order-modify) for examples and best practices.\n"
+        },
+        {
+          "info": {
+            "name": "Booking.com Cancel an Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://demandapi.booking.com/3.1/orders/cancel",
+            "headers": [
+              {
+                "name": "X-Affiliate-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to process an order cancellation. Refer to the [Cancellations guide](/demand/docs/orders-api/cancel-order) for instructions, tips and examples."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

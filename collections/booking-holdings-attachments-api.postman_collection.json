@@ -1,0 +1,322 @@
+{
+  "item": [
+    {
+      "id": "eae0bd40-7fed-49a2-b1e8-14448c65be41",
+      "name": "Attachments",
+      "description": {
+        "content": "Provides endpoints for handling message attachments. </br></br>Use these endpoints to upload and download images shared within conversations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "17eb4c1b-8bc0-484a-8466-7c46010be1a6",
+          "name": "Booking.com Upload an Attachment",
+          "request": {
+            "name": "Booking.com Upload an Attachment",
+            "description": {
+              "content": "Uploads a file to be used as a message attachment.\nThe response includes an attachment ID to reference when sending messages.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                "attachments",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"conversation\": \"<string>\",\n  \"accommodation\": \"<string>\",\n  \"file_size\": \"<integer>\",\n  \"file_name\": \"<string>\",\n  \"file_type\": \"<string>\",\n  \"file_content\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8040fe3-2a9d-4dc1-b78f-61e3993a35e4",
+          "name": "Booking.com Download a Message Attachment",
+          "request": {
+            "name": "Booking.com Download a Message Attachment",
+            "description": {
+              "content": "Retrieves a file that was attached to a message. The response includes the file's content as a base64-encoded string.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                "attachments",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"conversation\": \"<string>\",\n  \"accommodation\": \"<string>\",\n  \"attachment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "31849705-55ae-4cd8-a59b-3a549883b020",
+              "name": "Attachment successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    "attachments",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversation\": \"8586a789-44f4-5521-9f27-f5efd097cba6\",\n  \"accommodation\": \"6819547\",\n  \"attachment\": \"9635be40-1dc6-11f0-8893-0130f0cdef6d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"773e2c0d-1ab3-449b-b88a-3d6b5ce09ae7\",\n  \"data\": {\n    \"conversation\": \"8586a789-44f4-5521-9f27-f5efd097cba6\",\n    \"file_content\": \"/9j/4AAQSkZJRgABAQACWAJYAAD/2wCEAAgGBgc...\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f57c021d-e2fc-4f25-880e-2b6af302e4e4",
+          "name": "Booking.com Retrieve Attachment Metadata",
+          "request": {
+            "name": "Booking.com Retrieve Attachment Metadata",
+            "description": {
+              "content": "Returns metadata for a file uploaded in a message, including its name, type, and size.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                "attachments",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"conversation\": \"<string>\",\n  \"accommodation\": \"<string>\",\n  \"attachment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bec4efdb-40bd-4f69-a13f-07e3af96c5ba",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    "attachments",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conversation\": \"8586a789-44f4-5521-9f27-f5efd097cba6\",\n  \"accommodation\": \"6819547\",\n  \"attachment\": \"9635be40-1dc6-11f0-8893-0130f0cdef6d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"fec1a9bb-9c85-42fc-a109-3707e1ed4de7\",\n  \"data\": {\n    \"metadata\": {\n      \"file_name\": \"1ce51916-d8de-4144-a4be-265ccae5df9d.jpg\",\n      \"file_type\": \"image/jpeg\",\n      \"file_size\": \"92620\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://demandapi.booking.com/3.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fabf2c17-10e8-4e25-b1d1-559a7fe40206",
+    "name": "Booking.com Demand Accommodations Attachments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.",
+      "type": "text/plain"
+    }
+  }
+}

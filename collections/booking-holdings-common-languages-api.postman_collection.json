@@ -1,0 +1,133 @@
+{
+  "item": [
+    {
+      "id": "67dcb7c5-83d7-4024-b96b-b2b30c49ccd1",
+      "name": "Common/languages",
+      "description": {
+        "content": "Provides a list of supported language codes for use in API requests.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1caa7105-1eac-409e-9444-f8942a87717e",
+          "name": "Booking.com Retrieve Language Codes",
+          "request": {
+            "name": "Booking.com Retrieve Language Codes",
+            "description": {
+              "content": "This endpoint returns a list of human language codes and their names in the corresponding language. To get the full list call the endpoint passing an empty body. The language codes returned are what is used as input and output for other endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "common",
+                "languages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4aadbfb-51c8-4334-86aa-eaae4e8ba838",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "common",
+                    "languages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": \"ar\",\n      \"name\": \"العربية\"\n    },\n    \"...\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://demandapi.booking.com/3.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "21c31c1b-a8c1-4978-9ade-6f0f2ef7c078",
+    "name": "Booking.com Demand Accommodations Common/languages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.",
+      "type": "text/plain"
+    }
+  }
+}

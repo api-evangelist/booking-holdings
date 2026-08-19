@@ -1,0 +1,723 @@
+{
+  "item": [
+    {
+      "id": "c8bb0fe8-b0d7-4fed-bebb-c5690d11a4cd",
+      "name": "Cars",
+      "description": {
+        "content": "This API collection is specific to the car rentals part of the connected trip.</br></br> Use these endpoints to search for car rentals, check car details and look for depots and suppliers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8d5d6821-32cc-4873-944c-e50dcabc4417",
+          "name": "Booking.com Search Car Rentals",
+          "request": {
+            "name": "Booking.com Search Car Rentals",
+            "description": {
+              "content": "Use this endpoint to retrieve the available car rentals matching the search criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cars",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"booker\": {\n    \"country\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"driver\": {\n    \"age\": \"<integer>\"\n  },\n  \"route\": {\n    \"dropoff\": {\n      \"datetime\": \"<string>\",\n      \"location\": {\n        \"airport\": \"<string>\"\n      }\n    },\n    \"pickup\": {\n      \"datetime\": \"<string>\",\n      \"location\": {\n        \"airport\": \"<string>\"\n      }\n    }\n  },\n  \"filters\": {\n    \"air_conditioning\": \"<boolean>\",\n    \"car_categories\": {},\n    \"depot_location_type\": {},\n    \"mileage_type\": \"<string>\",\n    \"number_of_seats\": \"<integer>\",\n    \"supplier_ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"transmission_type\": \"<string>\"\n  },\n  \"maximum_results\": 100,\n  \"language\": \"<string>\",\n  \"page\": \"<string>\",\n  \"payment\": {\n    \"timings\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"sort\": {\n    \"by\": \"<string>\",\n    \"direction\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c280504f-a58f-46b3-a3a0-07ef09e4d3b0",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cars",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"booker\": {\n    \"country\": \"nl\"\n  },\n  \"currency\": \"EUR\",\n  \"driver\": {\n    \"age\": 36\n  },\n  \"route\": {\n    \"dropoff\": {\n      \"datetime\": \"2025-11-10T11:05:00\",\n      \"location\": {\n        \"airport\": \"AMS\"\n      }\n    },\n    \"pickup\": {\n      \"datetime\": \"2025-11-05T11:05:00\",\n      \"location\": {\n        \"airport\": \"AMS\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01h00fr9y7qkbxtc6kyv97j49z\",\n  \"data\": [\n    {\n      \"car\": 122655,\n      \"policies\": {\n        \"cancellation\": {\n          \"type\": \"free_cancellation\",\n          \"details\": {\n            \"context\": \"before_pickup\",\n            \"duration\": \"P7D\"\n          }\n        },\n        \"damage_excess\": 3000,\n        \"deposit\": 1500,\n        \"insurance_package\": \"basic\",\n        \"fuel\": \"return_same\",\n        \"mileage\": {\n          \"distance\": 200,\n          \"distance_unit\": \"kilometers\",\n          \"fee\": 12.54,\n          \"type\": \"limited\"\n        },\n        \"payment\": {\n          \"timing\": \"pay_now\"\n        },\n        \"theft_excess\": 3000\n      },\n      \"price\": {\n        \"total\": \"121.90\",\n        \"currency\": \"EUR\",\n        \"extra_charges\": [\n          {\n            \"charge\": \"age_fee\",\n            \"total_amount\": 21.9\n          },\n          {\n            \"charge\": \"one_way_fee\",\n            \"total_amount\": 50\n          }\n        ]\n      },\n      \"route\": {\n        \"dropoff\": {\n          \"depot\": 112314\n        },\n        \"pickup\": {\n          \"depot\": 112314\n        }\n      },\n      \"supplier\": 7455,\n      \"url\": {\n        \"app\": \"booking://page\",\n        \"web\": \"https://example.com\"\n      }\n    }\n  ],\n  \"metadata\": {\n    \"next_page\": \"eyJhbGciOiJIUzI1NiJ9.eyJwIjp7Im1heGltdW1fcmVzdWx0cyI6MTAsIm9mZnNldCI6MTB9LCJhdWQiOiJDQVJTX1NVUFBMSUVSUyIsImV4cCI6MTY4MzY0NzMwNX0.y7NmH48mm7lImd2WxsHdotj6n-dVQAzJCGCnIJCKy3A\",\n    \"total_results\": 122\n  },\n  \"search_token\": \"eyJhbGciOiJIUzI1NiJ9.eyJwIjp7ImJvb2tlciI6eyJjb3VudHJ5IjoidXMifX0sImF1ZCI6Ii9ob3RlbHMvc2VhcmNoIiwiZXhwIjoxNzUwMDAwMDAwfQ.XYZ123AbcDefGHIjklMNOpqrsTUVwxYZ456789\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e8f1af8-125f-4c59-9874-602d2854dca9",
+          "name": "Booking.com Depots",
+          "request": {
+            "name": "Booking.com Depots",
+            "description": {
+              "content": "Use this endpoint to retrieve the list of all available car rental depots.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cars",
+                "depots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"last_modified\": \"<dateTime>\",\n  \"maximum_results\": 100,\n  \"languages\": [\n    \"en-gb\"\n  ],\n  \"page\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4d488ab3-11df-48fa-9d72-607efd220d77",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cars",
+                    "depots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"last_modified\": \"2025-11-01T11:05:00+00:00\",\n  \"maximum_results\": 100,\n  \"languages\": [\n    \"en-gb\",\n    \"nl\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": 5944,\n      \"contact\": {\n        \"email\": \"depot@test.booking.com\",\n        \"telephone\": \"+31882847620\"\n      },\n      \"city\": \"-1471393\",\n      \"drop_off\": {\n        \"instructions\": {\n          \"en-gb\": \"The procedure for returning the vehicle will be explained to you at the rental counter.\",\n          \"de\": \"De procedure voor het inleveren van de auto zal worden toegelicht aan de balie.\"\n        },\n        \"working_hours\": {\n          \"monday\": [\n            {\n              \"closing_time\": \"21:00:00\",\n              \"opening_time\": \"07:00:00\"\n            }\n          ],\n          \"tuesday\": [\n            {\n              \"closing_time\": \"12:00:00\",\n              \"opening_time\": \"07:00:00\"\n            },\n            {\n              \"closing_time\": \"21:00:00\",\n              \"opening_time\": \"14:00:00\"\n            }\n          ],\n          \"wednesday\": [\n            {\n              \"closing_time\": \"21:00:00\",\n              \"opening_time\": \"07:00:00\"\n            }\n          ],\n          \"thursday\": [\n            {\n              \"closing_time\": \"21:00:00\",\n              \"opening_time\": \"07:00:00\"\n            }\n          ],\n          \"friday\": [\n            {\n              \"closing_time\": \"21:00:00\",\n              \"opening_time\": \"07:00:00\"\n            }\n          ],\n          \"saturday\": [\n            {\n              \"closing_time\": \"21:00:00\",\n              \"opening_time\": \"07:00:00\"\n            }\n          ],\n          \"sunday\": [\n            {\n              \"closing_time\": \"21:00:00\",\n              \"opening_time\": \"07:00:00\"\n            }\n          ]\n        }\n      },\n      \"location\": {\n        \"address\": \"5 Aankomstpassage\",\n        \"airport\": \"AMS\",\n        \"city\": -2140479,\n        \"coordinates\": {\n          \"latitude\": 52.309456,\n          \"longitude\": 4.762266\n        },\n        \"country\": \"nl\",\n        \"depot_location_type\": \"airport_hotel\",\n        \"name\": {\n          \"en-gb\": \"Amsterdam Airport Schiphol - Terminal 3\",\n          \"de\": \"Amsterdam Luchthaven Schiphol - Terminal 3\"\n        },\n        \"post_code\": \"1118 AX\"\n      },\n      \"pick_up\": {\n        \"instructions\": {\n          \"en-gb\": \"-\",\n          \"de\": \"-\"\n        },\n        \"working_hours\": {\n          \"monday\": [\n            {\n              \"closing_time\": \"21:00:00\",\n              \"opening_time\": \"07:00:00\"\n            }\n          ],\n          \"tuesday\": [\n            {\n              \"closing_time\": \"12:00:00\",\n              \"opening_time\": \"07:00:00\"\n            },\n            {\n              \"closing_time\": \"21:00:00\",\n              \"opening_time\": \"14:00:00\"\n            }\n          ],\n          \"wednesday\": [\n            {\n              \"closing_time\": \"21:00:00\",\n              \"opening_time\": \"07:00:00\"\n            }\n          ],\n          \"thursday\": [\n            {\n              \"closing_time\": \"21:00:00\",\n              \"opening_time\": \"07:00:00\"\n            }\n          ],\n          \"friday\": [\n            {\n              \"closing_time\": \"21:00:00\",\n              \"opening_time\": \"07:00:00\"\n            }\n          ],\n          \"saturday\": [\n            {\n              \"closing_time\": \"21:00:00\",\n              \"opening_time\": \"07:00:00\"\n            }\n          ],\n          \"sunday\": [\n            {\n              \"closing_time\": \"21:00:00\",\n              \"opening_time\": \"07:00:00\"\n            }\n          ]\n        }\n      },\n      \"services\": [\n        \"shuttle\"\n      ],\n      \"supplier\": 47\n    }\n  ],\n  \"metadata\": {\n    \"next_page\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "166d684c-b8c2-4d21-a9e5-616aa42498f2",
+          "name": "Booking.com Depot Scores",
+          "request": {
+            "name": "Booking.com Depot Scores",
+            "description": {
+              "content": "Use this endpoint to return the score breakdown for the specified depots together with the overall number of reviews and score. </br></br>- Please note that the **ratings score is based on all traveller traffic across Booking.com/cars**, and may not necessarily reflect the experience of your own customers.</br></br> - If you choose to display or use these ratings, you are responsible for ensuring that your travellers are properly informed about what these scores represent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cars",
+                "depots",
+                "reviews",
+                "scores"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"maximum_results\": 100,\n  \"page\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f308c97-3cd5-445c-9704-cdaaafa32448",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cars",
+                    "depots",
+                    "reviews",
+                    "scores"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"maximum_results\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": 5944,\n      \"breakdown\": {\n        \"cleanliness\": {\n          \"score\": 8.7\n        },\n        \"condition\": {\n          \"score\": 8.7\n        },\n        \"drop_off_speed\": {\n          \"score\": 8.7\n        },\n        \"friendliness\": {\n          \"score\": null\n        },\n        \"likeliness_rent_again\": {\n          \"score\": 8.7\n        },\n        \"location\": {\n          \"score\": 8.7\n        },\n        \"pick_up_speed\": {\n          \"score\": 8.7\n        },\n        \"value_for_money\": {\n          \"score\": 8.7\n        }\n      },\n      \"number_of_reviews\": 105,\n      \"score\": 9.1\n    }\n  ],\n  \"metadata\": {\n    \"next_page\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54d8da3b-f47d-4e8e-90b6-188c0f9a11e2",
+          "name": "Booking.com Car Details",
+          "request": {
+            "name": "Booking.com Car Details",
+            "description": {
+              "content": "Use this endpoint to fetch car details like bag capacity, number of doors, brand and model, etc.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cars",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"last_modified\": \"<dateTime>\",\n  \"maximum_results\": 100,\n  \"page\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "98ac0afb-4e91-46ef-b310-ea2c77429cc8",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cars",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"last_modified\": \"2025-12-01T11:05:00+00:00\",\n  \"maximum_results\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": 37715,\n      \"capacity\": {\n        \"bags\": {\n          \"large\": 1,\n          \"small\": 1\n        },\n        \"doors\": \"4/2\",\n        \"seats\": \"4+2\"\n      },\n      \"features\": [\n        \"air_conditioning\",\n        \"all_wheel_drive\"\n      ],\n      \"image\": \"https://example.com/image.jpg\",\n      \"make\": \"hyundai\",\n      \"model\": \"elantra\",\n      \"specification\": {\n        \"code\": \"ECAR\",\n        \"description\": \"economy\",\n        \"fuel\": \"petrol\",\n        \"transmission\": \"automatic\"\n      },\n      \"supplier\": 423\n    }\n  ],\n  \"metadata\": {\n    \"next_page\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4335ce76-974c-4544-8586-109da580e752",
+          "name": "Booking.com Suppliers",
+          "request": {
+            "name": "Booking.com Suppliers",
+            "description": {
+              "content": "Use this endpoint to fetch a list of car rental suppliers. <br/>You can use a supplier ID (or an array of them), to retrieve specific details. <br/>Alternatively, if you do not add any ID in the request, the response will include all suppliers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cars",
+                "suppliers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"maximum_results\": 100,\n  \"page\": \"<string>\",\n  \"suppliers\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e82fa994-e31f-46b1-af0b-0ad4781d3d8f",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cars",
+                    "suppliers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"suppliers\": [\n    62\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01fr9ez700exycb98w90w5r9sh\",\n  \"data\": [\n    {\n      \"id\": 62,\n      \"name\": \"Budget\",\n      \"logo\": \"https://example.com/path_to_the_logo.jpeg\"\n    }\n  ],\n  \"metadata\": {\n    \"next_page\": null,\n    \"total_results\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f55ff2e-0807-4a2e-9890-9cbfb0827437",
+          "name": "Booking.com Car Constants",
+          "request": {
+            "name": "Booking.com Car Constants",
+            "description": {
+              "content": "This endpoint returns a list of relevant car constants names in the specified languages. For example, calling with the parameters {\"languages\":\"en-us\",\"fr\"} will return the list in English (US) and French. To retrieve the full list, make the request with an empty body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cars",
+                "constants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Include here your Affiliate identifier number",
+                "key": "X-Affiliate-Id",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"constants\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"languages\": [\n    \"en-gb\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "41389df7-f730-4511-80df-e511113a7058",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cars",
+                    "constants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Include here your Affiliate identifier number",
+                    "key": "X-Affiliate-Id",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"languages\": [\n    \"de\",\n    \"en-gb\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"01jpvx9va93ghgwxq7zypagvdr\",\n  \"data\": {\n    \"depot_services\": [\n      {\n        \"id\": \"meet_greet\",\n        \"name\": {\n          \"de\": \"Meet & Greet\",\n          \"en-gb\": \"Meet & Greet\"\n        }\n      },\n      {\n        \"id\": \"shuttle\",\n        \"name\": {\n          \"de\": \"Shuttlebus\",\n          \"en-gb\": \"Shuttle Bus\"\n        }\n      }\n    ],\n    \"fuel_policies\": [\n      {\n        \"id\": \"free_tank\",\n        \"name\": {\n          \"de\": \"Kostenlose Tankfüllung\",\n          \"en-gb\": \"Free Tank\"\n        }\n      },\n      {\n        \"id\": \"prepay_no_refunds\",\n        \"name\": {\n          \"de\": \"Vorab-Einkauf\",\n          \"en-gb\": \"Pre-Purchase\"\n        }\n      },\n      {\n        \"id\": \"prepay_part_refunds\",\n        \"name\": {\n          \"de\": \"Vorab-Einkauf (Teilerstattung)\",\n          \"en-gb\": \"Pre-purchase (partial refund)\"\n        }\n      },\n      {\n        \"id\": \"prepay_refunds\",\n        \"name\": {\n          \"de\": \"Vorab-Einkauf\",\n          \"en-gb\": \"Pre-Purchase\"\n        }\n      },\n      {\n        \"id\": \"return_same\",\n        \"name\": {\n          \"de\": \"Gleiche Tankfüllung\",\n          \"en-gb\": \"Like for like\"\n        }\n      }\n    ],\n    \"fuel_types\": [\n      {\n        \"id\": \"electric\",\n        \"name\": {\n          \"de\": \"Rein elektrisch\",\n          \"en-gb\": \"Fully electric\"\n        }\n      },\n      {\n        \"id\": \"hybrid\",\n        \"name\": {\n          \"de\": \"Hybrid\",\n          \"en-gb\": \"Hybrid\"\n        }\n      },\n      {\n        \"id\": \"petrol\",\n        \"name\": {\n          \"de\": \"Benzin\",\n          \"en-gb\": \"Petrol\"\n        }\n      },\n      {\n        \"id\": \"plug_in_hybrid\",\n        \"name\": {\n          \"de\": \"Plug-in-Hybrid\",\n          \"en-gb\": \"Plug-in hybrid\"\n        }\n      }\n    ],\n    \"general\": [\n      {\n        \"id\": \"air_conditioning\",\n        \"name\": {\n          \"de\": \"Flughafen (im Terminal)\",\n          \"en-gb\": \"Airport (in terminal)\"\n        }\n      },\n      {\n        \"id\": \"airport\",\n        \"name\": {\n          \"de\": \"Klimaanlage\",\n          \"en-gb\": \"Air Conditioning\"\n        }\n      },\n      {\n        \"id\": \"free_cancellation\",\n        \"name\": {\n          \"de\": \"Kostenlose Stornierung\",\n          \"en-gb\": \"Free cancellation\"\n        }\n      },\n      {\n        \"id\": \"kilometers\",\n        \"name\": {\n          \"de\": \"km\",\n          \"en-gb\": \"km\"\n        }\n      },\n      {\n        \"id\": \"limited\",\n        \"name\": {\n          \"de\": \"Begrenzt\",\n          \"en-gb\": \"Limited\"\n        }\n      },\n      {\n        \"id\": \"miles\",\n        \"name\": {\n          \"de\": \"Meilen\",\n          \"en-gb\": \"miles\"\n        }\n      },\n      {\n        \"id\": \"n_large_bags\",\n        \"name\": {\n          \"de\": \"N große Koffer\",\n          \"en-gb\": \"N Large bags\"\n        }\n      },\n      {\n        \"id\": \"n_small_bags\",\n        \"name\": {\n          \"de\": \"N kleine Koffer\",\n          \"en-gb\": \"N Small bags\"\n        }\n      }\n    ],\n    \"payment_timings\": [\n      {\n        \"id\": \"part_pay\",\n        \"name\": {\n          \"de\": \"Teils jetzt zahlen, teils später\",\n          \"en-gb\": \"Pay part now, part later\"\n        }\n      },\n      {\n        \"id\": \"pay_now\",\n        \"name\": {\n          \"de\": \"Jetzt zahlbar\",\n          \"en-gb\": \"Pay now\"\n        }\n      }\n    ],\n    \"transmission\": [\n      {\n        \"id\": \"automatic\",\n        \"name\": {\n          \"de\": \"Automatik\",\n          \"en-gb\": \"Automatic\"\n        }\n      },\n      {\n        \"id\": \"manual\",\n        \"name\": {\n          \"de\": \"Schaltgetriebe\",\n          \"en-gb\": \"Manual\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://demandapi.booking.com/3.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "09e6a903-1574-4041-8486-51a566642d4d",
+    "name": "Booking.com Demand Accommodations Cars API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.",
+      "type": "text/plain"
+    }
+  }
+}
