@@ -30,6 +30,14 @@ tags:
   - Car Rentals
   - Hospitality
   - Hotels
+  - Restaurant
+  - Travel
+tags_raw:
+  - Accommodations
+  - Airlines
+  - Car Rentals
+  - Hospitality
+  - Hotels
   - Restaurants
   - Travel
 apis:
@@ -153,6 +161,8 @@ apis:
   humanURL: https://developers.booking.com/demand/docs
   baseURL: https://demandapi.booking.com/3.1
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -170,6 +180,8 @@ apis:
   humanURL: https://developers.booking.com/demand/docs
   baseURL: https://demandapi.booking.com/3.1
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
