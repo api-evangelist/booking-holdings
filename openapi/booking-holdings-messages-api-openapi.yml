@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Booking.com Demand Accommodations Messages API
   version: '3.1'
@@ -213,14 +213,16 @@ paths:
                   items:
                     type: string
                     description: Unique identifier of a message to confirm receipt of.
-              example: &id001
+              example:
                 messages:
                 - 8586a789-44f4-5521-9f27-f5efd097cba
             examples:
               MessagesLatestConfirmRequestExample:
                 summary: Default messagesLatestConfirm request
                 x-microcks-default: true
-                value: *id001
+                value:
+                  messages:
+                  - 8586a789-44f4-5521-9f27-f5efd097cba
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
