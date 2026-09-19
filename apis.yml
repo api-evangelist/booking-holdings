@@ -38,7 +38,7 @@ created: '2024-01-01'
 modified: '2026-06-02'
 specificationVersion: '0.23'
 tags:
-  - Accommodations
+  - Accommodation
   - Airlines
   - Car Rentals
   - Hospitality
@@ -63,6 +63,8 @@ apis:
   humanURL: https://developers.booking.com/demand/docs
   baseURL: https://demandapi.booking.com/3.1
   tags:
+  - Accommodation
+  tags_raw:
   - Accommodations
   properties:
   - type: OpenAPI
