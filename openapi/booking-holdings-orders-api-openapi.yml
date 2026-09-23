@@ -1,11 +1,14 @@
 openapi: 3.2.0
 info:
-  title: Booking.com Demand Accommodations Orders API
+  title: Booking.com Demand Orders API
   version: '3.1'
   summary: "The Booking.com Demand API enables Affiliate Partners to access Booking.com's travel inventory, including accommodations, car rentals, and flights. \n\nUse Demand API to search, retrieve details, check availability, manage bookings and run reports using orders details.\n\n- RESTful API with JSON responses.\n- Make HTTPS POST requests to interact with endpoints.\n- Requires authentication using your Affiliate ID and token credentials.\n\n[Check the try out guide!](/demand/docs/getting-started/try-out-the-api)\n"
   x-last-validated: '2026-06-02'
   x-generated-from: documentation
-  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+  description: 'Enables management of booking orders within the Demand API.
+
+
+    Use these endpoints to preview and create new orders, check order details, cancel or modify existing orders. This collection is required to integrate booking and order management functionality.'
 servers:
 - url: https://demandapi.booking.com/3.1
   description: Production environment
@@ -16,7 +19,10 @@ security:
 tags:
 - name: Orders
   x-displayName: Orders
-  description: 'Enables management of booking orders within the Demand API. </br></br>Use these endpoints to preview and create new orders, check order details, cancel or modify existing orders. This collection is required to integrate booking and order management functionality. '
+  description: 'Enables management of booking orders within the Demand API.
+
+
+    Use these endpoints to preview and create new orders, check order details, cancel or modify existing orders. This collection is required to integrate booking and order management functionality.'
 paths:
   /orders/preview:
     post:
@@ -3530,7 +3536,17 @@ paths:
   /orders/details/flights:
     post:
       summary: Booking.com Orders with Flight Details
-      description: Use this endpoint to retrieve detailed information for one or more flight orders. - You can request car order details either by **order ID** or by **reservation ID**. - The response includes all relevant information for each order, such as booking and cancellation details, commission, pricing, and optional extras (for example, policies).   Results are sorted by `bookingDate` in descending order, with the most recently booked orders listed first. It returns structured order data, including pricing, itinerary segments with IATA airport codes, etc. </br></br>This endpoint is ideal for:</br></br> - Displaying flight booking details in traveller dashboards or confirmation pages.</br> - Generating post-booking communications and invoices. </br> - Performing reporting or reconciliation tasks that require accurate itinerary and pricing data.
+      description: 'Use this endpoint to retrieve detailed information for one or more flight orders. - You can request car order details either by **order ID** or by **reservation ID**. - The response includes all relevant information for each order, such as booking and cancellation details, commission, pricing, and optional extras (for example, policies). Results are sorted by `bookingDate` in descending order, with the most recently booked orders listed first. It returns structured order data, including pricing, itinerary segments with IATA airport codes, etc.
+
+
+        This endpoint is ideal for:
+
+
+        - Displaying flight booking details in traveller dashboards or confirmation pages.
+
+        - Generating post-booking communications and invoices.
+
+        - Performing reporting or reconciliation tasks that require accurate itinerary and pricing data.'
       operationId: ordersDetailsFlights
       parameters:
       - in: header
@@ -3704,7 +3720,9 @@ paths:
   /orders/modify:
     post:
       summary: Booking.com Modify an Order
-      description: "Use this endpoint to modify certain aspects of an accommodation order, such as credit card details, checkin/checkout dates, and room configurations (guest allocation, guest names, and smoking preferences). \n  - See the [Orders modification guide](/demand/docs/orders-api/order-modify) for examples and best practices.\n"
+      description: 'Use this endpoint to modify certain aspects of an accommodation order, such as credit card details, checkin/checkout dates, and room configurations (guest allocation, guest names, and smoking preferences).
+
+        - See the Orders modification guide for examples and best practices.'
       operationId: ordersModify
       tags:
       - Orders
@@ -3888,7 +3906,7 @@ paths:
   /orders/cancel:
     post:
       summary: Booking.com Cancel an Order
-      description: Use this endpoint to process an order cancellation. Refer to the [Cancellations guide](/demand/docs/orders-api/cancel-order) for instructions, tips and examples.
+      description: Use this endpoint to process an order cancellation. Refer to the Cancellations guide for instructions, tips and examples.
       operationId: ordersCancel
       parameters:
       - $ref: '#/components/parameters/AffiliateIdHeader'

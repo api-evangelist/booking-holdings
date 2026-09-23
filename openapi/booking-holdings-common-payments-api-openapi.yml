@@ -1,11 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Booking.com Demand Accommodations Common/payments API
+  title: Booking.com Demand Common/payments API
   version: '3.1'
   summary: "The Booking.com Demand API enables Affiliate Partners to access Booking.com's travel inventory, including accommodations, car rentals, and flights. \n\nUse Demand API to search, retrieve details, check availability, manage bookings and run reports using orders details.\n\n- RESTful API with JSON responses.\n- Make HTTPS POST requests to interact with endpoints.\n- Requires authentication using your Affiliate ID and token credentials.\n\n[Check the try out guide!](/demand/docs/getting-started/try-out-the-api)\n"
   x-last-validated: '2026-06-02'
   x-generated-from: documentation
-  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+  description: Provides generic payment-related endpoints, including supported currencies and payment types.
 servers:
 - url: https://demandapi.booking.com/3.1
   description: Production environment
@@ -21,7 +21,10 @@ paths:
   /common/payments/cards:
     post:
       summary: Booking.com Payment Cards
-      description: This endpoint returns a list of supported payment cards and their names in English. Examples of payment types are the different credit and debit cards. <br/><br/>To get the full list call the endpoint passing an empty body. The codes returned are what is used as input and output for other endpoints.
+      description: 'This endpoint returns a list of supported payment cards and their names in English. Examples of payment types are the different credit and debit cards.
+
+
+        To get the full list call the endpoint passing an empty body. The codes returned are what is used as input and output for other endpoints.'
       operationId: commonPaymentsCards
       parameters:
       - $ref: '#/components/parameters/AffiliateIdHeader'
@@ -64,7 +67,10 @@ paths:
   /common/payments/currencies:
     post:
       summary: Booking.com Currencies
-      description: This endpoint returns a list of currency codes and their names in the selected languages. To get the full list call the endpoint passing an empty body. <br/><br/>The currency codes returned are what is used as input and output for other endpoints.
+      description: 'This endpoint returns a list of currency codes and their names in the selected languages. To get the full list call the endpoint passing an empty body.
+
+
+        The currency codes returned are what is used as input and output for other endpoints.'
       operationId: commonPaymentsCurrencies
       parameters:
       - $ref: '#/components/parameters/AffiliateIdHeader'

@@ -1,11 +1,14 @@
 openapi: 3.2.0
 info:
-  title: Booking.com Demand Accommodations Attachments API
+  title: Booking.com Demand Attachments API
   version: '3.1'
   summary: "The Booking.com Demand API enables Affiliate Partners to access Booking.com's travel inventory, including accommodations, car rentals, and flights. \n\nUse Demand API to search, retrieve details, check availability, manage bookings and run reports using orders details.\n\n- RESTful API with JSON responses.\n- Make HTTPS POST requests to interact with endpoints.\n- Requires authentication using your Affiliate ID and token credentials.\n\n[Check the try out guide!](/demand/docs/getting-started/try-out-the-api)\n"
   x-last-validated: '2026-06-02'
   x-generated-from: documentation
-  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+  description: 'Provides endpoints for handling message attachments.
+
+
+    Use these endpoints to upload and download images shared within conversations.'
 servers:
 - url: https://demandapi.booking.com/3.1
   description: Production environment
@@ -16,16 +19,17 @@ security:
 tags:
 - name: Attachments
   x-displayName: Attachments
-  description: Provides endpoints for handling message attachments. </br></br>Use these endpoints to upload and download images shared within conversations.
+  description: 'Provides endpoints for handling message attachments.
+
+
+    Use these endpoints to upload and download images shared within conversations.'
 paths:
   /messages/attachments/upload:
     post:
       summary: Booking.com Upload an Attachment
       description: 'Uploads a file to be used as a message attachment.
 
-        The response includes an attachment ID to reference when sending messages.
-
-        '
+        The response includes an attachment ID to reference when sending messages.'
       operationId: messagesAttachmentsUpload
       tags:
       - Attachments
@@ -77,9 +81,7 @@ paths:
   /messages/attachments/download:
     post:
       summary: Booking.com Download a Message Attachment
-      description: 'Retrieves a file that was attached to a message. The response includes the file''s content as a base64-encoded string.
-
-        '
+      description: Retrieves a file that was attached to a message. The response includes the file's content as a base64-encoded string.
       operationId: messagesAttachmentsDownload
       tags:
       - Attachments
@@ -140,9 +142,7 @@ paths:
   /messages/attachments/metadata:
     post:
       summary: Booking.com Retrieve Attachment Metadata
-      description: 'Returns metadata for a file uploaded in a message, including its name, type, and size.
-
-        '
+      description: Returns metadata for a file uploaded in a message, including its name, type, and size.
       operationId: messagesAttachmentsMetadata
       tags:
       - Attachments

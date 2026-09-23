@@ -1,15 +1,7 @@
 {
   "provider": "booking-holdings",
   "sources": [
-    "booking-holdings-accommodations-api-openapi.yml",
-    "booking-holdings-attachments-api-openapi.yml",
-    "booking-holdings-cars-api-openapi.yml",
-    "booking-holdings-common-languages-api-openapi.yml",
-    "booking-holdings-common-locations-api-openapi.yml",
-    "booking-holdings-common-payments-api-openapi.yml",
-    "booking-holdings-conversations-api-openapi.yml",
-    "booking-holdings-messages-api-openapi.yml",
-    "booking-holdings-orders-api-openapi.yml"
+    "_ae-authored/booking-com-demand-api.yaml"
   ],
   "outputs": [
     "booking-holdings-accommodations-api-openapi.yml",
@@ -26,16 +18,19 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "booking-holdings-accommodations-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "booking-holdings-attachments-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "booking-holdings-cars-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "booking-holdings-common-languages-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "booking-holdings-common-locations-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "booking-holdings-common-payments-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "booking-holdings-conversations-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "booking-holdings-messages-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "booking-holdings-orders-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "booking-com-demand-api.yaml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "booking-holdings-accommodations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "booking-holdings-attachments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "booking-holdings-cars-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "booking-holdings-common-languages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "booking-holdings-common-locations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "booking-holdings-common-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "booking-holdings-conversations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "booking-holdings-messages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "booking-holdings-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

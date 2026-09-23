@@ -5,7 +5,10 @@ info:
   summary: "The Booking.com Demand API enables Affiliate Partners to access Booking.com's travel inventory, including accommodations, car rentals, and flights. \n\nUse Demand API to search, retrieve details, check availability, manage bookings and run reports using orders details.\n\n- RESTful API with JSON responses.\n- Make HTTPS POST requests to interact with endpoints.\n- Requires authentication using your Affiliate ID and token credentials.\n\n[Check the try out guide!](/demand/docs/getting-started/try-out-the-api)\n"
   x-last-validated: '2026-06-02'
   x-generated-from: documentation
-  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+  description: 'This API collection is specific for the stay part of the connected trip.
+
+
+    Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.'
 servers:
 - url: https://demandapi.booking.com/3.1
   description: Production environment
@@ -16,12 +19,20 @@ security:
 tags:
 - name: Accommodations
   x-displayName: Accommodation
-  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+  description: 'This API collection is specific for the stay part of the connected trip.
+
+
+    Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.'
 paths:
   /accommodations/search:
     post:
       summary: Booking.com Search Accommodation
-      description: This endpoint returns, by default, the cheapest available product for each accommodation that matches the specified search criteria. <br/><br/>When you apply location filters using parameters such as country or region id, the results are sorted by Booking.com popularity (top_picks) instead of price.<br/>In this case, accommodations are ranked in descending order of popularity, meaning higher-ranked listings will appear earlier in the response.
+      description: 'This endpoint returns, by default, the cheapest available product for each accommodation that matches the specified search criteria.
+
+
+        When you apply location filters using parameters such as country or region id, the results are sorted by Booking.com popularity (top_picks) instead of price.
+
+        In this case, accommodations are ranked in descending order of popularity, meaning higher-ranked listings will appear earlier in the response.'
       operationId: accommodationsSearch
       parameters:
       - in: header
@@ -784,7 +795,12 @@ paths:
   /accommodations/availability:
     post:
       summary: Booking.com Check Availability
-      description: 'Use this endpoint to return detailed product availability, price and charges of the accommodation matching a given search criteria. <br/>By default, only product availability and price is returned. To receive extended information use the `extras` parameter. <br/><br/>Note: It is mandatory to pass the input parameters: accommodation, booker, checkin, checkout and guest.'
+      description: 'Use this endpoint to return detailed product availability, price and charges of the accommodation matching a given search criteria.
+
+        By default, only product availability and price is returned. To receive extended information use the `extras` parameter.
+
+
+        Note: It is mandatory to pass the input parameters: accommodation, booker, checkin, checkout and guest.'
       operationId: accommodationsAvailability
       parameters:
       - in: header
@@ -1527,7 +1543,11 @@ paths:
   /accommodations/bulk-availability:
     post:
       summary: Booking.com Check Multiple Availability
-      description: 'Use this endpoint to retrieve detailed product availability, price and charges of a list of accommodations. By default, only product availability and price is returned. <br/>To receive extended information use the `extras` parameter. <br/>Note: It is mandatory to pass the input parameters: accommodations, booker, checkin, checkout and guests.'
+      description: 'Use this endpoint to retrieve detailed product availability, price and charges of a list of accommodations. By default, only product availability and price is returned.
+
+        To receive extended information use the `extras` parameter.
+
+        Note: It is mandatory to pass the input parameters: accommodations, booker, checkin, checkout and guests.'
       operationId: accommodationsBulkAvailability
       parameters:
       - in: header
@@ -2282,7 +2302,16 @@ paths:
   /accommodations/chains:
     post:
       summary: Booking.com Chains
-      description: Use this endpoint to retrieve a list of accommodation chains and their associated brands.<br/><br/> A chain-branded accommodation is part of a larger corporate group and operates under a recognised brand. The returned information can be used to filter search results by chain or brand across other endpoints. <br/> - To obtain the full list of chains, call this endpoint with an empty request body. <br/> - The `id` values returned are the codes used as input and output in other API requests, ensuring consistency across your integration. <br/> **Example of chain** - "Radisson Hotel Group" with brands such as "Radisson Blu" or "Park Inn by Radisson."
+      description: 'Use this endpoint to retrieve a list of accommodation chains and their associated brands.
+
+
+        A chain-branded accommodation is part of a larger corporate group and operates under a recognised brand. The returned information can be used to filter search results by chain or brand across other endpoints.
+
+        - To obtain the full list of chains, call this endpoint with an empty request body.
+
+        - The `id` values returned are the codes used as input and output in other API requests, ensuring consistency across your integration.
+
+        **Example of chain** - "Radisson Hotel Group" with brands such as "Radisson Blu" or "Park Inn by Radisson."'
       operationId: accommodationsChains
       parameters:
       - in: header
@@ -2350,7 +2379,13 @@ paths:
   /accommodations/constants:
     post:
       summary: Booking.com Constants
-      description: Use this endpoint to retrieve standardised codes and names for accommodation-specific types, including facilities, room types, bed types, themes, and charges. <br/>These constants can be used to filter searches or populate reference data across other accommodation endpoints. <br/>You can request multiple languages using IETF language tags (see common/languages). <br/> Call with an empty body to retrieve all constants. The codes returned are canonical identifiers used across the API.
+      description: 'Use this endpoint to retrieve standardised codes and names for accommodation-specific types, including facilities, room types, bed types, themes, and charges.
+
+        These constants can be used to filter searches or populate reference data across other accommodation endpoints.
+
+        You can request multiple languages using IETF language tags (see common/languages).
+
+        Call with an empty body to retrieve all constants. The codes returned are canonical identifiers used across the API.'
       operationId: accommodationsConstants
       parameters:
       - in: header
@@ -2709,7 +2744,13 @@ paths:
   /accommodations/details:
     post:
       summary: Booking.com Details
-      description: 'This endpoint returns detailed information on all accommodation properties matching a given search criteria. By default, only basic information is returned. <br/><br/>It is mandatory to pass one of the input parameters: accommodations, airport, city, country or region. <br/><br/>To receive extended information use the `extras` parameter.'
+      description: 'This endpoint returns detailed information on all accommodation properties matching a given search criteria. By default, only basic information is returned.
+
+
+        It is mandatory to pass one of the input parameters: accommodations, airport, city, country or region.
+
+
+        To receive extended information use the `extras` parameter.'
       operationId: accommodationsDetails
       parameters:
       - in: header
@@ -4121,7 +4162,19 @@ paths:
   /accommodations/details/changes:
     post:
       summary: Booking.com Updated Accommodations
-      description: Use this endpoint to track accommodations that have opened, closed, or had relevant content updates since a specific timestamp. Changes can include updates to general information, facilities, rooms, photos, payments, and more. <br/>You can:<br/> - Filter results by country or city.<br/> - Use the "next" timestamp from the response to request further updates.<br/><br/>To keep your local accommodation cache up to date, use this endpoint in combination with [accommodations/details](/demand/docs/open-api/demand-api/accommodations/accommodations/details) <br/><br/>The maximum number of IDs returned is approximately 5000 per request.
+      description: 'Use this endpoint to track accommodations that have opened, closed, or had relevant content updates since a specific timestamp. Changes can include updates to general information, facilities, rooms, photos, payments, and more.
+
+        You can:
+
+        - Filter results by country or city.
+
+        - Use the "next" timestamp from the response to request further updates.
+
+
+        To keep your local accommodation cache up to date, use this endpoint in combination with accommodations/details
+
+
+        The maximum number of IDs returned is approximately 5000 per request.'
       operationId: accommodationsDetailsChanges
       parameters:
       - $ref: '#/components/parameters/AffiliateIdHeader'
@@ -4234,7 +4287,16 @@ paths:
   /accommodations/reviews:
     post:
       summary: Booking.com Accommodation Reviews
-      description: This endpoint provides access to reviews for specified accommodations, allowing you to retrieve traveller feedback associated with a particular property.</br></br> ✅ The reviews returned can be [filtered and sorted](/demand/docs/accommodations/filter-sorting), with the option to limit the number of reviews per accommodation by specifying the `rows` parameter.</br></br> Please note that the ratings **score is based on all traveller traffic across Booking.com**, and may not necessarily reflect the experience of your own customers.</br></br> If you choose to display or use these ratings and reviews, you are responsible for ensuring that your travellers are properly informed about what these scores represent.
+      description: 'This endpoint provides access to reviews for specified accommodations, allowing you to retrieve traveller feedback associated with a particular property.
+
+
+        ✅ The reviews returned can be filtered and sorted, with the option to limit the number of reviews per accommodation by specifying the `rows` parameter.
+
+
+        Please note that the ratings **score is based on all traveller traffic across Booking.com**, and may not necessarily reflect the experience of your own customers.
+
+
+        If you choose to display or use these ratings and reviews, you are responsible for ensuring that your travellers are properly informed about what these scores represent.'
       operationId: accommodationsReviews
       parameters:
       - $ref: '#/components/parameters/AffiliateIdHeader'

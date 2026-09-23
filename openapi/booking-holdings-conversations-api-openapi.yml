@@ -1,11 +1,14 @@
 openapi: 3.2.0
 info:
-  title: Booking.com Demand Accommodations Conversations API
+  title: Booking.com Demand Conversations API
   version: '3.1'
   summary: "The Booking.com Demand API enables Affiliate Partners to access Booking.com's travel inventory, including accommodations, car rentals, and flights. \n\nUse Demand API to search, retrieve details, check availability, manage bookings and run reports using orders details.\n\n- RESTful API with JSON responses.\n- Make HTTPS POST requests to interact with endpoints.\n- Requires authentication using your Affiliate ID and token credentials.\n\n[Check the try out guide!](/demand/docs/getting-started/try-out-the-api)\n"
   x-last-validated: '2026-06-02'
   x-generated-from: documentation
-  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+  description: 'Provides endpoints to retrieve and manage messaging conversations.
+
+
+    Use these endpoints to list conversations, fetch conversation details, and track updates.'
 servers:
 - url: https://demandapi.booking.com/3.1
   description: Production environment
@@ -16,14 +19,15 @@ security:
 tags:
 - name: Conversations
   x-displayName: Conversations
-  description: Provides endpoints to retrieve and manage messaging conversations. </br></br>Use these endpoints to list conversations, fetch conversation details, and track updates.
+  description: 'Provides endpoints to retrieve and manage messaging conversations.
+
+
+    Use these endpoints to list conversations, fetch conversation details, and track updates.'
 paths:
   /messages/conversations:
     post:
       summary: Booking.com Retrieve a Conversation
-      description: 'Retrieves a conversation accessible to the authenticated user, including message history and participants.
-
-        '
+      description: Retrieves a conversation accessible to the authenticated user, including message history and participants.
       operationId: messagesConversations
       tags:
       - Conversations

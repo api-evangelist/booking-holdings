@@ -1,11 +1,14 @@
 openapi: 3.2.0
 info:
-  title: Booking.com Demand Accommodations Messages API
+  title: Booking.com Demand Messages API
   version: '3.1'
   summary: "The Booking.com Demand API enables Affiliate Partners to access Booking.com's travel inventory, including accommodations, car rentals, and flights. \n\nUse Demand API to search, retrieve details, check availability, manage bookings and run reports using orders details.\n\n- RESTful API with JSON responses.\n- Make HTTPS POST requests to interact with endpoints.\n- Requires authentication using your Affiliate ID and token credentials.\n\n[Check the try out guide!](/demand/docs/getting-started/try-out-the-api)\n"
   x-last-validated: '2026-06-02'
   x-generated-from: documentation
-  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+  description: 'Provides endpoints for two-way post-booking communication between guests and properties.
+
+
+    Use these endpoints to send and retrieve messages, exchange images, and check conversation details.'
 servers:
 - url: https://demandapi.booking.com/3.1
   description: Production environment
@@ -16,16 +19,17 @@ security:
 tags:
 - name: Messages
   x-displayName: Messages
-  description: Provides endpoints for two-way post-booking communication between guests and properties. </br></br>Use these endpoints to send and retrieve messages, exchange images, and check conversation details.
+  description: 'Provides endpoints for two-way post-booking communication between guests and properties.
+
+
+    Use these endpoints to send and retrieve messages, exchange images, and check conversation details.'
 paths:
   /messages/send:
     post:
       summary: Booking.com Send a Message
       description: 'Sends a message within a conversation. The message body supports plain text.
 
-        Optionally, attach a file by referencing a previously uploaded attachment ID.
-
-        '
+        Optionally, attach a file by referencing a previously uploaded attachment ID.'
       operationId: messagesSend
       tags:
       - Messages
@@ -90,7 +94,7 @@ paths:
   /messages/latest:
     post:
       summary: Booking.com Fetch Latest Messages
-      description: 'Retrieves up to **100 of the most recent messages** including messages from both property and guest.<br/>
+      description: 'Retrieves up to **100 of the most recent messages** including messages from both property and guest.
 
 
         - Messages are returned in reverse chronological order (newest first).
@@ -98,9 +102,7 @@ paths:
         - Use this endpoint to sync message threads or poll for updates.
 
 
-        **Important:**  To retrieve the latest messages, send an empty POST request.  Any content in the request body will be ignored.
-
-        '
+        **Important:** To retrieve the latest messages, send an empty POST request. Any content in the request body will be ignored.'
       operationId: messagesLatest
       tags:
       - Messages
@@ -192,9 +194,7 @@ paths:
       summary: Booking.com Confirm Message Receipt
       description: 'Confirms receipt of specified messages.
 
-        This confirmation is required before receiving new messages from the POST /messages/latest endpoint.
-
-        '
+        This confirmation is required before receiving new messages from the POST /messages/latest endpoint.'
       operationId: messagesLatestConfirm
       tags:
       - Messages

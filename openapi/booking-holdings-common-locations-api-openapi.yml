@@ -1,11 +1,17 @@
 openapi: 3.2.0
 info:
-  title: Booking.com Demand Accommodations Common/locations API
+  title: Booking.com Demand Common/locations API
   version: '3.1'
   summary: "The Booking.com Demand API enables Affiliate Partners to access Booking.com's travel inventory, including accommodations, car rentals, and flights. \n\nUse Demand API to search, retrieve details, check availability, manage bookings and run reports using orders details.\n\n- RESTful API with JSON responses.\n- Make HTTPS POST requests to interact with endpoints.\n- Requires authentication using your Affiliate ID and token credentials.\n\n[Check the try out guide!](/demand/docs/getting-started/try-out-the-api)\n"
   x-last-validated: '2026-06-02'
   x-generated-from: documentation
-  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+  description: 'Provides identifiers for a wide range of geographical locations, including airports, countries, cities, and regions.
+
+
+    Use these identifiers to construct your requests.
+
+
+    Note: These identifiers are available across all travel services and you can use them for both accommodotation and car rentals requests.'
 servers:
 - url: https://demandapi.booking.com/3.1
   description: Production environment
@@ -16,7 +22,13 @@ security:
 tags:
 - name: Common/locations
   x-displayName: Locations
-  description: 'Provides identifiers for a wide range of geographical locations, including airports, countries, cities, and regions. </br></br>Use these identifiers to construct your requests. </br></br>Note: These identifiers are available across all travel services and you can use them for both accommodotation and car rentals requests.'
+  description: 'Provides identifiers for a wide range of geographical locations, including airports, countries, cities, and regions.
+
+
+    Use these identifiers to construct your requests.
+
+
+    Note: These identifiers are available across all travel services and you can use them for both accommodotation and car rentals requests.'
 paths:
   /common/locations/airports:
     post:
@@ -260,7 +272,13 @@ paths:
   /common/locations/countries:
     post:
       summary: Booking.com Countries
-      description: 'This endpoint returns a list of country codes and their names in the selected languages. The countries returned may be filtered by a location id. For example, you can get the list of countries that are associated with the European Alps region by passing: `{"region":1199}`. <br/><br/>To get the full list call the endpoint passing an empty body. The returned country codes are used as input and output for other endpoints. <br/><br/>This endpoint implements pagination of the results.'
+      description: 'This endpoint returns a list of country codes and their names in the selected languages. The countries returned may be filtered by a location id. For example, you can get the list of countries that are associated with the European Alps region by passing: `{"region":1199}`.
+
+
+        To get the full list call the endpoint passing an empty body. The returned country codes are used as input and output for other endpoints.
+
+
+        This endpoint implements pagination of the results.'
       operationId: commonLocationsCountries
       parameters:
       - $ref: '#/components/parameters/AffiliateIdHeader'
@@ -375,7 +393,13 @@ paths:
   /common/locations/districts:
     post:
       summary: Booking.com Districts
-      description: 'This endpoint returns a list of districts with translations in the selected languages. The districts returned may be filtered by a location id. For example, you can get the list of districts in Amsterdam by passing: `{"city":-2140479}`. <br/><br/>To get the full list call the endpoint passing an empty body. The district ids returned are what is used as input and output for other endpoints.<br/><br/> This endpoint implements pagination of the results.'
+      description: 'This endpoint returns a list of districts with translations in the selected languages. The districts returned may be filtered by a location id. For example, you can get the list of districts in Amsterdam by passing: `{"city":-2140479}`.
+
+
+        To get the full list call the endpoint passing an empty body. The district ids returned are what is used as input and output for other endpoints.
+
+
+        This endpoint implements pagination of the results.'
       operationId: commonLocationsDistricts
       parameters:
       - $ref: '#/components/parameters/AffiliateIdHeader'
@@ -503,7 +527,13 @@ paths:
   /common/locations/landmarks:
     post:
       summary: Booking.com Landmarks
-      description: 'This endpoint returns a list of relevant geographical landmark codes and their names in the selected languages. The landmarks returned may be filtered by a location id. For example, you can get the list of landmarks that are associated with the city of Paris in France by passing: `{"city":-1456928}`. <br/><br/>To get the full list call the endpoint passing an empty body. The landmark codes returned are what is used as input and output for other endpoints. <br/><br/>This endpoint implements pagination of the results.'
+      description: 'This endpoint returns a list of relevant geographical landmark codes and their names in the selected languages. The landmarks returned may be filtered by a location id. For example, you can get the list of landmarks that are associated with the city of Paris in France by passing: `{"city":-1456928}`.
+
+
+        To get the full list call the endpoint passing an empty body. The landmark codes returned are what is used as input and output for other endpoints.
+
+
+        This endpoint implements pagination of the results.'
       operationId: commonLocationsLandmarks
       parameters:
       - $ref: '#/components/parameters/AffiliateIdHeader'
@@ -631,7 +661,7 @@ paths:
   /common/locations/regions:
     post:
       summary: Booking.com Regions
-      description: 'This endpoint returns a list of regions with translations in the selected languages. The regions returned may be filtered by a location id. For example, you can get the list of regions in the Netherlands or that the Netherlands is a part of by passing: `{"country":"nl"}`.  To get the full list call the endpoint passing an empty body. The region ids returned are what is used as input and output for other endpoints. This endpoint implements pagination of the results.'
+      description: 'This endpoint returns a list of regions with translations in the selected languages. The regions returned may be filtered by a location id. For example, you can get the list of regions in the Netherlands or that the Netherlands is a part of by passing: `{"country":"nl"}`. To get the full list call the endpoint passing an empty body. The region ids returned are what is used as input and output for other endpoints. This endpoint implements pagination of the results.'
       operationId: commonLocationsRegions
       parameters:
       - $ref: '#/components/parameters/AffiliateIdHeader'

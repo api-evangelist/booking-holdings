@@ -1,11 +1,14 @@
 openapi: 3.2.0
 info:
-  title: Booking.com Demand Accommodations Cars API
+  title: Booking.com Demand Cars API
   version: '3.1'
   summary: "The Booking.com Demand API enables Affiliate Partners to access Booking.com's travel inventory, including accommodations, car rentals, and flights. \n\nUse Demand API to search, retrieve details, check availability, manage bookings and run reports using orders details.\n\n- RESTful API with JSON responses.\n- Make HTTPS POST requests to interact with endpoints.\n- Requires authentication using your Affiliate ID and token credentials.\n\n[Check the try out guide!](/demand/docs/getting-started/try-out-the-api)\n"
   x-last-validated: '2026-06-02'
   x-generated-from: documentation
-  description: This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments, check availability, retrieve reviews, and get detailed property information.
+  description: 'This API collection is specific to the car rentals part of the connected trip.
+
+
+    Use these endpoints to search for car rentals, check car details and look for depots and suppliers.'
 servers:
 - url: https://demandapi.booking.com/3.1
   description: Production environment
@@ -16,7 +19,10 @@ security:
 tags:
 - name: Cars
   x-displayName: Car rentals
-  description: This API collection is specific to the car rentals part of the connected trip.</br></br> Use these endpoints to search for car rentals, check car details and look for depots and suppliers.
+  description: 'This API collection is specific to the car rentals part of the connected trip.
+
+
+    Use these endpoints to search for car rentals, check car details and look for depots and suppliers.'
 paths:
   /cars/search:
     post:
@@ -1047,7 +1053,13 @@ paths:
         dispatcher: FALLBACK
   /cars/depots/reviews/scores:
     post:
-      description: Use this endpoint to return the score breakdown for the specified depots together with the overall number of reviews and score. </br></br>- Please note that the **ratings score is based on all traveller traffic across Booking.com/cars**, and may not necessarily reflect the experience of your own customers.</br></br> - If you choose to display or use these ratings, you are responsible for ensuring that your travellers are properly informed about what these scores represent.
+      description: 'Use this endpoint to return the score breakdown for the specified depots together with the overall number of reviews and score.
+
+
+        - Please note that the **ratings score is based on all traveller traffic across Booking.com/cars**, and may not necessarily reflect the experience of your own customers.
+
+
+        - If you choose to display or use these ratings, you are responsible for ensuring that your travellers are properly informed about what these scores represent.'
       summary: Booking.com Depot Scores
       operationId: carsDepotsReviewsScores
       parameters:
@@ -1326,7 +1338,11 @@ paths:
         dispatcher: FALLBACK
   /cars/suppliers:
     post:
-      description: Use this endpoint to fetch a list of car rental suppliers. <br/>You can use a supplier ID (or an array of them), to retrieve specific details. <br/>Alternatively, if you do not add any ID in the request, the response will include all suppliers.
+      description: 'Use this endpoint to fetch a list of car rental suppliers.
+
+        You can use a supplier ID (or an array of them), to retrieve specific details.
+
+        Alternatively, if you do not add any ID in the request, the response will include all suppliers.'
       summary: Booking.com Suppliers
       operationId: carsSuppliers
       parameters:
