@@ -92,3 +92,30 @@ plans:
       - name: Reservations API
       - name: Promotions API
       - name: Reporting API
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  - subscription
+  units:
+  - request
+  - transaction
+  plans:
+  - name: Demand API Affiliate Partner
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - request
+    - transaction
+    periods:
+    - per-use
+  - name: Connectivity Partner (Supply Side)
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - request
+    periods:
+    - per-use
