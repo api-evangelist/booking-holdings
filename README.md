@@ -1,4 +1,4 @@
-# Booking Holdings (booking-holdings)
+# Booking Holdings
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,137 +66,240 @@
 
 Booking Holdings is the world's leading provider of online travel and related services, operating a portfolio of brands including Booking.com, Priceline, Agoda, KAYAK, OpenTable, Rentalcars.com, Rocketmiles, FareHarbor, HotelsCombined, Cheapflights, and Momondo. The company connects travelers with accommodations, flights, rental cars, restaurant reservations, and travel experiences worldwide.
 
-**URL:** [https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/booking-holdings/refs/heads/main/apis.yml)
+**Areas:** Accommodation · Airlines · Car Rentals · Hospitality · Hotels · Restaurant · Travel
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Booking Holdings on APIs.io
 
-## Tags:
+Everything profiled for Booking Holdings is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/booking-holdings/](https://apis.io/providers/booking-holdings/)** — or go straight to one of the APIs or properties below.
 
- - Accommodations, Airlines, Car Rentals, Hospitality, Hotels, Restaurants, Travel
+### APIs (9)
 
-## Timestamps
+- [Booking Holdings Accommodations API](https://apis.io/apis/booking-holdings/booking-holdings-accommodations-api/) — This API collection is specific for the stay part of the connected trip. </br></br>Use these endpoints to search for stays such as hotels and apartments,…
+- [Booking Holdings Attachments API](https://apis.io/apis/booking-holdings/booking-holdings-attachments-api/) — Provides endpoints for handling message attachments. </br></br>Use these endpoints to upload and download images shared within conversations.
+- [Booking Holdings Cars API](https://apis.io/apis/booking-holdings/booking-holdings-cars-api/) — This API collection is specific to the car rentals part of the connected trip.</br></br> Use these endpoints to search for car rentals, check car details…
+- [Booking Holdings Common/languages API](https://apis.io/apis/booking-holdings/booking-holdings-common-languages-api/) — Provides a list of supported language codes for use in API requests.
+- [Booking Holdings Common/locations API](https://apis.io/apis/booking-holdings/booking-holdings-common-locations-api/) — Provides identifiers for a wide range of geographical locations, including airports, countries, cities, and regions. </br></br>Use these identifiers to…
+- [Booking Holdings Common/payments API](https://apis.io/apis/booking-holdings/booking-holdings-common-payments-api/) — Provides generic payment-related endpoints, including supported currencies and payment types.
+- [Booking Holdings Conversations API](https://apis.io/apis/booking-holdings/booking-holdings-conversations-api/) — Provides endpoints to retrieve and manage messaging conversations. </br></br>Use these endpoints to list conversations, fetch conversation details, and…
+- [Booking Holdings Messages API](https://apis.io/apis/booking-holdings/booking-holdings-messages-api/) — Provides endpoints for two-way post-booking communication between guests and properties. </br></br>Use these endpoints to send and retrieve messages,…
+- [Booking Holdings Orders API](https://apis.io/apis/booking-holdings/booking-holdings-orders-api/) — Enables management of booking orders within the Demand API. </br></br>Use these endpoints to preview and create new orders, check order details, cancel or…
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-06-02
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Booking.com Demand API
+#### Agentic access (1)
 
-The Booking.com Demand API enables approved Affiliate Partners to access Booking.com's travel inventory — accommodations, car rentals, and flights. A RESTful, RPC-style API (HTTPS POST, JSON) for searching inventory, retrieving details, checking availability, managing orders, and exchanging partner-guest messages. This is Booking Holdings' primary publicly documented developer API; restaurant inventory (OpenTable) and other brand APIs are partner-gated and not included here.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-**Human URL:** [https://developers.booking.com/demand/docs](https://developers.booking.com/demand/docs)
+- [Booking Holdings Agentic Access](https://apis.io/agentic-access/booking-holdings/booking-holdings-agentic-access/)
 
-**Base URL:** `https://demandapi.booking.com/3.1`
+#### JSON Schema (25)
 
-#### Tags:
+The data models the API reads and writes.
 
- - Accommodations, Car Rentals, Travel, Orders, Affiliate
+- [AccommodationsAvailabilityInput](https://apis.io/schemas/booking-holdings/demand-api-accommodations-availability-input/)
+- [AccommodationsAvailabilityProductOutput](https://apis.io/schemas/booking-holdings/demand-api-accommodations-availability-product-output/)
+- [AccommodationsDetailsDataOutput](https://apis.io/schemas/booking-holdings/demand-api-accommodations-details-data-output/)
+- [AccommodationsDetailsInput](https://apis.io/schemas/booking-holdings/demand-api-accommodations-details-input/)
+- [AccommodationsDetailsRoomOutput](https://apis.io/schemas/booking-holdings/demand-api-accommodations-details-room-output/)
+- [AccommodationsLocationOutput](https://apis.io/schemas/booking-holdings/demand-api-accommodations-location-output/)
+- [AccommodationsPoliciesOutput](https://apis.io/schemas/booking-holdings/demand-api-accommodations-policies-output/)
+- [AccommodationsReviewOutput](https://apis.io/schemas/booking-holdings/demand-api-accommodations-review-output/)
+- [AccommodationsReviewsScoresOutput](https://apis.io/schemas/booking-holdings/demand-api-accommodations-reviews-scores-output/)
+- [AccommodationsSearchInput](https://apis.io/schemas/booking-holdings/demand-api-accommodations-search-input/)
+- [AccommodationsSearchProductOutput](https://apis.io/schemas/booking-holdings/demand-api-accommodations-search-product-output/)
+- [AirportsInput](https://apis.io/schemas/booking-holdings/demand-api-airports-input/)
+- [CitiesInput](https://apis.io/schemas/booking-holdings/demand-api-cities-input/)
+- [ConstantsDataOutput](https://apis.io/schemas/booking-holdings/demand-api-constants-data-output/)
+- [CountriesInput](https://apis.io/schemas/booking-holdings/demand-api-countries-input/)
+- [DistrictsInput](https://apis.io/schemas/booking-holdings/demand-api-districts-input/)
+- [FlightsOutput](https://apis.io/schemas/booking-holdings/demand-api-flights-output/)
+- [LandmarksInput](https://apis.io/schemas/booking-holdings/demand-api-landmarks-input/)
+- [OrderCreateBookerInput](https://apis.io/schemas/booking-holdings/demand-api-order-create-booker-input/)
+- [OrderCreatePaymentInput](https://apis.io/schemas/booking-holdings/demand-api-order-create-payment-input/)
+- [OrderDetailsBookerOutput](https://apis.io/schemas/booking-holdings/demand-api-order-details-booker-output/)
+- [OrderDetailsDataOutput](https://apis.io/schemas/booking-holdings/demand-api-order-details-data-output/)
+- [OrdersPreviewProductOutput](https://apis.io/schemas/booking-holdings/demand-api-orders-preview-product-output/)
+- [RegionsInput](https://apis.io/schemas/booking-holdings/demand-api-regions-input/)
+- [TraderOutput](https://apis.io/schemas/booking-holdings/demand-api-trader-output/)
 
-#### Properties
+#### JSON Structure (25)
 
-- [OpenAPI](openapi/booking-com-demand-api.yaml)
-- [Documentation](https://developers.booking.com/demand/docs)
-- [Authentication](https://developers.booking.com/demand/docs/getting-started)
-- [Naftiko Capability — Accommodations](capabilities/demand-api-accommodations.yaml)
-- [Naftiko Capability — Cars](capabilities/demand-api-cars.yaml)
-- [Naftiko Capability — Orders](capabilities/demand-api-orders.yaml)
-- [Naftiko Capability — Messages](capabilities/demand-api-messages.yaml)
-- [Naftiko Capability — Conversations](capabilities/demand-api-conversations.yaml)
-- [Naftiko Capability — Attachments](capabilities/demand-api-attachments.yaml)
-- [Naftiko Capability — Locations](capabilities/demand-api-common-locations.yaml)
-- [Naftiko Capability — Payments](capabilities/demand-api-common-payments.yaml)
-- [Naftiko Capability — Languages](capabilities/demand-api-common-languages.yaml)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Demand Api Accommodations Availability Input Structure](https://apis.io/json-structure/booking-holdings/demand-api-accommodations-availability-input-structure/)
+- [Demand Api Accommodations Availability Product Output Structure](https://apis.io/json-structure/booking-holdings/demand-api-accommodations-availability-product-output-structure/)
+- [Demand Api Accommodations Details Data Output Structure](https://apis.io/json-structure/booking-holdings/demand-api-accommodations-details-data-output-structure/)
+- [Demand Api Accommodations Details Input Structure](https://apis.io/json-structure/booking-holdings/demand-api-accommodations-details-input-structure/)
+- [Demand Api Accommodations Details Room Output Structure](https://apis.io/json-structure/booking-holdings/demand-api-accommodations-details-room-output-structure/)
+- [Demand Api Accommodations Location Output Structure](https://apis.io/json-structure/booking-holdings/demand-api-accommodations-location-output-structure/)
+- [Demand Api Accommodations Policies Output Structure](https://apis.io/json-structure/booking-holdings/demand-api-accommodations-policies-output-structure/)
+- [Demand Api Accommodations Review Output Structure](https://apis.io/json-structure/booking-holdings/demand-api-accommodations-review-output-structure/)
+- [Demand Api Accommodations Reviews Scores Output Structure](https://apis.io/json-structure/booking-holdings/demand-api-accommodations-reviews-scores-output-structure/)
+- [Demand Api Accommodations Search Input Structure](https://apis.io/json-structure/booking-holdings/demand-api-accommodations-search-input-structure/)
+- [Demand Api Accommodations Search Product Output Structure](https://apis.io/json-structure/booking-holdings/demand-api-accommodations-search-product-output-structure/)
+- [Demand Api Airports Input Structure](https://apis.io/json-structure/booking-holdings/demand-api-airports-input-structure/)
+- [Demand Api Cities Input Structure](https://apis.io/json-structure/booking-holdings/demand-api-cities-input-structure/)
+- [Demand Api Constants Data Output Structure](https://apis.io/json-structure/booking-holdings/demand-api-constants-data-output-structure/)
+- [Demand Api Countries Input Structure](https://apis.io/json-structure/booking-holdings/demand-api-countries-input-structure/)
+- [Demand Api Districts Input Structure](https://apis.io/json-structure/booking-holdings/demand-api-districts-input-structure/)
+- [Demand Api Flights Output Structure](https://apis.io/json-structure/booking-holdings/demand-api-flights-output-structure/)
+- [Demand Api Landmarks Input Structure](https://apis.io/json-structure/booking-holdings/demand-api-landmarks-input-structure/)
+- [Demand Api Order Create Booker Input Structure](https://apis.io/json-structure/booking-holdings/demand-api-order-create-booker-input-structure/)
+- [Demand Api Order Create Payment Input Structure](https://apis.io/json-structure/booking-holdings/demand-api-order-create-payment-input-structure/)
+- [Demand Api Order Details Booker Output Structure](https://apis.io/json-structure/booking-holdings/demand-api-order-details-booker-output-structure/)
+- [Demand Api Order Details Data Output Structure](https://apis.io/json-structure/booking-holdings/demand-api-order-details-data-output-structure/)
+- [Demand Api Orders Preview Product Output Structure](https://apis.io/json-structure/booking-holdings/demand-api-orders-preview-product-output-structure/)
+- [Demand Api Regions Input Structure](https://apis.io/json-structure/booking-holdings/demand-api-regions-input-structure/)
+- [Demand Api Trader Output Structure](https://apis.io/json-structure/booking-holdings/demand-api-trader-output-structure/)
 
-- [LinkedIn](https://www.linkedin.com/company/bookingholdings)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Booking Holdings Demand Api Context](https://apis.io/jsonld/booking-holdings/booking-holdings-demand-api-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Booking Holdings Vocabulary](https://apis.io/vocabularies/booking-holdings/booking-holdings-vocabulary/)
+
+#### Examples (25)
+
+Example requests and responses.
+
+- [Demand Api Accommodations Availability Input Example](https://apis.io/examples/booking-holdings/demand-api-accommodations-availability-input-example/)
+- [Demand Api Accommodations Availability Product Output Example](https://apis.io/examples/booking-holdings/demand-api-accommodations-availability-product-output-example/)
+- [Demand Api Accommodations Details Data Output Example](https://apis.io/examples/booking-holdings/demand-api-accommodations-details-data-output-example/)
+- [Demand Api Accommodations Details Input Example](https://apis.io/examples/booking-holdings/demand-api-accommodations-details-input-example/)
+- [Demand Api Accommodations Details Room Output Example](https://apis.io/examples/booking-holdings/demand-api-accommodations-details-room-output-example/)
+- [Demand Api Accommodations Location Output Example](https://apis.io/examples/booking-holdings/demand-api-accommodations-location-output-example/)
+- [Demand Api Accommodations Policies Output Example](https://apis.io/examples/booking-holdings/demand-api-accommodations-policies-output-example/)
+- [Demand Api Accommodations Review Output Example](https://apis.io/examples/booking-holdings/demand-api-accommodations-review-output-example/)
+- [Demand Api Accommodations Reviews Scores Output Example](https://apis.io/examples/booking-holdings/demand-api-accommodations-reviews-scores-output-example/)
+- [Demand Api Accommodations Search Input Example](https://apis.io/examples/booking-holdings/demand-api-accommodations-search-input-example/)
+- [Demand Api Accommodations Search Product Output Example](https://apis.io/examples/booking-holdings/demand-api-accommodations-search-product-output-example/)
+- [Demand Api Airports Input Example](https://apis.io/examples/booking-holdings/demand-api-airports-input-example/)
+- [Demand Api Cities Input Example](https://apis.io/examples/booking-holdings/demand-api-cities-input-example/)
+- [Demand Api Constants Data Output Example](https://apis.io/examples/booking-holdings/demand-api-constants-data-output-example/)
+- [Demand Api Countries Input Example](https://apis.io/examples/booking-holdings/demand-api-countries-input-example/)
+- [Demand Api Districts Input Example](https://apis.io/examples/booking-holdings/demand-api-districts-input-example/)
+- [Demand Api Flights Output Example](https://apis.io/examples/booking-holdings/demand-api-flights-output-example/)
+- [Demand Api Landmarks Input Example](https://apis.io/examples/booking-holdings/demand-api-landmarks-input-example/)
+- [Demand Api Order Create Booker Input Example](https://apis.io/examples/booking-holdings/demand-api-order-create-booker-input-example/)
+- [Demand Api Order Create Payment Input Example](https://apis.io/examples/booking-holdings/demand-api-order-create-payment-input-example/)
+- [Demand Api Order Details Booker Output Example](https://apis.io/examples/booking-holdings/demand-api-order-details-booker-output-example/)
+- [Demand Api Order Details Data Output Example](https://apis.io/examples/booking-holdings/demand-api-order-details-data-output-example/)
+- [Demand Api Orders Preview Product Output Example](https://apis.io/examples/booking-holdings/demand-api-orders-preview-product-output-example/)
+- [Demand Api Regions Input Example](https://apis.io/examples/booking-holdings/demand-api-regions-input-example/)
+- [Demand Api Trader Output Example](https://apis.io/examples/booking-holdings/demand-api-trader-output-example/)
+
+#### Collections (9)
+
+Postman and Open Collection request collections.
+
+- [Booking.com Demand Accommodations API](https://apis.io/collections/booking-holdings/open-booking-holdings-accommodations-api/)
+- [Booking.com Demand Accommodations Attachments API](https://apis.io/collections/booking-holdings/open-booking-holdings-attachments-api/)
+- [Booking.com Demand Accommodations Cars API](https://apis.io/collections/booking-holdings/open-booking-holdings-cars-api/)
+- [Booking.com Demand Accommodations Common/languages API](https://apis.io/collections/booking-holdings/open-booking-holdings-common-languages-api/)
+- [Booking.com Demand Accommodations Common/locations API](https://apis.io/collections/booking-holdings/open-booking-holdings-common-locations-api/)
+- [Booking.com Demand Accommodations Common/payments API](https://apis.io/collections/booking-holdings/open-booking-holdings-common-payments-api/)
+- [Booking.com Demand Accommodations Conversations API](https://apis.io/collections/booking-holdings/open-booking-holdings-conversations-api/)
+- [Booking.com Demand Accommodations Messages API](https://apis.io/collections/booking-holdings/open-booking-holdings-messages-api/)
+- [Booking.com Demand Accommodations Orders API](https://apis.io/collections/booking-holdings/open-booking-holdings-orders-api/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [Booking Holdings — booking com demand api rules](https://apis.io/rules/booking-holdings/booking-com-demand-api-spectral-rules/)
+- [Booking Holdings — jsonschema rules](https://apis.io/rules/booking-holdings/booking-holdings-jsonschema-spectral-rules/)
+- [Booking Holdings API Rules](https://apis.io/rules/booking-holdings/booking-holdings-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Booking Holdings Authentication](https://apis.io/security/booking-holdings/booking-holdings-authentication/)
+- [Booking Holdings Domain Security](https://apis.io/security/booking-holdings/booking-holdings-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Booking Holdings Plans Pricing](https://apis.io/plans/booking-holdings/booking-holdings-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Booking Holdings Rate Limits](https://apis.io/rate-limits/booking-holdings/booking-holdings-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Booking Holdings Finops](https://apis.io/finops/booking-holdings/booking-holdings-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.bookingholdings.com)
-- [About](https://www.bookingholdings.com/about/)
-- [InvestorRelations](https://ir.bookingholdings.com)
-- [Careers](https://www.bookingholdings.com/careers/)
-- [Contact](https://www.bookingholdings.com/contact/)
-- [Plans](plans/booking-holdings-plans-pricing.yml)
-- [RateLimits](rate-limits/booking-holdings-rate-limits.yml)
-- [FinOps](finops/booking-holdings-finops.yml)
-- [Rules](rules/booking-com-demand-api-spectral-rules.yml)
-- [Vocabulary](vocabulary/booking-holdings-vocabulary.yaml)
-- [JSON-LD](json-ld/booking-holdings-demand-api-context.jsonld)
-- [GitHub Organization — Booking.com](https://github.com/bookingcom)
-- [GitHub Organization — OpenTable](https://github.com/opentable)
-- [GitHub Organization — KAYAK](https://github.com/kayak)
+- [Blog](https://www.bookingholdings.com/feed/)
+- [GitHub](https://github.com/bookingcom)
 
-## Brand Portfolio
+## API Evangelist rating
 
-- **[Booking.com](https://www.booking.com)** — World's leading accommodation booking platform (Demand API, Connectivity API, Affiliate Program)
-- **[Priceline](https://www.priceline.com)** — Hotels, flights, and car rentals with Express Deals
-- **[Agoda](https://www.agoda.com)** — Asia-Pacific focused accommodation platform
-- **[KAYAK](https://www.kayak.com)** — Travel search and comparison engine
-- **[OpenTable](https://www.opentable.com)** — Restaurant reservations and guest management (partner-gated platform API)
-- **[Rentalcars.com](https://www.rentalcars.com)** — Global car rental search
-- **[FareHarbor](https://fareharbor.com)** — Tours, activities, and experience booking (partner API)
-- **[Momondo](https://www.momondo.com)** — Flight and hotel price comparison
-- **[Cheapflights](https://www.cheapflights.com)** — Cheap flight search
-- **[Rocketmiles](https://www.rocketmiles.com)** — Hotel bookings earning loyalty miles
-- **[HotelsCombined](https://www.hotelscombined.com)** — Hotel price aggregation
+**Kin Score 20.3** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-## Artifacts
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 20.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 5.3 |
 
-Machine-readable API specifications organized by format.
+**Agent readiness 27.2** — agent-aware
 
-### OpenAPI
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | verified |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-- [Booking.com Demand API](openapi/booking-com-demand-api.yaml) — 39 operations across 9 resource groups (OpenAPI 3.1)
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
 
-### JSON Schema
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/booking-holdings/](https://apis.io/providers/booking-holdings/).
 
-25 schemas extracted from the Demand API in [json-schema/](json-schema/) — accommodations, orders, locations, flights, and reference-data entities.
+## How this profile is made
 
-### JSON Structure
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-25 [json-structure/](json-structure/) representations converted from the JSON Schemas.
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Booking Holdings: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### Examples
+## Open an issue
 
-25 example payloads in [examples/](examples/), one per JSON Schema.
-
-## Capabilities
-
-Naftiko capabilities, one self-contained file per Demand API business surface (each with REST and MCP exposers).
-
-| Workflow | API | Operations | Persona |
-|----------|-----|-----------|---------|
-| [Accommodations](capabilities/demand-api-accommodations.yaml) | Demand API | 9 | Affiliate Partner |
-| [Cars](capabilities/demand-api-cars.yaml) | Demand API | 6 | Affiliate Partner |
-| [Orders](capabilities/demand-api-orders.yaml) | Demand API | 8 | Affiliate Partner |
-| [Messages](capabilities/demand-api-messages.yaml) | Demand API | 3 | Affiliate Partner |
-| [Conversations](capabilities/demand-api-conversations.yaml) | Demand API | 1 | Affiliate Partner |
-| [Attachments](capabilities/demand-api-attachments.yaml) | Demand API | 3 | Affiliate Partner |
-| [Locations](capabilities/demand-api-common-locations.yaml) | Demand API | 6 | Affiliate Partner |
-| [Payments](capabilities/demand-api-common-payments.yaml) | Demand API | 2 | Affiliate Partner |
-| [Languages](capabilities/demand-api-common-languages.yaml) | Demand API | 1 | Affiliate Partner |
-
-## Vocabulary
-
-- [Booking Holdings Vocabulary](vocabulary/booking-holdings-vocabulary.yaml) — Unified taxonomy mapping 9 resources, 30 actions, 9 workflows, and 1 persona across operational (OpenAPI) and capability (Naftiko) dimensions
-
-## Rules
-
-- [Booking.com Demand API Spectral Rules](rules/booking-com-demand-api-spectral-rules.yml) — 30 rules across info, paths, operations, parameters, responses, schemas, and security enforcing Booking.com Demand API conventions
-
-## Plans & FinOps
-
-- [Plans / Pricing](plans/booking-holdings-plans-pricing.yml) — Demand API is free to approved affiliates; revenue is an affiliate commission share
-- [Rate Limits](rate-limits/booking-holdings-rate-limits.yml) — Per-account RPM limits (sandbox 50 RPM, cars/search 3000 RPM, production partner-specific)
-- [FinOps](finops/booking-holdings-finops.yml) — FOCUS-aligned commission-tracking model
-
-## Developer Resources
-
-- Booking.com: [developers.booking.com](https://developers.booking.com/)
-- OpenTable: [platform.opentable.com](https://platform.opentable.com/) (partner-gated)
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/booking-holdings/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
